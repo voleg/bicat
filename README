@@ -15,5 +15,3 @@ password:               250bibl052
 Картотека|DSN=B_KART;UID=biblioteka;PWD=250bibl052;
 Каталог|DSN=B_CAT;UID=biblioteka;PWD=250bibl052;
 УМЛ|DSN=B_UML;UID=biblioteka;PWD=250bibl052;
-
-Соответственно их нужно 
