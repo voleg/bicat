@@ -5,8 +5,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'BiblCatalog.views.home', name='home'),
+
+    url(r'^$', 'BiblCatalog.views.home', name='home'),
     # url(r'^BiblCatalog/', include('BiblCatalog.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
