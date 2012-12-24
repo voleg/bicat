@@ -2,3 +2,18 @@
 Django
 MSSQL
 pyODBC
+
+для доступа к базе данных
+
+HOST.name\SERVICE.name: SERV3\SQLEXPRESS
+IP:                     192.168.1.252
+login:                  biblioteka
+password:               250bibl052
+
+на сервере имеется 3 базы данных
+
+Картотека|DSN=B_KART;UID=biblioteka;PWD=250bibl052;
+Каталог|DSN=B_CAT;UID=biblioteka;PWD=250bibl052;
+УМЛ|DSN=B_UML;UID=biblioteka;PWD=250bibl052;
+
+Соответственно их нужно 
