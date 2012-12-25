@@ -1,0 +1,27 @@
+[SERV3BKART]
+Description	= my dsn
+Driver		= TDS
+Servername	= MSsqlForPython
+Database	= B_KART
+UID		= biblioteka
+PWD		= 250bibl052
+Port		= 4538
+
+[SERV3BCAT]
+Description	= my dsn
+Driver		= TDS
+Servername	= MSsqlForPython
+Database	= B_CAT
+UID		= biblioteka
+PWD		= 250bibl052
+Port		= 4538
+
+[SERV3BUML]
+Description	= my dsn
+Driver		= TDS
+Servername	= MSsqlForPython
+Database	= B_UML
+UID		= biblioteka
+PWD		= 250bibl052
+Port		= 4538
+
