@@ -4,8 +4,16 @@
     <title>{% block page_title %}{% endblock %}</title>
 </head>
 <body>
-{% block page_main_content %}
+{% block page_main_header %}
+    <p>Заголовок страницы</p>
+{% endblock %}
 
+{% block page_main_content %}
+    <p>Контент чо</p>
+{% endblock %}
+
+{% block page_main_footer %}
+    <p>Подвал страницы</p>
 {% endblock %}
 </body>
 </html>

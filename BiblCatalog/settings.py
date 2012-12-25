@@ -14,12 +14,44 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'sql_server.pyodbc', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'dev.db',
+         },
+    'bikart': {
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'B_KART',
+        'USER': 'biblioteka',
+        'PASSWORD': '250bibl052',
+        'HOST': '192.168.1.252',
+        'PORT': '4538',
+        'OPTIONS':  {   'driver': 'TDS',
+                        'dsn':  'SERV3BKART',
+                        'host_is_server': True,
+                        'extra_params': 'TDS_VERSION=8.0' }
+    },
+    'bicat': {
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'B_CAT',
+        'USER': 'biblioteka',
+        'PASSWORD': '250bibl052',
+        'HOST': '192.168.1.252',
+        'PORT': '4538',
+        'OPTIONS':  {   'driver': 'TDS',
+                        'dsn':  'SERV3BCAT',
+                        'host_is_server': True,
+                        'extra_params': 'TDS_VERSION=8.0' }
+    },
+    'biuml': {
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'B_uml',
+        'USER': 'biblioteka',
+        'PASSWORD': '250bibl052',
+        'HOST': '192.168.1.252',
+        'PORT': '4538',
+        'OPTIONS':  {   'driver': 'TDS',
+                        'dsn':  'SERV3BUML',
+                        'host_is_server': True,
+                        'extra_params': 'TDS_VERSION=8.0' }
     }
 }
 
@@ -119,7 +151,9 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'blog',
-
+    'apps.BiCat',
+    'apps.BiKart',
+    'apps.BiUML',
 )
 
 # A sample logging configuration. The only tangible logging
