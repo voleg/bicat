@@ -245,7 +245,7 @@ class Siglas(models.Model):
         db_table = u'SIGLAS'
 
 class Idx100A(models.Model):
-    idx_id = models.AutoField(unique=True, db_column='IDX_ID') # Field name made lowercase.
+    idx_id = models.IntegerField(unique=True, db_column='IDX_ID') # Field name made lowercase.
     term = models.TextField(primary_key=True, db_column='TERM') # Field name made lowercase.
     cnt = models.IntegerField(null=True, db_column='CNT', blank=True) # Field name made lowercase.
     class Meta:
@@ -258,7 +258,7 @@ class Idx100Ax(models.Model):
         db_table = u'IDX100aX'
 
 class Idx245A(models.Model):
-    idx_id = models.AutoField(unique=True, db_column='IDX_ID') # Field name made lowercase.
+    idx_id = models.IntegerField(unique=True, db_column='IDX_ID') # Field name made lowercase.
     term = models.TextField(primary_key=True, db_column='TERM') # Field name made lowercase.
     cnt = models.IntegerField(null=True, db_column='CNT', blank=True) # Field name made lowercase.
     class Meta:
@@ -271,7 +271,7 @@ class Idx245Ax(models.Model):
         db_table = u'IDX245aX'
 
 class Idx653A(models.Model):
-    idx_id = models.AutoField(unique=True, db_column='IDX_ID') # Field name made lowercase.
+    idx_id = models.IntegerField(unique=True, db_column='IDX_ID') # Field name made lowercase.
     term = models.TextField(primary_key=True, db_column='TERM') # Field name made lowercase.
     cnt = models.IntegerField(null=True, db_column='CNT', blank=True) # Field name made lowercase.
     class Meta:
