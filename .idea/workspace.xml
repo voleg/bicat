@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="375e6554-4085-4179-84c2-e94826aa40c9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dev.db" afterPath="$PROJECT_DIR$/dev.db" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/BiCat/models.py" afterPath="$PROJECT_DIR$/apps/BiCat/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/BiKart/models.py" afterPath="$PROJECT_DIR$/apps/BiKart/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/BiUML/models.py" afterPath="$PROJECT_DIR$/apps/BiUML/models.py" />
     </list>
     <ignored path="BiblCatalog.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,10 +51,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/BiUML/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="283" column="30" selection-start="18606" selection-end="18606" vertical-scroll-proportion="0.12411348">
+            <state line="11" column="20" selection-start="452" selection-end="452" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$USER_HOME$/env_BCat/lib/python2.7/site-packages/django/db/models/base.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="427" column="45" selection-start="19253" selection-end="19253" vertical-scroll-proportion="0.6205674">
               <folding />
             </state>
           </provider>
@@ -61,7 +72,7 @@
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/BiCat/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="39" selection-start="1515" selection-end="1515" vertical-scroll-proportion="0.0">
+            <state line="334" column="50" selection-start="23640" selection-end="23640" vertical-scroll-proportion="-10.785714">
               <folding />
             </state>
           </provider>
@@ -70,7 +81,7 @@
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/BiKart/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="667" column="31" selection-start="41279" selection-end="41279" vertical-scroll-proportion="0.0">
+            <state line="588" column="44" selection-start="36958" selection-end="36964" vertical-scroll-proportion="-10.25">
               <folding />
             </state>
           </provider>
@@ -111,12 +122,12 @@
         <option value="$PROJECT_DIR$/tds.datasource.template" />
         <option value="$PROJECT_DIR$/wiki/Home.wiki" />
         <option value="$PROJECT_DIR$/apps/README" />
-        <option value="$PROJECT_DIR$/apps/BiCat/models.py" />
         <option value="$PROJECT_DIR$/BiblCatalog/settings.py" />
-        <option value="$PROJECT_DIR$/apps/BiKart/models.py" />
-        <option value="$PROJECT_DIR$/apps/BiUML/models.py" />
         <option value="$PROJECT_DIR$/virtual_env_requirements" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/apps/BiKart/models.py" />
+        <option value="$PROJECT_DIR$/apps/BiCat/models.py" />
+        <option value="$PROJECT_DIR$/apps/BiUML/models.py" />
       </list>
     </option>
   </component>
@@ -532,11 +543,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/freetds.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="10" selection-start="1110" selection-end="1110" vertical-scroll-proportion="0.7453704" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/USER_DSN_odbc.ini">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="0" selection-start="0" selection-end="428" vertical-scroll-proportion="0.64490443" />
@@ -600,20 +606,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/BiCat/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="39" selection-start="1515" selection-end="1515" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/BiKart/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="667" column="31" selection-start="41279" selection-end="41279" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="5" selection-start="26" selection-end="26" vertical-scroll-proportion="0.07092199">
@@ -621,9 +613,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/apps/BiKart/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="588" column="44" selection-start="36958" selection-end="36964" vertical-scroll-proportion="-10.25">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/BiCat/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="334" column="50" selection-start="23640" selection-end="23640" vertical-scroll-proportion="-10.785714">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/apps/BiUML/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="283" column="30" selection-start="18606" selection-end="18606" vertical-scroll-proportion="0.12411348">
+        <state line="11" column="20" selection-start="452" selection-end="452" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/env_BCat/lib/python2.7/site-packages/django/db/models/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="427" column="45" selection-start="19253" selection-end="19253" vertical-scroll-proportion="0.6205674">
           <folding />
         </state>
       </provider>

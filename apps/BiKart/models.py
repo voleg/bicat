@@ -239,7 +239,7 @@ class Idx653A(models.Model):
         db_table = u'IDX653a'
 
 class Sxrefs(models.Model):
-    did = models.ForeignKey(Sxterms, null=True, db_column='DID', blank=True) # Field name made lowercase.
+    did = models.ForeignKey(Sxterms, related_name="sxrefs_did_set", null=True, db_column='DID', blank=True) # Field name made lowercase.
     tid = models.ForeignKey(Sxterms, null=True, db_column='TID', blank=True) # Field name made lowercase.
     ttype = models.ForeignKey(Sxttypes, null=True, db_column='TTYPE', blank=True) # Field name made lowercase.
     class Meta:
@@ -437,7 +437,7 @@ class T252622B69(models.Model):
         db_table = u'T_252622B_69'
 
 class Lowrefs(models.Model):
-    did = models.ForeignKey(Lowterms, null=True, db_column='DID', blank=True) # Field name made lowercase.
+    did = models.ForeignKey(Lowterms, related_name="lowrefs_did_set",null=True, db_column='DID', blank=True) # Field name made lowercase.
     tid = models.ForeignKey(Lowterms, null=True, db_column='TID', blank=True) # Field name made lowercase.
     ttype = models.ForeignKey(Lowttypes, null=True, db_column='TTYPE', blank=True) # Field name made lowercase.
     class Meta:
@@ -586,7 +586,7 @@ class CodeLanguage(models.Model):
 
 class Tag(models.Model):
     tag = models.CharField(max_length=3, primary_key=True, db_column='TAG') # Field name made lowercase.
-    subtag = models.CharField(max_length=1, primary_key=True, db_column='SUBTAG') # Field name made lowercase.
+    subtag = models.CharField(max_length=1, unique=True, db_column='SUBTAG') # Field name made lowercase.
     flags = models.IntegerField(null=True, db_column='FLAGS', blank=True) # Field name made lowercase.
     separator = models.CharField(max_length=1, db_column='SEPARATOR', blank=True) # Field name made lowercase.
     caption = models.CharField(max_length=40, db_column='CAPTION', blank=True) # Field name made lowercase.
@@ -710,7 +710,7 @@ class Econhelp(models.Model):
         db_table = u'ECONHELP'
 
 class Econrefs(models.Model):
-    did = models.ForeignKey(Econterms, null=True, db_column='DID', blank=True) # Field name made lowercase.
+    did = models.ForeignKey(Econterms, related_name="econrefs_did_set", null=True, db_column='DID', blank=True) # Field name made lowercase.
     tid = models.ForeignKey(Econterms, null=True, db_column='TID', blank=True) # Field name made lowercase.
     ttype = models.ForeignKey(Econttypes, null=True, db_column='TTYPE', blank=True) # Field name made lowercase.
     class Meta:
@@ -723,7 +723,7 @@ class Idx900Ax(models.Model):
         db_table = u'IDX900aX'
 
 class Siglas(models.Model):
-    id = models.IntegerField(null=True, db_column='ID', blank=True) # Field name made lowercase.
+#Sxrefs    id = models.IntegerField(null=True, db_column='ID', blank=True) # Field name made lowercase.
     fullname = models.CharField(max_length=255, db_column='FULLNAME', blank=True) # Field name made lowercase.
     shortname = models.CharField(max_length=255, db_column='SHORTNAME', blank=True) # Field name made lowercase.
     class Meta:
