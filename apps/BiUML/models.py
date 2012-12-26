@@ -36,7 +36,7 @@ class Metaidx(models.Model):
 
 class Tag(models.Model):
     tag = models.CharField(max_length=3, primary_key=True, db_column='TAG') # Field name made lowercase.
-    subtag = models.CharField(max_length=1, primary_key=True, db_column='SUBTAG') # Field name made lowercase.
+    subtag = models.CharField(max_length=1, unique=True, db_column='SUBTAG') # Field name made lowercase.
     flags = models.IntegerField(null=True, db_column='FLAGS', blank=True) # Field name made lowercase.
     separator = models.CharField(max_length=1, db_column='SEPARATOR', blank=True) # Field name made lowercase.
     caption = models.TextField(db_column='CAPTION', blank=True) # Field name made lowercase.
@@ -238,7 +238,7 @@ class Marcstat(models.Model):
         db_table = u'MARCSTAT'
 
 class Siglas(models.Model):
-    id = models.IntegerField(null=True, db_column='ID', blank=True) # Field name made lowercase.
+#    id = models.IntegerField(null=True, db_column='ID', blank=True) # Field name made lowercase.
     fullname = models.TextField(db_column='FULLNAME', blank=True) # Field name made lowercase.
     shortname = models.TextField(db_column='SHORTNAME', blank=True) # Field name made lowercase.
     class Meta:
