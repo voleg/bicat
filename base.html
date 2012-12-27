@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <title>МЕГАМАГ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="мегамаг">
+    <meta name="dd" content="">
+    <style>
+        body {
+            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        }
+    </style>
+
+    <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
+{#    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">#}
+    <script src="/static/bootstrap/js/jquery-1.8.3.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.js"></script>
+{#    <script src="/static/bootstrap/js/bootstrap.min.js"></script>#}
+    <title>{% block title %} {% endblock %}</title>
+
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">Универмаг</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    {% block tag-menu %}{% endblock %}
+                    <li class="active"><a href="/">Главная</a></li>
+                    <li><a href="/about">Доставка</a></li>
+                    <li><a href="/contact">Контакты</a></li>
+                    <li><a href="/admin">Админ</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+
+            <form class="navbar-search pull-left" action="/search" method="post">
+                <input type="text" class="search-query" placeholder="..." name="q">
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" >
+    {% block page_title %}
+
+        <div class="page-header">
+            <div class="">
+                <p> заголовок </p>
+            </div>
+        </div>
+    {% endblock %}
+
+    <div class=row-fluid>
+
+        <div class="span3">
+            {% block login %}
+                <p>Блок логина</p>
+            {% endblock %}
+        </div>
+
+        <div class="span9">
+            {% block content_title %}
+                <p>Контент</p>
+            {% endblock %}
+
+            {% block content %}
+                <p>Контент</p>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+<hr>
+<div align="center" class="bottom">
+    {% block footer %}
+
+        <p>подвал</p>
+
+    {% endblock %}
+</div>
+</body>
+</html>

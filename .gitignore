@@ -3,3 +3,4 @@ build
 wiki
 env
 .idea
+dev.db

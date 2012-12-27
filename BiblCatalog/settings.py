@@ -1,7 +1,13 @@
 # Django settings for BiblCatalog project.
 import os
 import sql_server
+
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
+TEST_MSSQL_HOST = '192.168.198.3'
+TEST_MSSQL_PORT = '3019'
+
+MSSQL_HOST = '192.168.1.252'
+MSSQL_PORT = '4538'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -15,17 +21,17 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'dev.db',
+            'NAME': 'dev.db'
          },
     'bikart': {
         'ENGINE': 'sql_server.pyodbc',
         'NAME': 'B_KART',
         'USER': 'biblioteka',
         'PASSWORD': '250bibl052',
-        'HOST': '192.168.1.252',
-        'PORT': '4538',
+        'HOST': TEST_MSSQL_HOST,
+        'PORT': TEST_MSSQL_PORT,
         'OPTIONS':  {   'driver': 'TDS',
-                        'dsn':  'SERV3BKART',
+                        'dsn':  'TESTSERV3BKART',
                         'host_is_server': True,
                         'extra_params': 'TDS_VERSION=8.0' }
     },
@@ -34,10 +40,10 @@ DATABASES = {
         'NAME': 'B_CAT',
         'USER': 'biblioteka',
         'PASSWORD': '250bibl052',
-        'HOST': '192.168.1.252',
-        'PORT': '4538',
+        'HOST': TEST_MSSQL_HOST,
+        'PORT': TEST_MSSQL_PORT,
         'OPTIONS':  {   'driver': 'TDS',
-                        'dsn':  'SERV3BCAT',
+                        'dsn':  'TESTSERV3BCAT',
                         'host_is_server': True,
                         'extra_params': 'TDS_VERSION=8.0' }
     },
@@ -46,14 +52,16 @@ DATABASES = {
         'NAME': 'B_uml',
         'USER': 'biblioteka',
         'PASSWORD': '250bibl052',
-        'HOST': '192.168.1.252',
-        'PORT': '4538',
+        'HOST': TEST_MSSQL_HOST,
+        'PORT': TEST_MSSQL_PORT,
         'OPTIONS':  {   'driver': 'TDS',
-                        'dsn':  'SERV3BUML',
+                        'dsn':  'TESTSERV3BUML',
                         'host_is_server': True,
                         'extra_params': 'TDS_VERSION=8.0' }
     }
 }
+
+DATABASE_ROUTERS = ['apps.router.BiRouter']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -153,7 +161,7 @@ INSTALLED_APPS = (
     'admin_tools',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'blog',
+    'apps.blog',
     'apps.BiCat',
     'apps.BiKart',
     'apps.BiUML',
