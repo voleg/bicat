@@ -2,11 +2,14 @@ from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from django.conf import settings
+
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
 
-    url(r'^$', 'BiblCatalog.views.home', name='home'),
+#    url(r'^$', 'BiblCatalog.views.home', name='home'),
     # url(r'^BiblCatalog/', include('BiblCatalog.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

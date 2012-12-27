@@ -239,7 +239,7 @@ class T32607E85(models.Model):
 
 class Dtproperties(models.Model):
     objectid = models.IntegerField(null=True, blank=True)
-    property = models.TextField(primary_key=True)
+    property = models.TextField() #primary_key=True)
     value = models.TextField(blank=True)
     uvalue = models.CharField(max_length=255, blank=True)
     lvalue = models.TextField(blank=True) # This field type is a guess.
