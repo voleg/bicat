@@ -4,23 +4,16 @@
     <bookmark url="file://$PROJECT_DIR$/BiblCatalog/settings.py" line="25" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="375e6554-4085-4179-84c2-e94826aa40c9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/apps/BiCat/admin.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/apps/BiKart/admin.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/apps/BiUML/admin.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/apps/blog/admin.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/apps/router.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/blog/__init__.py" afterPath="$PROJECT_DIR$/apps/blog/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/blog/models.py" afterPath="$PROJECT_DIR$/apps/blog/models.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/blog/tests.py" afterPath="$PROJECT_DIR$/apps/blog/tests.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/blog/views.py" afterPath="$PROJECT_DIR$/apps/blog/views.py" />
+    <list default="true" id="375e6554-4085-4179-84c2-e94826aa40c9" name="Default" comment="Поправил файл зависимостей">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dev.db" afterPath="$PROJECT_DIR$/dev.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BiblCatalog/settings.py" afterPath="$PROJECT_DIR$/BiblCatalog/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BiblCatalog/urls.py" afterPath="$PROJECT_DIR$/BiblCatalog/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/BiCat/models.py" afterPath="$PROJECT_DIR$/apps/BiCat/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/BiKart/models.py" afterPath="$PROJECT_DIR$/apps/BiKart/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/BiUML/models.py" afterPath="$PROJECT_DIR$/apps/BiUML/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/blog/views.py" afterPath="$PROJECT_DIR$/apps/blog/views.py" />
     </list>
     <ignored path="BiblCatalog.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,73 +38,10 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BiblCatalog/settings.py">
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="0" selection-start="2210" selection-end="2210" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="router.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/apps/router.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="0" selection-start="700" selection-end="700" vertical-scroll-proportion="0.51319647">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/blog/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="28" selection-start="28" selection-end="28" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tests.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/blog/tests.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/blog/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="33" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/BiCat/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="564" column="20" selection-start="36764" selection-end="36765" vertical-scroll-proportion="-282.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/BiKart/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="28" selection-start="2262" selection-end="2269" vertical-scroll-proportion="-19.785715">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/BiUML/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="257" column="28" selection-start="17329" selection-end="17336" vertical-scroll-proportion="-13.285714">
+            <state line="5" column="3" selection-start="30" selection-end="30" vertical-scroll-proportion="0.09247028">
               <folding />
             </state>
           </provider>
@@ -133,22 +63,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/apps/BiUML/models.py" />
-        <option value="$PROJECT_DIR$/base.html" />
-        <option value="$PROJECT_DIR$/templates/base.html" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/BiblCatalog/urls.py" />
-        <option value="$PROJECT_DIR$/blog/admin.py" />
-        <option value="$PROJECT_DIR$/apps/BiCat/admin.py" />
-        <option value="$PROJECT_DIR$/apps/BiCat/router.py" />
         <option value="$PROJECT_DIR$/apps/BiUML/router.py" />
         <option value="$PROJECT_DIR$/apps/BiKart/router.py" />
         <option value="$PROJECT_DIR$/BiblCatalog/router.py" />
         <option value="db-console:/d3d8e7a6/911de398-62f4-46f9-9aa4-ed702b76b353/" />
         <option value="$PROJECT_DIR$/apps/blog/models.py" />
         <option value="$PROJECT_DIR$/BiblCatalog/settings.py" />
-        <option value="$PROJECT_DIR$/apps/BiCat/models.py" />
         <option value="$PROJECT_DIR$/apps/router.py" />
+        <option value="$PROJECT_DIR$/apps/blog/views.py" />
+        <option value="$PROJECT_DIR$/BiblCatalog/urls.py" />
+        <option value="$PROJECT_DIR$/apps/BiKart/models.py" />
+        <option value="$PROJECT_DIR$/wiki/Поле ITEM.wiki" />
+        <option value="$PROJECT_DIR$/wiki/Home.wiki" />
+        <option value="$PROJECT_DIR$/wiki/Поле ITEM.textile" />
+        <option value="$PROJECT_DIR$/apps/BiCat/models.py" />
+        <option value="$PROJECT_DIR$/apps/BiUML/models.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -158,7 +88,7 @@
     <option name="width" value="1282" />
     <option name="height" value="988" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -212,7 +142,39 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BiblCatalog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BiblCatalog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BiblCatalog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BiblCatalog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sitemedia" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -227,28 +189,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BiUML" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BiblCatalog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BiblCatalog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BiKart" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -293,7 +233,7 @@
     <property name="Database.TableEditor.Splitter" value="0.90000004" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="options.lastSelected" value="editor.preferences.tabs" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/jtds-1.3.0.jar" />
@@ -505,20 +445,20 @@
     <layout>
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295063" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46268657" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295063" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20583469" sideWeight="0.8346728" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17179903" sideWeight="0.8346728" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.122847304" sideWeight="0.49756888" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295063" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1653272" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295063" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295063" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17179903" sideWeight="0.8978186" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1021814" sideWeight="0.49675852" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -581,42 +521,16 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/base.html">
+    <entry file="file://$PROJECT_DIR$/BiblCatalog/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="26" selection-start="67" selection-end="67" vertical-scroll-proportion="-2.4347825">
+        <state line="74" column="0" selection-start="2210" selection-end="2210" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/BiUML/admin.py">
+    <entry file="file://$PROJECT_DIR$/apps/router.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="22" selection-start="230" selection-end="230" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/BiCat/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="30" selection-start="207" selection-end="207" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/BiKart/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/d3d8e7a6/911de398-62f4-46f9-9aa4-ed702b76b353/..django_site">
-      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
-        <state />
-      </provider>
-    </entry>
-    <entry file="dbDummy://db-console:/d3d8e7a6/911de398-62f4-46f9-9aa4-ed702b76b353/">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+        <state line="16" column="24" selection-start="437" selection-end="437" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -628,23 +542,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/env_BCat/lib/python2.7/site-packages/sql_server/pyodbc/client.py">
+    <entry file="file://$PROJECT_DIR$/apps/blog/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="46" selection-start="321" selection-end="337" vertical-scroll-proportion="0.23931624">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/blog/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="33" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0">
+        <state line="1" column="47" selection-start="73" selection-end="73" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/blog/tests.py">
+    <entry file="file://$PROJECT_DIR$/wiki/Home.wiki">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="0" selection-start="1463" selection-end="1463" vertical-scroll-proportion="0.89830506">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/BiUML/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="15" selection-start="985" selection-end="985" vertical-scroll-proportion="0.3554302">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wiki/Заметки.textile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="12" selection-start="872" selection-end="872" vertical-scroll-proportion="0.71505374">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/BiKart/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="419" column="0" selection-start="29778" selection-end="29859" vertical-scroll-proportion="0.7371202">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/BiCat/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="373" column="54" selection-start="29009" selection-end="29009" vertical-scroll-proportion="0.43895748">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/blog/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="12" selection-start="12" selection-end="12" vertical-scroll-proportion="-0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BiblCatalog/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="511" selection-end="511" vertical-scroll-proportion="0.29590487">
           <folding />
         </state>
       </provider>
@@ -656,37 +619,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/BiCat/models.py">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="564" column="20" selection-start="36764" selection-end="36765" vertical-scroll-proportion="-282.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/BiKart/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="28" selection-start="2262" selection-end="2269" vertical-scroll-proportion="-19.785715">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/BiUML/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="257" column="28" selection-start="17329" selection-end="17336" vertical-scroll-proportion="-13.285714">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BiblCatalog/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="0" selection-start="2210" selection-end="2210" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/router.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="700" selection-end="700" vertical-scroll-proportion="0.51319647">
+        <state line="5" column="3" selection-start="30" selection-end="30" vertical-scroll-proportion="0.09247028">
           <folding />
         </state>
       </provider>

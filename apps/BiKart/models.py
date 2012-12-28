@@ -24,11 +24,6 @@ class Idx100A(models.Model):
     class Meta:
         db_table = u'IDX100a'
 
-class T1C5Fd401(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_1C5FD40_1'
-
 class Environment(models.Model):
     maincode = models.CharField(max_length=255, db_column='MainCode', blank=True) # Field name made lowercase.
     mainname = models.CharField(max_length=255, db_column='MainName', blank=True) # Field name made lowercase.
@@ -251,11 +246,6 @@ class Idx653Ax(models.Model):
     class Meta:
         db_table = u'IDX653aX'
 
-class T2989A501(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_2989A50_1'
-
 class Idx773T(models.Model):
     idx_id = models.IntegerField(db_column='IDX_ID') # Field name made lowercase.
     term = models.CharField(max_length=255, primary_key=True, db_column='TERM') # Field name made lowercase.
@@ -279,11 +269,6 @@ class Idx090A(models.Model):
     class Meta:
         db_table = u'IDX090a'
 
-class T150126B3(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_150126B_3'
-
 class Sysdiagrams(models.Model):
     name = models.CharField(max_length=128, unique=True)
     principal_id = models.IntegerField(unique=True)
@@ -293,27 +278,12 @@ class Sysdiagrams(models.Model):
     class Meta:
         db_table = u'sysdiagrams'
 
-class T1Cff1391(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_1CFF139_1'
-
 class Idx900A(models.Model):
     idx_id = models.IntegerField(db_column='IDX_ID') # Field name made lowercase.
     term = models.CharField(max_length=255, primary_key=True, db_column='TERM') # Field name made lowercase.
     cnt = models.IntegerField(null=True, db_column='CNT', blank=True) # Field name made lowercase.
     class Meta:
         db_table = u'IDX900a'
-
-class T176290A23(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_176290A_23'
-
-class T1D591C41(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_1D591C4_1'
 
 class Hand(models.Model):
     rdr_id = models.CharField(max_length=16, db_column='RDR_ID', blank=True) # Field name made lowercase.
@@ -322,16 +292,6 @@ class Hand(models.Model):
     retdate = models.FloatField(null=True, db_column='RETDATE', blank=True) # Field name made lowercase.
     class Meta:
         db_table = u'HAND'
-
-class T1Aba49F2(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_1ABA49F_2'
-
-class T1E4Fdb210(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_1E4FDB2_10'
 
 class Inv(models.Model):
     inv_id = models.AutoField(primary_key=True, db_column='INV_ID') # Field name made lowercase.
@@ -356,16 +316,6 @@ class Inv(models.Model):
     custom5 = models.CharField(max_length=255, db_column='CUSTOM5', blank=True) # Field name made lowercase.
     class Meta:
         db_table = u'INV'
-
-class T1Aee9F71(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_1AEE9F7_1'
-
-class T23D452E1(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_23D452E_1'
 
 class Invoff(models.Model):
     inv_id = models.IntegerField(db_column='INV_ID') # Field name made lowercase.
@@ -392,16 +342,6 @@ class Invoff(models.Model):
     custom5 = models.CharField(max_length=255, db_column='CUSTOM5', blank=True) # Field name made lowercase.
     class Meta:
         db_table = u'INVOFF'
-
-class T1Af8A8C1(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_1AF8A8C_1'
-
-class T24E213B1(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_24E213B_1'
 
 class Lowttypes(models.Model):
     ttype = models.IntegerField(primary_key=True, db_column='TTYPE') # Field name made lowercase.
@@ -431,32 +371,12 @@ class Lowhelp(models.Model):
     class Meta:
         db_table = u'LOWHELP'
 
-class T252622B69(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_252622B_69'
-
 class Lowrefs(models.Model):
     did = models.ForeignKey(Lowterms, related_name="lowrefs_did_set",null=True, db_column='DID', blank=True) # Field name made lowercase.
     tid = models.ForeignKey(Lowterms, null=True, db_column='TID', blank=True) # Field name made lowercase.
     ttype = models.ForeignKey(Lowttypes, null=True, db_column='TTYPE', blank=True) # Field name made lowercase.
     class Meta:
         db_table = u'LOWREFS'
-
-class T26906D41(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_26906D4_1'
-
-class T1Bf3A4B1(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_1BF3A4B_1'
-
-class T2811D1467(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_2811D14_67'
 
 class Marcstat(models.Model):
     stat_id = models.AutoField(primary_key=True, db_column='STAT_ID') # Field name made lowercase.
@@ -475,11 +395,6 @@ class Marcstat(models.Model):
     class Meta:
         db_table = u'MARCSTAT'
 
-class T1B8Ef361(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_1B8EF36_1'
-
 class Acqu(models.Model):
     acq_id = models.AutoField(primary_key=True, db_column='ACQ_ID') # Field name made lowercase.
     doc_id = models.IntegerField(null=True, db_column='DOC_ID', blank=True) # Field name made lowercase.
@@ -491,34 +406,22 @@ class Acqu(models.Model):
     class Meta:
         db_table = u'ACQU'
 
-class T29Af3F51(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_29AF3F5_1'
-
 class Idx773Tx(models.Model):
     idx_id = models.IntegerField(null=True, db_column='IDX_ID', blank=True) # Field name made lowercase.
     doc_id = models.IntegerField(db_column='DOC_ID') # Field name made lowercase.
     class Meta:
         db_table = u'IDX773tX'
 
-class T2A4202A1(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_2A4202A_1'
-
 class Doc(models.Model):
     doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
     rectype = models.CharField(max_length=1, db_column='RECTYPE', blank=True) # Field name made lowercase.
     biblevel = models.CharField(max_length=1, db_column='BIBLEVEL', blank=True) # Field name made lowercase.
     item = models.TextField(db_column='ITEM', blank=True) # Field name made lowercase.
+    def __unicode__(self):
+        return str(self.doc_id) + " " + self.item[:80]
+
     class Meta:
         db_table = u'DOC'
-
-class T2B98Ec456(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_2B98EC4_56'
 
 class Acqugot(models.Model):
     got_id = models.IntegerField(primary_key=True, db_column='GOT_ID') # Field name made lowercase.
@@ -527,11 +430,6 @@ class Acqugot(models.Model):
     gotdate = models.FloatField(null=True, db_column='GOTDATE', blank=True) # Field name made lowercase.
     class Meta:
         db_table = u'ACQUGOT'
-
-class T2F6E08A40(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_2F6E08A_40'
 
 class Acquord(models.Model):
     ord_id = models.IntegerField(primary_key=True, db_column='ORD_ID') # Field name made lowercase.
@@ -545,25 +443,10 @@ class Acquord(models.Model):
     class Meta:
         db_table = u'ACQUORD'
 
-class T2F7907042(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_2F79070_42'
-
 class Acqusrc(models.Model):
     item = models.CharField(max_length=255, primary_key=True, db_column='ITEM') # Field name made lowercase.
     class Meta:
         db_table = u'ACQUSRC'
-
-class T32864051(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_3286405_1'
-
-class T3293Eaf1(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_3293EAF_1'
 
 class CodeCountry(models.Model):
     nameeng = models.CharField(max_length=255, db_column='NameEng', blank=True) # Field name made lowercase.
@@ -571,11 +454,6 @@ class CodeCountry(models.Model):
     codecont = models.CharField(max_length=255, db_column='CodeCont', blank=True) # Field name made lowercase.
     class Meta:
         db_table = u'CODE_COUNTRY'
-
-class T332Cd3E43(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_332CD3E_43'
 
 class CodeLanguage(models.Model):
     namerus = models.CharField(max_length=255, db_column='NameRus', blank=True) # Field name made lowercase.
@@ -586,10 +464,14 @@ class CodeLanguage(models.Model):
 
 class Tag(models.Model):
     tag = models.CharField(max_length=3, primary_key=True, db_column='TAG') # Field name made lowercase.
-    subtag = models.CharField(max_length=1, unique=True, db_column='SUBTAG') # Field name made lowercase.
+    subtag = models.CharField(max_length=1, db_column='SUBTAG') # Field name made lowercase.
     flags = models.IntegerField(null=True, db_column='FLAGS', blank=True) # Field name made lowercase.
     separator = models.CharField(max_length=1, db_column='SEPARATOR', blank=True) # Field name made lowercase.
     caption = models.CharField(max_length=40, db_column='CAPTION', blank=True) # Field name made lowercase.
+
+    def __unicode__(self):
+        data_name = self.tag + " " + self.subtag + " " + self.caption
+        return data_name
     class Meta:
         db_table = u'TAG'
 
@@ -599,11 +481,6 @@ class Dbres(models.Model):
     tres = models.CharField(max_length=255, db_column='TRES', blank=True) # Field name made lowercase.
     class Meta:
         db_table = u'DBRES'
-
-class T27682151(models.Model):
-    doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
-    class Meta:
-        db_table = u'T_2768215_1'
 
 class Sxbbk(models.Model):
     did = models.ForeignKey(Sxterms, null=True, db_column='DID', blank=True) # Field name made lowercase.
