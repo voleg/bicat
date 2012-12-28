@@ -14,6 +14,8 @@ class Doc(models.Model):
     rectype = models.CharField(max_length=1, db_column='RECTYPE', blank=True) # Field name made lowercase.
     biblevel = models.CharField(max_length=1, db_column='BIBLEVEL', blank=True) # Field name made lowercase.
     item = models.TextField(db_column='ITEM', blank=True) # Field name made lowercase. This field type is a guess.
+    def __unicode__(self):
+        return str(self.doc_id) + " " + self.item[:80]
     class Meta:
         db_table = u'DOC'
 
