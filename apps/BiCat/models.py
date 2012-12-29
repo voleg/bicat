@@ -11,7 +11,7 @@ from django.db import models
 
 class Inv(models.Model):
     inv_id = models.AutoField(primary_key=True, db_column='INV_ID') # Field name made lowercase.
-    doc_id = models.IntegerField(db_column='DOC_ID') # Field name made lowercase.
+    doc_id = models.ForeignKey("Doc", db_column='DOC_ID') # Field name made lowercase.
     t990t = models.CharField(max_length=255, db_column='T990t', blank=True) # Field name made lowercase.
     t090h = models.CharField(max_length=255, db_column='T090h', blank=True) # Field name made lowercase.
     t090e = models.CharField(max_length=255, db_column='T090e', blank=True) # Field name made lowercase.
@@ -30,12 +30,14 @@ class Inv(models.Model):
     custom3 = models.CharField(max_length=255, db_column='CUSTOM3', blank=True) # Field name made lowercase.
     custom4 = models.CharField(max_length=255, db_column='CUSTOM4', blank=True) # Field name made lowercase.
     custom5 = models.CharField(max_length=255, db_column='CUSTOM5', blank=True) # Field name made lowercase.
+    def __unicode__(self):
+        return str(self.inv_id) + ":" + str(self.t090e)
     class Meta:
         db_table = u'INV'
 
 class Invoff(models.Model):
-    inv_id = models.IntegerField(db_column='INV_ID') # Field name made lowercase.
-    doc_id = models.IntegerField(db_column='DOC_ID') # Field name made lowercase.
+    inv_id = models.IntegerField(primary_key=True, db_column='INV_ID') # Field name made lowercase.
+    doc_id = models.ForeignKey("Doc", db_column='DOC_ID') # Field name made lowercase.
     t990t = models.CharField(max_length=255, db_column='T990t', blank=True) # Field name made lowercase.
     t090h = models.CharField(max_length=255, db_column='T090h', blank=True) # Field name made lowercase.
     t090e = models.CharField(max_length=255, db_column='T090e', blank=True) # Field name made lowercase.
@@ -56,6 +58,8 @@ class Invoff(models.Model):
     custom3 = models.CharField(max_length=255, db_column='CUSTOM3', blank=True) # Field name made lowercase.
     custom4 = models.CharField(max_length=255, db_column='CUSTOM4', blank=True) # Field name made lowercase.
     custom5 = models.CharField(max_length=255, db_column='CUSTOM5', blank=True) # Field name made lowercase.
+    def __unicode__(self):
+        return str(self.t090e) + " " + self.notes
     class Meta:
         db_table = u'INVOFF'
 
@@ -97,7 +101,7 @@ class Mobject(models.Model):
 
 class Acqu(models.Model):
     acq_id = models.AutoField(primary_key=True, db_column='ACQ_ID') # Field name made lowercase.
-    doc_id = models.IntegerField(null=True, db_column='DOC_ID', blank=True) # Field name made lowercase.
+    doc_id = models.ForeignKey("Doc", null=True, db_column='DOC_ID', blank=True) # Field name made lowercase.
     src_id = models.IntegerField(null=True, db_column='SRC_ID', blank=True) # Field name made lowercase.
     ordered = models.IntegerField(null=True, db_column='ORDERED', blank=True) # Field name made lowercase.
     acquired = models.IntegerField(null=True, db_column='ACQUIRED', blank=True) # Field name made lowercase.
@@ -270,8 +274,8 @@ class Tag(models.Model):
         db_table = u'TAG'
 
 class Orders(models.Model):
-    rdr_id = models.CharField(max_length=16, db_column='RDR_ID', blank=True) # Field name made lowercase.
-    doc_id = models.IntegerField(null=True, db_column='DOC_ID', blank=True) # Field name made lowercase.
+    rdr_id = models.ForeignKey("Readers", max_length=16, db_column='RDR_ID', blank=True) # Field name made lowercase.
+    doc_id = models.ForeignKey("Doc", null=True, db_column='DOC_ID', blank=True) # Field name made lowercase.
     sigla = models.CharField(max_length=255, db_column='SIGLA', blank=True) # Field name made lowercase.
     orddate = models.FloatField(null=True, db_column='ORDDATE', blank=True) # Field name made lowercase.
     class Meta:
@@ -287,7 +291,7 @@ class Acqugot(models.Model):
 
 class Acquord(models.Model):
     ord_id = models.IntegerField(primary_key=True, db_column='ORD_ID') # Field name made lowercase.
-    doc_id = models.IntegerField(null=True, db_column='DOC_ID', blank=True) # Field name made lowercase.
+    doc_id = models.ForeignKey("Doc", null=True, db_column='DOC_ID', blank=True) # Field name made lowercase.
     src = models.CharField(max_length=255, db_column='SRC', blank=True) # Field name made lowercase.
     publ = models.CharField(max_length=255, db_column='PUBL', blank=True) # Field name made lowercase.
     cnt = models.IntegerField(null=True, db_column='CNT', blank=True) # Field name made lowercase.
@@ -337,7 +341,7 @@ class Discp(models.Model):
 
 class Discpx(models.Model):
     discp = models.ForeignKey(Discp, null=True, db_column='DISCP_ID', blank=True) # Field name made lowercase.
-    doc_id = models.IntegerField(db_column='DOC_ID') # Field name made lowercase.
+    doc_id = models.ForeignKey("Doc", db_column='DOC_ID') # Field name made lowercase.
     sign = models.IntegerField(null=True, db_column='SIGN', blank=True) # Field name made lowercase.
     class Meta:
         db_table = u'DISCPX'
@@ -383,8 +387,8 @@ class Idx653A(models.Model):
         db_table = u'IDX653a'
 
 class Idx245Ax(models.Model):
-    idx_id = models.IntegerField(null=True, db_column='IDX_ID', blank=True) # Field name made lowercase.
-    doc_id = models.IntegerField(db_column='DOC_ID') # Field name made lowercase.
+    idx_id = models.IntegerField(primary_key=True, null=False, db_column='IDX_ID', blank=True) # Field name made lowercase.
+    doc_id = models.ForeignKey("Doc", db_column='DOC_ID') # Field name made lowercase.
     class Meta:
         db_table = u'IDX245aX'
 
@@ -419,8 +423,8 @@ class Idx100A(models.Model):
         db_table = u'IDX100a'
 
 class Idx100Ax(models.Model):
-    idx_id = models.IntegerField(null=True, db_column='IDX_ID', blank=True) # Field name made lowercase.
-    doc_id = models.IntegerField(db_column='DOC_ID') # Field name made lowercase.
+    idx_id = models.IntegerField(primary_key=True, null=False, db_column='IDX_ID', blank=True) # Field name made lowercase.
+    doc_id = models.ForeignKey("Doc", db_column='DOC_ID') # Field name made lowercase.
     class Meta:
         db_table = u'IDX100aX'
 
@@ -429,8 +433,8 @@ class Publisher(models.Model):
     class Meta:
         db_table = u'PUBLISHER'
 class Idx653Ax(models.Model):
-    idx_id = models.IntegerField(null=True, db_column='IDX_ID', blank=True) # Field name made lowercase.
-    doc_id = models.IntegerField(db_column='DOC_ID') # Field name made lowercase.
+    idx_id = models.IntegerField(primary_key=True, null=False, db_column='IDX_ID', blank=True) # Field name made lowercase.
+    doc_id = models.ForeignKey("Doc", db_column='DOC_ID') # Field name made lowercase.
     class Meta:
         db_table = u'IDX653aX'
 
