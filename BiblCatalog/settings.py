@@ -147,7 +147,22 @@ WSGI_APPLICATION = 'BiblCatalog.wsgi.application'
 
 TEMPLATE_DIRS = (os.path.join(PROJECT_PATH, '../templates/'),)
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    # default template context processors
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    # required by django-admin-tools
+    'django.core.context_processors.request',
+)
+
 INSTALLED_APPS = (
+
+#    'admin_tools',
+#    'admin_tools.theming',
+#    'admin_tools.menu',
+#    'admin_tools.dashboard',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -158,7 +173,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'south',
     'south_admin',
-    'admin_tools',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'apps.blog',
