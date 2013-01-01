@@ -1,3 +1,4 @@
+# coding: utf-8
 # This is an auto-generated Django model module.
 # You'll have to do the following manually to clean this up:
 #     * Rearrange models' order
@@ -374,6 +375,12 @@ class Doc(models.Model):
     rectype = models.CharField(max_length=1, db_column='RECTYPE', blank=True) # Field name made lowercase.
     biblevel = models.CharField(max_length=1, db_column='BIBLEVEL', blank=True) # Field name made lowercase.
     item = models.TextField(db_column='ITEM', blank=True) # Field name made lowercase.
+
+    def get_all_tags(self):
+        # получаем строку для дальнейшего парсинга
+
+        pass
+
     def __unicode__(self):
         return str(self.doc_id) + " " + self.item[:80]
     class Meta:

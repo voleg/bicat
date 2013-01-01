@@ -1,7 +1,7 @@
 *.pyc
 build
 wiki
-env
+env*
 .idea
 dev.db
 sql
