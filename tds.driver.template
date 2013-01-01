@@ -6,10 +6,11 @@ Pooling		= No
 
 [TDS]
 Description		= FreeTDS Driver
-Driver		= /usr/lib/odbc/libtdsodbc.so
-Driver64		=
-Setup		= /usr/lib/odbc/libtdsS.so
-Setup64		=
+Driver		= /usr/local/Cellar/freetds/0.91/lib/libtdsodbc.so
+Driver64		= 
+# Setup		= /usr/lib/odbc/libtdsS.so
+Setup64		= 
 UsageCount		= 1
-CPTimeout		=
-CPReuse		=
+CPTimeout		= 
+CPReuse		= 
+

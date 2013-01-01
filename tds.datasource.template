@@ -25,3 +25,30 @@ UID		= biblioteka
 PWD		= 250bibl052
 Port		= 4538
 
+[TESTSERV3BKART]
+Description	= my dsn
+Driver		= TDS
+Servername	= MSsqlForPython_test
+Database	= B_KART
+UID		= biblioteka
+PWD		= 250bibl052
+Port		= 3019
+
+[TESTSERV3BCAT]
+Description	= my dsn
+Driver		= TDS
+Servername	= MSsqlForPython_test
+Database	= B_CAT
+UID		= biblioteka
+PWD		= 250bibl052
+Port		= 3019
+
+[TESTSERV3BUML]
+Description	= my dsn
+Driver		= TDS
+Servername	= MSsqlForPython_test
+Database	= B_UML
+UID		= biblioteka
+PWD		= 250bibl052
+Port		= 3019
+
