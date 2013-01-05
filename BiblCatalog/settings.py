@@ -1,11 +1,15 @@
 # Django settings for BiblCatalog project.
 import os
-import sql_server
 
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
+
+# remotehost VirtualBox Vm
 TEST_MSSQL_HOST = '192.168.198.3'
 TEST_MSSQL_PORT = '3019'
-
+# localhost VirtualBox Vm
+TEST2_MSSQL_HOST = '192.168.56.3'
+TEST2_MSSQL_PORT = '3019'
+# Production DB Server
 MSSQL_HOST = '192.168.1.252'
 MSSQL_PORT = '4538'
 
@@ -13,7 +17,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Voleg', 'ffrooty@gmail.com'),
+     ('Voleg', 'ffrooty@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -21,7 +25,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'dev.db'
+            'NAME': os.path.join(PROJECT_PATH, '../dev.db')
          },
     'bikart': {
         'ENGINE': 'sql_server.pyodbc',
@@ -30,6 +34,7 @@ DATABASES = {
         'PASSWORD': '250bibl052',
         'HOST': TEST_MSSQL_HOST,
         'PORT': TEST_MSSQL_PORT,
+        'COLLATION': 'Cyrillic_General_CI_AS',
         'OPTIONS':  {   'driver': 'TDS',
                         'dsn':  'TESTSERV3BKART',
                         'host_is_server': True,
@@ -42,6 +47,7 @@ DATABASES = {
         'PASSWORD': '250bibl052',
         'HOST': TEST_MSSQL_HOST,
         'PORT': TEST_MSSQL_PORT,
+        'COLLATION': 'Cyrillic_General_CI_AS',
         'OPTIONS':  {   'driver': 'TDS',
                         'dsn':  'TESTSERV3BCAT',
                         'host_is_server': True,
@@ -54,6 +60,7 @@ DATABASES = {
         'PASSWORD': '250bibl052',
         'HOST': TEST_MSSQL_HOST,
         'PORT': TEST_MSSQL_PORT,
+        'COLLATION': 'Cyrillic_General_CI_AS',
         'OPTIONS':  {   'driver': 'TDS',
                         'dsn':  'TESTSERV3BUML',
                         'host_is_server': True,
@@ -176,6 +183,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'apps.blog',
+    'apps.marc15',
     'apps.BiCat',
     'apps.BiKart',
     'apps.BiUML',
