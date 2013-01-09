@@ -1,7 +1,14 @@
 #coding: utf-8
 from django.db import models
+from managers import ItemManager
 
 class Tag(models.Model):
+    """
+    Таблица TAG
+    TAG-номер поля (марковкском формате)
+    SUBTAG-буква подполя
+    CAPTION-наименование поля(подполя)
+    """
     tag = models.CharField(max_length=3, primary_key=True, db_column='TAG') # Field name made lowercase.
     subtag = models.CharField(max_length=1, unique=True, db_column='SUBTAG') # Field name made lowercase.
     flags = models.IntegerField(null=True, db_column='FLAGS', blank=True) # Field name made lowercase.
@@ -16,14 +23,19 @@ class Tag(models.Model):
 
 # Table with docs items. The Item Field in the DB hard coded in MARC format see https://bitbucket.org/voleg/bicat/wiki/Поле%20ITEM
 class Doc(models.Model):
+    """
+    Таблица DOC
+    DOC_ID-идентификатор документа
+    RECTYPE-тип записи
+    BIBLEVEL-библиотечный уровень
+    ITEM-документ в макроподобном формате
+    """
     doc_id = models.IntegerField(primary_key=True, db_column='DOC_ID') # Field name made lowercase.
     rectype = models.CharField(max_length=1, db_column='RECTYPE', blank=True) # Field name made lowercase.
     biblevel = models.CharField(max_length=1, db_column='BIBLEVEL', blank=True) # Field name made lowercase.
     item = models.TextField(db_column='ITEM', blank=True) # Field name made lowercase.
 
-    def get_all_tags(self):
-        # получаем строку для дальнейшего парсинга
-        pass
+    objects = ItemManager()
 
     def __unicode__(self):
         return str(self.doc_id) + " " + self.item[:80]
