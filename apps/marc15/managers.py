@@ -8,18 +8,20 @@ class ItemQuerySet(QuerySet):
     Супер метод для извлечения значений из поля ITEM
 
     """
-    def get_by_tag_and_subtag(self, tag=None, subtag=None):
+    def get_by_tag_and_subtag(self, doc_id=None, tag=None, subtag=None):
 #        print('you asked %s and %s ' % (tag, subtag))
-
+        byTags = '\x1e'
+        bySubtags = '\x1f'
         items = {}
-        for i in self:
-            for e in i.item.split('\x1e'):
+        for i in self.filter(doc_id=doc_id):
+            for e in i.item.split(byTags):
                 newTag = e[:3]
                 print(newTag)
-                for f in e.split('\x1f'):
+
+                for f in e[3:].strip().split(bySubtags):
                     newSubTag = f[:1]
                     newCaption = f[1:]
-                    print(" %s - %s " % (newSubTag,newCaption))
+                    print("\t %s - %s " % (newSubTag,newCaption))
         return items
 
 class ItemManager(models.Manager):

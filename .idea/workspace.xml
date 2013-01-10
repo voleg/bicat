@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="375e6554-4085-4179-84c2-e94826aa40c9" name="Default" comment="Поправил файл зависимостей">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/apps/marc15/managers.py" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/Custom QuerySet.wiki" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/BiblCatalog.iml" afterPath="$PROJECT_DIR$/.idea/BiblCatalog.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BiblCatalog/settings.py" afterPath="$PROJECT_DIR$/BiblCatalog/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/marc15/models.py" afterPath="$PROJECT_DIR$/apps/marc15/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/marc15/managers.py" afterPath="$PROJECT_DIR$/apps/marc15/managers.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wiki/Home.wiki" afterPath="$PROJECT_DIR$/wiki/Home.wiki" />
     </list>
     <ignored path="BiblCatalog.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,10 +50,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="managers.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="managers.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/marc15/managers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="63" selection-start="663" selection-end="663" vertical-scroll-proportion="0.35809988">
+            <state line="19" column="0" selection-start="566" selection-end="566" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -75,7 +71,16 @@
       <file leaf-file-name="Custom QuerySet.wiki" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wiki/Custom QuerySet.wiki">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="0" selection-start="1532" selection-end="1532" vertical-scroll-proportion="0.0">
+            <state line="38" column="0" selection-start="1531" selection-end="1531" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Home.wiki" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/wiki/Home.wiki">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="36" column="24" selection-start="710" selection-end="710" vertical-scroll-proportion="0.35200974">
               <folding />
             </state>
           </provider>
@@ -117,7 +122,7 @@
   </component>
   <component name="Git.Settings">
     <option name="SYNC_SETTING" value="DONT" />
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/wiki" />
   </component>
   <component name="GitLogSettings">
     <option name="myStructureFilterPaths" />
@@ -125,7 +130,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/BiblCatalog/urls.py" />
         <option value="$PROJECT_DIR$/testparse.py" />
         <option value="$PROJECT_DIR$/tds.datasource.template" />
         <option value="$USER_HOME$/Library/Caches/PyCharm20/python_stubs/988322264/sql_server/pyodbc/base.py" />
@@ -139,8 +143,9 @@
         <option value="$PROJECT_DIR$/build/events-site-example/events_site_example/apps/events/conditions.py" />
         <option value="$PROJECT_DIR$/apps/marc15/models.py" />
         <option value="$PROJECT_DIR$/BiblCatalog/settings.py" />
-        <option value="$PROJECT_DIR$/wiki/Custom QuerySet.wiki" />
         <option value="$PROJECT_DIR$/apps/marc15/managers.py" />
+        <option value="$PROJECT_DIR$/wiki/Custom QuerySet.wiki" />
+        <option value="$PROJECT_DIR$/wiki/Home.wiki" />
       </list>
     </option>
   </component>
@@ -673,20 +678,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/marc15/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="21" selection-start="1720" selection-end="1720" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wiki/Home.wiki">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wiki/fields.wiki">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="35" selection-start="682" selection-end="682" vertical-scroll-proportion="0.49451888">
@@ -708,9 +699,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wiki/Custom QuerySet.wiki">
+    <entry file="file://$PROJECT_DIR$/build/iiitools/iiitools.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="0" selection-start="1532" selection-end="1532" vertical-scroll-proportion="0.0">
+        <state line="547" column="21" selection-start="20000" selection-end="20000" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/marc15/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="21" selection-start="1720" selection-end="1720" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BiblCatalog/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="14" selection-start="2865" selection-end="2870" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -729,23 +734,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/iiitools/iiitools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="547" column="21" selection-start="20000" selection-end="20000" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BiblCatalog/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="14" selection-start="2865" selection-end="2870" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/marc15/managers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="63" selection-start="663" selection-end="663" vertical-scroll-proportion="0.35809988">
+        <state line="19" column="0" selection-start="566" selection-end="566" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wiki/Custom QuerySet.wiki">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="0" selection-start="1531" selection-end="1531" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wiki/Home.wiki">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="24" selection-start="710" selection-end="710" vertical-scroll-proportion="0.35200974">
           <folding />
         </state>
       </provider>
