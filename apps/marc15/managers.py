@@ -10,18 +10,29 @@ class ItemQuerySet(QuerySet):
     """
     def get_by_tag_and_subtag(self, doc_id=None, tag=None, subtag=None):
 #        print('you asked %s and %s ' % (tag, subtag))
-        byTags = '\x1e'
-        bySubtags = '\x1f'
+        byTags = '\x1e' # Разделитель тэгов
+        bySubtags = '\x1f' # Разделитель подтегов
         items = {}
-        for i in self.filter(doc_id=doc_id):
+        if doc_id:
+            QS = self.filter(doc_id=doc_id)
+        else:
+            QS = self
+        for i in QS:
             for e in i.item.split(byTags):
                 newTag = e[:3]
-                print(newTag)
-
+#                print(newTag)
+                SubtagsTempDict = {}
                 for f in e[3:].strip().split(bySubtags):
                     newSubTag = f[:1]
                     newCaption = f[1:]
-                    print("\t %s - %s " % (newSubTag,newCaption))
+                    # Далее проверяем есть ли такой подтэг в словаре если есть дописываем через запятую к уже имеющимуся
+                    if newSubTag in SubtagsTempDict.keys():
+                        for k, v  in SubtagsTempDict.items():
+                            if k == newSubTag:
+                                newCaption = v + "," + newCaption
+                    SubtagsTempDict.update({newSubTag:newCaption})
+#                    print("\t %s - %s " % (newSubTag,newCaption))
+                items.update({newTag:SubtagsTempDict})
         return items
 
 class ItemManager(models.Manager):
