@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="375e6554-4085-4179-84c2-e94826aa40c9" name="Default" comment="Поправил файл зависимостей">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/Custom QuerySet.wiki" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/marc15/managers.py" afterPath="$PROJECT_DIR$/apps/marc15/managers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wiki/Home.wiki" afterPath="$PROJECT_DIR$/wiki/Home.wiki" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wiki/Custom QuerySet.wiki" afterPath="$PROJECT_DIR$/wiki/Custom QuerySet.wiki" />
     </list>
     <ignored path="BiblCatalog.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,19 +50,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="managers.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="managers.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/marc15/managers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="566" selection-end="566" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="iiitools.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/iiitools/iiitools.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="547" column="21" selection-start="20000" selection-end="20000" vertical-scroll-proportion="0.0">
+            <state line="24" column="23" selection-start="745" selection-end="745" vertical-scroll-proportion="0.409257">
               <folding />
             </state>
           </provider>
@@ -71,16 +62,7 @@
       <file leaf-file-name="Custom QuerySet.wiki" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wiki/Custom QuerySet.wiki">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="0" selection-start="1531" selection-end="1531" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Home.wiki" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/wiki/Home.wiki">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="24" selection-start="710" selection-end="710" vertical-scroll-proportion="0.35200974">
+            <state line="91" column="0" selection-start="2334" selection-end="2334" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -107,7 +89,16 @@
       <file leaf-file-name="conditions.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build/events-site-example/events_site_example/apps/accounts/conditions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="11" selection-start="322" selection-end="322" vertical-scroll-proportion="0.0">
+            <state line="25" column="0" selection-start="616" selection-end="616" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="utils.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build/events-site-example/events_site_example/apps/common_app/utils.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="23" selection-start="23" selection-end="23" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -122,7 +113,7 @@
   </component>
   <component name="Git.Settings">
     <option name="SYNC_SETTING" value="DONT" />
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/wiki" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitLogSettings">
     <option name="myStructureFilterPaths" />
@@ -143,9 +134,9 @@
         <option value="$PROJECT_DIR$/build/events-site-example/events_site_example/apps/events/conditions.py" />
         <option value="$PROJECT_DIR$/apps/marc15/models.py" />
         <option value="$PROJECT_DIR$/BiblCatalog/settings.py" />
-        <option value="$PROJECT_DIR$/apps/marc15/managers.py" />
-        <option value="$PROJECT_DIR$/wiki/Custom QuerySet.wiki" />
         <option value="$PROJECT_DIR$/wiki/Home.wiki" />
+        <option value="$PROJECT_DIR$/wiki/Custom QuerySet.wiki" />
+        <option value="$PROJECT_DIR$/apps/marc15/managers.py" />
       </list>
     </option>
   </component>
@@ -254,8 +245,22 @@
               <option name="myItemId" value="build" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="iiitools" />
+              <option name="myItemId" value="BiblCatalog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BiblCatalog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="build" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="events-site-example" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -270,6 +275,70 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="build" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="events-site-example" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="events_site_example" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BiblCatalog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BiblCatalog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="build" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="events-site-example" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="events_site_example" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BiblCatalog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BiblCatalog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="build" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="events-site-example" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="events_site_example" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common_app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -643,30 +712,9 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/build/events-site-example/events_site_example/apps/events/factories.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="24" selection-start="641" selection-end="648" vertical-scroll-proportion="0.36623067">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/events-site-example/events_site_example/apps/common_app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/events-site-example/events_site_example/apps/common_app/api.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="24" selection-start="262" selection-end="262" vertical-scroll-proportion="0.14982164">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/events-site-example/events_site_example/apps/common_app/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="37" selection-start="91" selection-end="97" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -685,13 +733,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/events-site-example/events_site_example/apps/accounts/conditions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="11" selection-start="322" selection-end="322" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wiki/Заметки.textile">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.5940594">
@@ -702,6 +743,62 @@
     <entry file="file://$PROJECT_DIR$/build/iiitools/iiitools.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="547" column="21" selection-start="20000" selection-end="20000" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/events-site-example/events_site_example/apps/accounts/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="24" selection-start="464" selection-end="464" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wiki/Home.wiki">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="24" selection-start="710" selection-end="710" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/python-2.7.3/lib/python2.7/__future__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="35" selection-start="23" selection-end="35" vertical-scroll-proportion="-0.30694276">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm20/system/python_stubs/410776512/__builtin__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="9" selection-start="87" selection-end="87" vertical-scroll-proportion="-0.39220464">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/events-site-example/events_site_example/apps/accounts/managers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="47" selection-start="269" selection-end="269" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wiki/Custom QuerySet.wiki">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="91" column="0" selection-start="2334" selection-end="2334" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/events-site-example/events_site_example/apps/common_app/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="23" selection-start="23" selection-end="23" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/events-site-example/events_site_example/apps/accounts/conditions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="0" selection-start="616" selection-end="616" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -720,37 +817,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/events-site-example/events_site_example/apps/accounts/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="24" selection-start="464" selection-end="464" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/events-site-example/events_site_example/apps/accounts/managers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="47" selection-start="269" selection-end="269" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/marc15/managers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="566" selection-end="566" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wiki/Custom QuerySet.wiki">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="0" selection-start="1531" selection-end="1531" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wiki/Home.wiki">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="24" selection-start="710" selection-end="710" vertical-scroll-proportion="0.35200974">
+        <state line="24" column="23" selection-start="745" selection-end="745" vertical-scroll-proportion="0.409257">
           <folding />
         </state>
       </provider>
