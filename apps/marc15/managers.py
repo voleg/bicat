@@ -2,38 +2,35 @@
 __author__ = 'voleg'
 from django.db.models.query import QuerySet
 from django.db import models
+from parse import parse_item_to_dict, get_caption
 
 class ItemQuerySet(QuerySet):
     """
-    Супер метод для извлечения значений из поля ITEM
+    метод для извлечения значений из поля ITEM
 
     """
-    def get_by_tag_and_subtag(self, doc_id=None, tag=None, subtag=None):
+    def get_item_dict(self, doc_id=None):
 #        print('you asked %s and %s ' % (tag, subtag))
-        byTags = '\x1e' # Разделитель тэгов
-        bySubtags = '\x1f' # Разделитель подтегов
-        items = {}
         if doc_id:
             QS = self.filter(doc_id=doc_id)
+            test = self.all()
         else:
             QS = self
+        number_of_docs = QS.count()
         for i in QS:
-            for e in i.item.split(byTags):
-                newTag = e[:3]
-#                print(newTag)
-                SubtagsTempDict = {}
-                for f in e[3:].strip().split(bySubtags):
-                    newSubTag = f[:1]
-                    newCaption = f[1:]
-                    # Далее проверяем есть ли такой подтэг в словаре если есть дописываем через запятую к уже имеющимуся
-                    if newSubTag in SubtagsTempDict.keys():
-                        for k, v  in SubtagsTempDict.items():
-                            if k == newSubTag:
-                                newCaption = v + "," + newCaption
-                    SubtagsTempDict.update({newSubTag:newCaption})
-#                    print("\t %s - %s " % (newSubTag,newCaption))
-                items.update({newTag:SubtagsTempDict})
-        return items
+            print(i.doc_id)
+            fields_dict = parse_item_to_dict(i.item)
+            # i like to view how it going
+            print("{0}".format("."*200))
+            for a,b in fields_dict.items():
+                print(u"{0}".format(a))
+                for c,d in b.items():
+                    print(u"\t{0} - {1}".format(c,d))
+            return fields_dict
+
+    def get_item_item(self, tag=None, subtag=None):
+        items = self.get_item_dict(self)
+        return get_caption(items, tag=tag, subtag=subtag)
 
 class ItemManager(models.Manager):
     def get_query_set(self):
@@ -44,6 +41,3 @@ class ItemManager(models.Manager):
             raise AttributeError(item)
         else:
             return getattr(self.get_query_set(), item)
-
-#    def get_by_tag_and_subtag(self):
-#        return self.get_query_set().get_by_tag_and_subtag()
