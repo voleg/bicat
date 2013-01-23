@@ -1,7 +1,7 @@
 #coding: utf-8
 __author__ = 'voleg'
 from django.forms.widgets import Textarea
-from parse import parse_item_to_dict, get_marc_string
+from parse import items_with_tagname, get_marc_string, parse_item_to_dict
 
 class MarcFormatWidget(Textarea):
     """Pritty MarcCoded Output"""
@@ -14,5 +14,5 @@ class MarcFormatWidget(Textarea):
 
     def render(self, name, value, attrs=None):
 #        if not isinstance(value, basestring) and value is not None:
-        value = get_marc_string(parse_item_to_dict(value))
+        value = get_marc_string(items_with_tagname(value))
         return super(MarcFormatWidget, self).render(name, value, attrs)
