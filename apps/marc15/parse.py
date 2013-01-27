@@ -8,21 +8,19 @@ def get_tag_name(tag, subtag):
     """
     тут получаем имя тега. Тег состоит из 2-х элементов tag+subtag так уж повелось исторически ...
     """
-    # todo rewrite a function in more light and fast direction. The TAG field in model really does not changes in time it kind a like some key-value storage, so it may be a reason to represent data in a table like a static dict in a code if it would be a bottle-nec place. Keep it in mind
+    # todo: rewrite a function in more light and fast direction. The TAG field in model really does not changes in time it kind a like some key-value storage, so it may be a reason to represent data in a table like a static dict in a code if it would be a bottle-nec place. Keep it in mind
+    # todo: refactor that bunch of stupid functions
 
     from apps.BiCat.models import Tag as cononical_tags
     try:
         name = cononical_tags.objects.get(tag=str(tag), subtag=str(subtag)).caption
     except:
-        name = u"<Имя тега не найдено>"
+        name = u"***"
     yield name
 
 def parse_item_to_dict(item):
     """
-    function to convert string in MARC1.5 format to Dict
-    """
-    # todo rebuild method to produce JSON
-    """
+    function to convert string in MARC1.5 format to JSON
     {
        "Tag": {
            "subtag": "value",
@@ -33,24 +31,23 @@ def parse_item_to_dict(item):
        ...
     }
     """
-
-    byTags = '\x1e' # Разделитель тэгов
-    bySubtags = '\x1f' # Разделитель подтегов
+    byTags = '\x1e' # Tag separator
+    bySubtags = '\x1f' # subtag separator
     item_fields = {}
     for e in item.split(byTags):
         newTag = e[:3]
-#        print(newTag)
         SubtagsTempDict = {}
         for f in e[3:].strip().split(bySubtags):
             newSubTag = f[:1]
             newCaption = f[1:]
-            # Далее проверяем есть ли такой подтэг в словаре если есть дописываем через точку-запятую к уже имеющимуся
+            # Далее проверяем есть ли такой подтэг в словаре если есть делаем список
             if newSubTag in SubtagsTempDict.keys():
                 for k, v  in SubtagsTempDict.items():
                     if k == newSubTag:
-                        newCaption = ';'.join([v, newCaption])
+                        if type(v) is not list: v = [v]
+                        v.append(newCaption)
+                        newCaption = v
             SubtagsTempDict.update({newSubTag:newCaption})
-#            print("\t %s - %s " % (newSubTag,newCaption))
         item_fields.update({newTag:SubtagsTempDict})
     return item_fields
 
@@ -73,11 +70,19 @@ def items_with_tagname(item):
 def get_marc_string(dict):
     """Geterate a sorted, solid string from input dict """
     tag_subtag_item = ''
-    for a in sorted(dict.iterkeys()):
-        b = dict.get(a)
+    for key in sorted(dict.iterkeys()):
+        subitem = dict.get(key)
         subtag_items = ''
-        subtag_items += ''.join(['\t%s:\n\t\t%s\n' % (key, b.get(key)) for key in sorted(b.iterkeys())])
-        tag_subtag_item += ''.join(['%s\n%s' % (a, subtag_items)])
+        for subkey in sorted(subitem.iterkeys()):
+            newsubitem = subitem.get(subkey)
+            if type(newsubitem) is not list:
+                subtag_items += ''.join([u'\t%s:\n\t\t%s\n' % (subkey, newsubitem)])
+            else:
+                subtag_items = ''.join([u'\t%s:\n' % subkey])
+                subtag_items += ''.join([u'\t\t%s\n' % e for e in newsubitem])
+
+        tag_subtag_item += ''.join([u'%s\n%s' % (key, subtag_items)])
+
     return tag_subtag_item
 
 def get_caption(item_dict, tag=None, subtag=None):
@@ -94,15 +99,27 @@ def get_caption(item_dict, tag=None, subtag=None):
         except(AttributeError):
             return u""
     elif tag is not None and subtag is None:
+        # Если указан только тег то проходимся пр всем подтегам и их значениям
         try:
             items_in_all_subtags_of_tag = item_dict.get(tag)
             if isinstance(items_in_all_subtags_of_tag, dict):
-                items_in_all_subtags_of_tag = ', '.join([values for key,values in items_in_all_subtags_of_tag.items()])
-            return items_in_all_subtags_of_tag
+                string_of_items = ''
+                splitter = ''
+                items_counter = 0
+                for subtag, items_under_subtag in items_in_all_subtags_of_tag.items():
+                    if isinstance(items_under_subtag, list):
+                        string_of_items += ', '.join(items_under_subtag)
+                    else:
+                        if items_counter > 0:
+                            splitter = ', '
+                        string_of_items += ''.join([splitter, items_under_subtag])
+                    items_counter += 1
+                return string_of_items
         except(AttributeError):
             return u""
     else:
         return get_marc_string(item_dict)
+
 
 def get_marc_field(item, tag=None, subtag=None):
     """

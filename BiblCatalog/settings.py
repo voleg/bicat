@@ -160,12 +160,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
+    'django.core.context_processors.static',
     # required by django-admin-tools
     'django.core.context_processors.request',
 )
 
 INSTALLED_APPS = (
-
+    'django_extensions',
 #    'admin_tools',
 #    'admin_tools.theming',
 #    'admin_tools.menu',
@@ -187,6 +188,7 @@ INSTALLED_APPS = (
     'apps.BiCat',
     'apps.BiKart',
     'apps.BiUML',
+    'sitemedia'
 )
 
 # A sample logging configuration. The only tangible logging

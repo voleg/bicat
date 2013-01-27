@@ -6,8 +6,8 @@ from apps.marc15.widgets import MarcFormatWidget
 
 
 class DocAdmin(admin.ModelAdmin):
-    list_display = ('doc_id', 'item_ISBN', 'item_author', 'item_title', 'item_series', 'item_publish', 'item_pages', 'item_cost', 'item_last_change_timestamp')
-    list_display_links = ('doc_id', 'item_last_change_timestamp', 'item_author', 'item_title', 'item_pages', 'item_publish', 'item_cost', 'item_ISBN', 'item_series')
+    list_display = ('doc_id', 'item_title', 'item_author')
+    list_display_links = ('doc_id', 'item_title', 'item_author')
     fieldsets = [
         ('ITEM', {'fields': ('item',) }),
         ('Info', {'fields': ('doc_id', 'rectype', 'biblevel')})
