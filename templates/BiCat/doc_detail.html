@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block page_main_content %}
+    <h1>{{ object.item_title|capfirst }} events:</h1>
+    <ul>
+        {% for event in object.event_set.filter_by_it_time_to_publish %}
+            <li>
+                <a href="{{ event.get_absolute_url }}">{{ event }}</a>, {{ event.date_start|date:"d.m.Y" }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

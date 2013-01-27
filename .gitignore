@@ -6,3 +6,4 @@ env*
 dev.db
 sql
 Sql
+*DS_Store
