@@ -2,14 +2,14 @@
 from django.db import models
 from managers import ItemManager
 from parse import parse_item_to_dict, get_marc_string, get_caption, get_marc_field, item_timestamp_format
-from fields import TagSubtagField
+from fields import TagSubtagField, JSONField, MarcItemField, MarcItemAuthorField
 
 class MarcField(models.TextField):
     pass
 
 class Tag(models.Model):
     tag = models.CharField("номер поля (марковкском формате)", max_length=3, primary_key=True, db_column='TAG')
-    subtag = models.CharField("буква подполя", max_length=1, unique=True, db_column='SUBTAG')
+    subtag = models.CharField("буква подполя", max_length=1, db_column='SUBTAG', blank=True)
     flags = models.IntegerField("Флаги", null=True, db_column='FLAGS', blank=True)
     separator = models.CharField("Разделитель", max_length=1, db_column='SEPARATOR', blank=True)
     caption = models.CharField("Наименование", max_length=40, db_column='CAPTION', blank=True)
@@ -17,7 +17,7 @@ class Tag(models.Model):
     def __unicode__(self):
         return " ".join([self.tag, self.subtag, self.caption])
     class Meta:
-        unique_together = (("tag", "subtag"),)
+#        unique_together = (("tag", "subtag"),)
         db_table = u'TAG'
         abstract = True
         verbose_name = u'Тег'
@@ -27,23 +27,26 @@ class Doc(models.Model):
     """
     Список Документов
     Table with docs items. The Item Field in the DB hard coded in MARC format see https://bitbucket.org/voleg/bicat/wiki/Поле%20ITEM
-
     """
     doc_id = models.IntegerField("№ Документа", primary_key=True, db_column='DOC_ID')
     rectype = models.CharField("тип записи", max_length=1, db_column='RECTYPE', blank=True)
     biblevel = models.CharField("библиотечный уровень", max_length=1, db_column='BIBLEVEL', blank=True)
     item = models.TextField("документ в макроподобном формате", db_column='ITEM', blank=True)
+#    ITEM = MarcItemField("документ в макроподобном формате", db_column='ITEM', blank=True)
+
     objects = ItemManager()
 
     item_name = lambda self, tag=None, subtag=None: get_marc_field(self.item, tag=tag, subtag=subtag)
     # ... Тут дальше крамешный ад, что делать, с которым пока непонял, так, что лепим пока так
 
     def item_author(self):
-        """извлекаем Авторов из Item"""
+        """
+        извлекаем Авторов из Item
+        """
         author = get_marc_field(self.item, tag='100', subtag='a')
         other_authors = get_marc_field(self.item, tag='700', subtag='a')
         if author == "" or other_authors == "": splitter = u''
-        else: splitter = u' ,'
+        else: splitter = u', '
         return splitter.join([author,other_authors])
 
     @property
@@ -103,6 +106,7 @@ class Doc(models.Model):
         """
         return get_marc_field(self.item, tag='090', subtag='a')
 
+    @property
     def item_title(self):
         """
         245
@@ -151,7 +155,12 @@ class Doc(models.Model):
         return parse_item_to_dict(self.item)
 
     def __unicode__(self):
-        return " ".join([str(self.doc_id), self.item_author(), self.item_title()[:80]])
+#        return " ".join([str(self.doc_id), self.item_author(), self.item_title()[:80]])
+        return unicode(self.doc_id)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return 'doc-path', [self.doc_id]
 
     class Meta:
         db_table = u'DOC'
@@ -181,10 +190,11 @@ class Idx653Ax(models.Model):
 
     class Meta:
         db_table = u'IDX653aX'
+        abstract = True
 
 class Idx653A(models.Model):
     """ Словарь Тегов """
-    idx_id = models.ForeignKey(Idx653Ax, db_column='IDX_ID')
+    idx_id = models.IntegerField(db_column='IDX_ID')
     term = models.CharField(max_length=255, primary_key=True, db_column='TERM')
     cnt = models.IntegerField(null=True, db_column='CNT', blank=True)
     class Meta:

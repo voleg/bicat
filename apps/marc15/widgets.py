@@ -1,7 +1,7 @@
 #coding: utf-8
 __author__ = 'voleg'
 from django.forms.widgets import Textarea
-from parse import items_with_tagname, get_marc_string, parse_item_to_dict
+from parse import items_with_tagname, get_marc_string
 
 class MarcFormatWidget(Textarea):
     """Pritty MarcCoded Output"""
