@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block page_main_content %}
+    <h4 class=""></h4>
+    <ul>
+        {% for item in bicat_docs_list %}
+            <li>
+                <a href="{{ item.get_absolute_url }}"> {% if item.item_author %} {{ item.item_author }} - {% else %} <span style="color: #a2a2a2"> Автор не указан - </span> {% endif %} {{ item.item_title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
