@@ -2,16 +2,24 @@
 from django.shortcuts import render_to_response
 from django.views.generic import ListView, DetailView, RedirectView
 from apps.BiCat.models import Doc as bicat_doc
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 #def home(request):
 #    return render_to_response('blog/index.html', locals())
 
+class MyPaginator(Paginator):
+    def __init__(self):
+        super(MyPaginator, self).__init__()
+
+
 class Home(ListView):
     context_object_name = 'bicat_docs_list'
-    queryset = bicat_doc.objects.all()[:10]
+    paginate_by = 10
+    bicat_docs_list = bicat_doc.objects.all().order_by('-doc_id')
+    queryset = bicat_docs_list
 
 class BiCatDocDetails(DetailView):
-    context_object_name = "doc_id"
+    context_object_name = 'bicat_doc'
     model = bicat_doc
     slug_field = 'doc_id'
     slug_url_kwarg = 'doc_id'

@@ -1,12 +1,33 @@
 {% extends 'base.html' %}
 
 {% block page_main_content %}
-    <h1>{{ object.item_title|capfirst }} events:</h1>
-    <ul>
-        {% for event in object.event_set.filter_by_it_time_to_publish %}
-            <li>
-                <a href="{{ event.get_absolute_url }}">{{ event }}</a>, {{ event.date_start|date:"d.m.Y" }}
+
+    <h3 class="alert-info">
+    {{ bicat_doc.item_shelving_index }}
+    </h3>
+
+    <h4>
+        {% if bicat_doc.item_author %} {{ bicat_doc.item_author }} -
+        {% else %} Автор не указан {% endif %}
+        {{ bicat_doc.item_title }} - {{ bicat_doc.item_publish }} - {{ bicat_doc.item_pages }}
+    </h4>
+
+    <small class="text-info">
+        <ul>
+            <li> серия: {{ bicat_doc.item_series }} </li>
+            <li> ISBN:{{ bicat_doc.item_ISBN }} </li>
+            <li> Цена: {{ bicat_doc.item_cost }} </li>
+        {% if bicat_doc.item_tags %}
+            <li> Тэги
+                <ul>
+                    {% for tag in bicat_doc.item_tags %}
+                        <li>{{tag}}</li>
+                    {% endfor %}
+                </ul>
             </li>
-        {% endfor %}
-    </ul>
+        {% endif %}
+            <li> добавлено: {{  bicat_doc.item_entrence_date }} </li>
+            <li> изменено: {{ bicat_doc.item_last_change_timestamp }} </li>
+        </ul>
+    </small>
 {% endblock %}

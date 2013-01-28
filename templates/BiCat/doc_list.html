@@ -1,12 +1,25 @@
 {% extends 'base.html' %}
-
 {% block page_main_content %}
     <h4 class=""></h4>
     <ul>
-        {% for item in bicat_docs_list %}
+        {% for item in bicat_docs_list%}
             <li>
                 <a href="{{ item.get_absolute_url }}"> {% if item.item_author %} {{ item.item_author }} - {% else %} <span style="color: #a2a2a2"> Автор не указан - </span> {% endif %} {{ item.item_title }}</a>
             </li>
         {% endfor %}
     </ul>
+
+{% if paginator %}
+    <div class="pagination">
+        <ul>
+        {% if paginator.has_previous %}
+            <li><a href="?page={{ paginator.previous_page_number }}">назад</a></li>
+        {% endif %}
+            {% if paginator.has_next %}
+                <li><a href="?page={{ paginator.next_page_number }}">вперёд</a></li>
+            {% endif %}
+        </ul>
+    </div>
+{% endif %}
+
 {% endblock %}
