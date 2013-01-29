@@ -1,25 +1,33 @@
 {% extends 'base.html' %}
 {% block page_main_content %}
-    <h4 class=""></h4>
-    <ul>
-        {% for item in bicat_docs_list%}
-            <li>
-                <a href="{{ item.get_absolute_url }}"> {% if item.item_author %} {{ item.item_author }} - {% else %} <span style="color: #a2a2a2"> Автор не указан - </span> {% endif %} {{ item.item_title }}</a>
-            </li>
-        {% endfor %}
-    </ul>
 
-{% if paginator %}
-    <div class="pagination">
+    {#    {{ page_obj.paginator.num_pages }}  Колличество страниц в пагинаторе #}
+    {#    {{ page_obj.paginator.page_range }}  Список страниц если их 146 - [1,2,3,...145,146] #}
+    {#    {{ page_obj.number }} Номер текущей страницы #}
+    {#    {% for f in paginator.page_range %} <li><a href="?page={{ f }}">{{ f }}</a> </li> {% endfor %}  Выведем все страницы #}
+
+    {{ paginator.page.number }}
+    <div class="pagination pagination-mini">
         <ul>
-        {% if paginator.has_previous %}
-            <li><a href="?page={{ paginator.previous_page_number }}">назад</a></li>
-        {% endif %}
-            {% if paginator.has_next %}
-                <li><a href="?page={{ paginator.next_page_number }}">вперёд</a></li>
-            {% endif %}
+{#            {% if page_obj.has_previous %}#}
+                <li><a href="?page={% if page_obj.previous_page_number == 0  %}1{% else %}{{ page_obj.previous_page_number }}{% endif %}"><-</a></li>
+                <li> <a href="?page=1">1 ...</a></li>
+                <li class="disabled"> <a href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
+{#            {% endif %}#}
+
+{#            {% if page_obj.has_next %}#}
+                <li> <a href="?page={{ page_obj.paginator.num_pages }}">... {{ page_obj.paginator.num_pages }}</a></li>
+                <li><a href="?page={% if page_obj.next_page_number > page_obj.paginator.num_pages %}{{page_obj.paginator.num_pages}}{% else %}{{ page_obj.next_page_number }}{% endif %}">-></a></li>
+{#            {% endif %}#}
         </ul>
     </div>
-{% endif %}
+
+    <ul class="nav nav-list ">
+        <li class="nav-header">Публикации</li><li class="divider"></li>
+        {% for item in bicat_docs_list%}
+            <li><a href="{{ item.get_absolute_url }}"><i class="icon-book"></i>{% if item.item_author %} {{ item.item_author }} - {% else %} <span class="label label-info">Автор не указан</span> {% endif %} {{ item.item_title }}</a></li>
+        {% endfor %}
+        <li class="divider"></li>
+    </ul>
 
 {% endblock %}

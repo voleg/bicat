@@ -14,7 +14,7 @@ class MyPaginator(Paginator):
 
 class Home(ListView):
     context_object_name = 'bicat_docs_list'
-    paginate_by = 10
+    paginate_by = 20
     bicat_docs_list = bicat_doc.objects.all().order_by('-doc_id')
     queryset = bicat_docs_list
 

@@ -2,9 +2,9 @@
 
 {% block page_main_content %}
 
-    <h3 class="alert-info">
-    {{ bicat_doc.item_shelving_index }}
-    </h3>
+    <h3> <span class="label label-info">
+        {{ bicat_doc.item_shelving_index }}
+    </span> </h3>
 
     <h4>
         {% if bicat_doc.item_author %} {{ bicat_doc.item_author }} -
@@ -13,7 +13,7 @@
     </h4>
 
     <small class="text-info">
-        <ul>
+        <ul class="nav nav-list">
             <li> серия: {{ bicat_doc.item_series }} </li>
             <li> ISBN:{{ bicat_doc.item_ISBN }} </li>
             <li> Цена: {{ bicat_doc.item_cost }} </li>

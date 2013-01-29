@@ -43,6 +43,7 @@ class Doc(models.Model):
         """
         извлекаем Авторов из Item
         """
+        rel = None
         author = get_marc_field(self.item, tag='100', subtag='a')
         other_authors = get_marc_field(self.item, tag='700', subtag='a')
         if author == "" or other_authors == "": splitter = u''
