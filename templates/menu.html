@@ -1,6 +1,9 @@
-<div class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dropdown trigger</a>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        ...
+<li class="dropdown">
+    <a class="dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" href="#">базки</a>
+    <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
+        {% for items in tageditems %}
+            <li><a tabindex="#" href="{{ items.get_absolute_url }}">{{ items.tag }}</a> </li>
+        {% endfor %}
+        <li class="divider"></li>
     </ul>
-</div>
+</li>

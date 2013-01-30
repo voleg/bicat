@@ -8,8 +8,6 @@
     {% for f in paginator.page_range %} <li><a href="?page={{ f }}">{{ f }}</a> </li> {% endfor %}  Выведем все страницы
 {% endcomment %}
 
-    
-
     <div class="pagination pagination-mini">
         <ul>
 {#            {% if page_obj.has_previous %}#}
@@ -26,11 +24,11 @@
     </div>
 
     <ul class="nav nav-list ">
-        <li class="nav-header">Публикации</li><li class="divider"></li>
+{#        <li class="nav-header">Публикации</li><li class="divider"></li>#}
         {% for item in bicat_docs_list%}
-            <li><a href="{{ item.get_absolute_url }}"><i class="icon-book"></i>{% if item.item_author %} {{ item.item_author }} - {% else %} <span class="label label-info">Автор не указан</span> {% endif %} {{ item.item_title }}</a></li>
+            <li><a href="{{ item.get_absolute_url }}"><i class="icon-book"></i>{% if item.item_author %} {{ item.item_author }} - {% else %} <span class="label">Автор не указан</span> {% endif %} {{ item.item_title }}</a></li>
         {% endfor %}
-        <li class="divider"></li>
+{#        <li class="divider"></li>#}
     </ul>
 
 {% endblock %}
