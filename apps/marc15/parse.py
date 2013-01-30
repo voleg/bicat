@@ -136,4 +136,4 @@ def item_timestamp_format(timestamp):
     """Преобразуем строку ГодМесяцДеньЧасМинутаСекундаМилисекунда В нечто более человеко читаемое"""
     year, month, day, hour, minute, seconds = timestamp[:4], timestamp[4:6], timestamp[6:8],\
                                               timestamp[8:10], timestamp[10:12], timestamp[12:14]
-    return " ".join(["-".join([year, month, day]), ":".join([hour, minute, seconds])])
+    return " ".join([".".join([year, month, day]), ":".join([hour, minute, seconds])])

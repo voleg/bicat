@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 {% block page_main_content %}
 
-    {#    {{ page_obj.paginator.num_pages }}  Колличество страниц в пагинаторе #}
-    {#    {{ page_obj.paginator.page_range }}  Список страниц если их 146 - [1,2,3,...145,146] #}
-    {#    {{ page_obj.number }} Номер текущей страницы #}
-    {#    {% for f in paginator.page_range %} <li><a href="?page={{ f }}">{{ f }}</a> </li> {% endfor %}  Выведем все страницы #}
+{% comment %}
+    {{ page_obj.paginator.num_pages }}  Колличество страниц в пагинаторе
+    {{ page_obj.paginator.page_range }}  Список страниц если их 146 - [1,2,3,...145,146]
+    {{ page_obj.number }} Номер текущей страницы
+    {% for f in paginator.page_range %} <li><a href="?page={{ f }}">{{ f }}</a> </li> {% endfor %}  Выведем все страницы
+{% endcomment %}
 
-    {{ paginator.page.number }}
+    
+
     <div class="pagination pagination-mini">
         <ul>
 {#            {% if page_obj.has_previous %}#}

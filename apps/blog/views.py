@@ -2,6 +2,8 @@
 from django.shortcuts import render_to_response
 from django.views.generic import ListView, DetailView, RedirectView
 from apps.BiCat.models import Doc as bicat_doc
+from apps.BiCat.models import Doc as bikar_doc
+from apps.BiUML.models import Doc as biuml_doc
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 #def home(request):

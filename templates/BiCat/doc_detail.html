@@ -2,6 +2,12 @@
 
 {% block page_main_content %}
 
+    <div class="pagination pagination-mini">
+        <ul>
+            <li><a href="#"><-</a></li>
+            <li><a href="#">-></a></li>
+        </ul>
+    </div>
     <h3> <span class="label label-info">
         {{ bicat_doc.item_shelving_index }}
     </span> </h3>
@@ -18,12 +24,21 @@
             <li> ISBN:{{ bicat_doc.item_ISBN }} </li>
             <li> Цена: {{ bicat_doc.item_cost }} </li>
         {% if bicat_doc.item_tags %}
-            <li> Тэги
-                <ul>
-                    {% for tag in bicat_doc.item_tags %}
-                        <li>{{tag}}</li>
-                    {% endfor %}
-                </ul>
+            <li>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                            Тэги
+                        </a>
+                    </div>
+                    <div id="collapseTwo" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            {% for tag in bicat_doc.item_tags %}
+                                <span class="label label-info">{{tag}}</span>,
+                            {% endfor %}
+                        </div>
+                    </div>
+
             </li>
         {% endif %}
             <li> добавлено: {{  bicat_doc.item_entrence_date }} </li>
