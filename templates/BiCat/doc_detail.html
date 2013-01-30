@@ -2,12 +2,15 @@
 
 {% block page_main_content %}
 
-    <div class="pagination pagination-mini">
-        <ul>
-            <li><a href="#"><-</a></li>
-            <li><a href="#">-></a></li>
-        </ul>
-    </div>
+    <ul class="pager">
+        <li class="previous">
+            <a href="#">&larr; Туда</a>
+        </li>
+        <li class="next">
+            <a href="#">Сюда &rarr;</a>
+        </li>
+    </ul>
+
     <h3> <span class="label label-info">
         {{ bicat_doc.item_shelving_index }}
     </span> </h3>
@@ -34,7 +37,7 @@
                     <div id="collapseTwo" class="accordion-body collapse">
                         <div class="accordion-inner">
                             {% for tag in bicat_doc.item_tags %}
-                                <span class="label label-info">{{tag}}</span>,
+                                <span class="label label-inverse"><a href="{{ tag.get_absolute_url }}">{{tag}}</a></span>
                             {% endfor %}
                         </div>
                     </div>

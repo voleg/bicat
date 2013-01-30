@@ -30,10 +30,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="/">BiCat</a>
+            <a class="brand" href="/">bicat</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    {% block col-menu %}{% endblock %}
+                    {% block col-menu %}
+                        {% include "menu.html" %}
+                    {% endblock %}
                     <li class="active"><a href="/">о поиске</a></li>
                     <li><a href="/about">настройки</a></li>
                 </ul>
