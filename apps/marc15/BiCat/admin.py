@@ -4,7 +4,6 @@ from django.db import models
 from models import Doc, Tag
 from apps.marc15.widgets import MarcFormatWidget
 
-
 class DocAdmin(admin.ModelAdmin):
     list_display = ('doc_id', 'item_title', 'item_author')
     list_display_links = ('doc_id', 'item_title', 'item_author')

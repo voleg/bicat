@@ -51,32 +51,73 @@ class Doc(models.Model):
         return splitter.join([author,other_authors])
 
     @property
+    def bibliographic_level(self):
+        r"""Returns label for bibliographic level code from self.data"""
+        blvls = {
+            'a': 'Часть Монографии',
+            'b': 'Часть Серии',
+            'c': 'Колекция',
+            'd': 'Подъединица',
+            'i': 'Ресурс Интеграции',
+            'm': 'Монография',
+            's': 'Серия'
+        }
+        return blvls[self.biblevel]
+
+    @property
+    def item_author_main(self):
+        return get_marc_field(self.item, tag='100', subtag='a')
+
+    @property
+    def item_authors_other(self):
+        return get_marc_field(self.item, tag='700', subtag='a')
+
+    @property
     def item_last_change_timestamp(self):
         """извлекаем дату последней правки из Item"""
         timestamp = get_marc_field(self.item, tag='005', subtag='0')
         return item_timestamp_format(timestamp)
+
     @property
     def item_entrence_date(self):
         """Дата поступления"""
         entrance_date = get_marc_field(self.item, tag='990', subtag='f')
         return entrance_date
+
     @property
     def item_series(self):
         """Серия"""
         series = get_marc_field(self.item, tag='440')
         return series
+
     @property
     def item_ISBN(self):
         """ISBN """
         return get_marc_field(self.item, tag='020', subtag='a')
+
     @property
     def item_cost(self):
         """Цена"""
         return get_marc_field(self.item, tag='020', subtag='c')
+
+    @property
+    def item_bibliography(self):
+        return get_marc_field(self.item, tag='504', subtag='a')
+
     @property
     def item_pages(self):
         """Объём издания"""
         return get_marc_field(self.item, tag='300', subtag='a')
+
+    @property
+    def item_illustrations(self):
+        """ Илл./тип воспроизв. """
+        return get_marc_field(self.item, tag='300', subtag='b')
+
+    @property
+    def item_format(self):
+        """ Формат """
+        return get_marc_field(self.item, tag='300', subtag='c')
     @property
     def item_cover(self):
         """
@@ -89,6 +130,11 @@ class Doc(models.Model):
                 ил.
         """
         return get_marc_field(self.item, tag='300', subtag='d')
+
+    @property
+    def item_covering_matireals(self):
+        return get_marc_field(self.item, tag='300', subtag='e')
+
     @property
     def item_shelving_index(self):
         """
@@ -108,6 +154,18 @@ class Doc(models.Model):
         return get_marc_field(self.item, tag='090', subtag='a')
 
     @property
+    def item_cat_index(self):
+        return get_marc_field(self.item, tag='090', subtag='c')
+
+    @property
+    def item_author_lable(self):
+        return get_marc_field(self.item, tag='090', subtag='x')
+
+    @property
+    def item_invent_code(self):
+        return get_marc_field(self.item, tag='090', subtag='e')
+
+    @property
     def item_title(self):
         """
         245
@@ -119,7 +177,15 @@ class Doc(models.Model):
                 Пер. с англ.
                 ...
         """
-        return get_marc_field(self.item, tag='245')
+        return get_marc_field(self.item, tag='245', subtag='a')
+
+    @property
+    def item_next_title(self):
+        return get_marc_field(self.item, tag='245', subtag='b')
+
+    @property
+    def item_responsibility(self):
+        return get_marc_field(self.item, tag='245', subtag='c')
 
     def item_publish(self):
         """
@@ -133,6 +199,22 @@ class Doc(models.Model):
                 ...
         """
         return get_marc_field(self.item, tag='260')
+
+    @property
+    def item_place(self):
+        return get_marc_field(self.item, tag='260', subtag='a')
+
+    @property
+    def item_publisher(self):
+        return get_marc_field(self.item, tag='260', subtag='b')
+
+    @property
+    def item_publication_year(self):
+        return get_marc_field(self.item, tag='260', subtag='c')
+
+    @property
+    def item_remarks(self):
+        return get_marc_field(self.item, tag='500', subtag='a')
 
     def item_tags(self):
         """
