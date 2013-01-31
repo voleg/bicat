@@ -11,14 +11,24 @@
         </li>
     </ul>
 
-    <h3> <span class="label label-info">
-        {{ bicat_doc.item_shelving_index }}
-    </span> </h3>
+    <h3>
+        <span class="label label-info">{{ bicat_doc.item_shelving_index }}</span>
+        <span class="label label-info">{{ bicat_doc.item_author_lable }}</span>
+    </h3>
 
     <h4>
-        {% if bicat_doc.item_author %} {{ bicat_doc.item_author }} -
-        {% else %} Автор не указан {% endif %}
-        {{ bicat_doc.item_title }} - {{ bicat_doc.item_publish }} - {{ bicat_doc.item_pages }}
+        {% if bicat_doc.item_author_main %} <p>{{ bicat_doc.item_author_main }}</p>{% endif %}
+        {{ bicat_doc.item_title }}
+        {% if bicat_doc.item_next_title %}{{ bicat_doc.item_next_title }}:{% endif %}
+        {% if bicat_doc.item_responsibility %} / {{ bicat_doc.item_responsibility }}{% endif %}
+        {% if bicat_doc.item_author %}{{ bicat_doc.item_author }}{% endif %} - {{ bicat_doc.item_place }}: {{ bicat_doc.item_publisher }}, {{ bicat_doc.item_publication_year }} - {{ bicat_doc.item_pages }}
+    {% if bicat_doc.item_covering_matireals %} :{{ bicat_doc.item_covering_matireals }}{% endif %}
+    {% if bicat_doc.item_illustrations %}: {{ bicat_doc.item_illustrations }}{% endif %}
+    {% if bicat_doc.item_series %} - ({{ bicat_doc.item_series }}) {% endif %}
+    {% if bicat_doc.item_format %}{{ bicat_doc.item_format }}{% endif %}
+    {% if bicat_doc.item_bibliography %} - {{ bicat_doc.item_bibliography }}{% endif %}
+    {% if bicat_doc.item_ISBN %} - ISBN {{ bicat_doc.item_ISBN }}{% endif %}
+    {% if bicat_doc.item_cost %}: {{ bicat_doc.item_cost }}{% endif %}
     </h4>
 
     <small class="text-info">
@@ -37,7 +47,7 @@
                     <div id="collapseTwo" class="accordion-body collapse">
                         <div class="accordion-inner">
                             {% for tag in bicat_doc.item_tags %}
-                                <span class="label label-inverse"><a href="{{ tag.get_absolute_url }}">{{tag}}</a></span>
+                                <span class="badge">{{tag}}</span>
                             {% endfor %}
                         </div>
                     </div>

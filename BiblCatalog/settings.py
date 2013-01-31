@@ -185,9 +185,9 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'apps.blog',
     'apps.marc15',
-    'apps.BiCat',
-    'apps.BiKart',
-    'apps.BiUML',
+    'apps.marc15.BiCat',
+    'apps.marc15.BiKart',
+    'apps.marc15.BiUML',
     'sitemedia'
 )
 

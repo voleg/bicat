@@ -3,15 +3,15 @@ __author__ = 'voleg'
 #
 # sweet parser of Marc1.5 ITEM Field
 #
+# todo: refactor that bunch of stupid functions
 
 def get_tag_name(tag, subtag):
     """
     тут получаем имя тега. Тег состоит из 2-х элементов tag+subtag так уж повелось исторически ...
     """
-    # todo: rewrite a function in more light and fast direction. The TAG field in model really does not changes in time it kind a like some key-value storage, so it may be a reason to represent data in a table like a static dict in a code if it would be a bottle-nec place. Keep it in mind
-    # todo: refactor that bunch of stupid functions
+    # todo: rewrite a function to make it more light and fast. The TAG field in model really does not changes in time it kind a like some key-value storage, so it may be a reason to represent data in a table like a static dict in a code if it would be a bottleneck place. Keep it in mind
 
-    from apps.BiCat.models import Tag as cononical_tags
+    from .BiCat.models import Tag as cononical_tags # We take Tags from b_cat DB as a cononical
     try:
         name = cononical_tags.objects.get(tag=str(tag), subtag=str(subtag)).caption
     except:

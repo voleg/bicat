@@ -37,6 +37,6 @@ class BiRouter(object):
     def allow_syncdb(self, db, model):
 
         if db in db_list:
-            return None
+            return False
         else:
             return None
