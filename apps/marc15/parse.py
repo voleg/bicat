@@ -137,3 +137,27 @@ def item_timestamp_format(timestamp):
     year, month, day, hour, minute, seconds = timestamp[:4], timestamp[4:6], timestamp[6:8],\
                                               timestamp[8:10], timestamp[10:12], timestamp[12:14]
     return " ".join([".".join([year, month, day]), ":".join([hour, minute, seconds])])
+
+
+#def ReversedDic(func):
+#    """
+#    декоратор инвертирующий порядок элементов в списке??? или словаре ?
+#    """
+#
+#    def the_wrapper(arg):
+#        input_dict = func(arg)
+#        return reversed(input_dict.items())
+#
+#    return the_wrapper
+
+def ListToStr(func):
+    """
+    декоратор
+    проверяем вывод функции, если там список то делаем из неё строку
+    """
+    def the_wrapper(arg):
+        input_str = func(arg)
+        if isinstance(input_str, list):
+            return '; '.join([e for e in input_str])
+        return input_str
+    return the_wrapper

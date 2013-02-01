@@ -2,29 +2,22 @@
 # Create your views here.
 from django.shortcuts import render_to_response
 from django.views.generic import ListView, DetailView, RedirectView
-from apps.marc15.BiCat.models import Doc as bicat_doc
-from apps.marc15.BiCat.models import Doc as bikar_doc
-from apps.marc15.BiUML.models import Doc as biuml_doc
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 #def home(request):
 #    return render_to_response('blog/index.html', locals())
-
-class MyPaginator(Paginator):
-    def __init__(self):
-        super(MyPaginator, self).__init__()
 
 class PublicationsList(ListView):
     """
     Выводим список элементов базы
     """
     template_name = "Publications/List.html"
-    context_object_name = 'bicat_docs_list'
+    context_object_name = 'doc_item_list'
     paginate_by = 20
-    bicat_docs_list = bicat_doc.objects.all().order_by('-doc_id')
-    queryset = bicat_docs_list
-#    def get_queryset(self):
-#       # todo ordering here in queryset
+    def get_queryset(self):
+        # todo ordering here in queryset
+        queryset = super(PublicationsList, self).get_queryset()
+        return queryset.order_by('-doc_id')
 
 #    def get_context_data(self, **kwargs):
 #        super(PublicationsList, self).__init__()
@@ -35,8 +28,7 @@ class PublicationDetails(DetailView):
     Формируем детальное описание объекта
     """
     template_name = "Publications/Details.html"
-    context_object_name = 'bicat_doc'
-    model = bicat_doc
+    context_object_name = 'doc_item'
     slug_field = 'doc_id'
     slug_url_kwarg = 'doc_id'
 

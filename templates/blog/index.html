@@ -1,2 +1,12 @@
 {% extends "base.html" %}
 
+{% block page_top_nav %}{% endblock %} {# нет тут навигации! #}
+
+{% block page_main_content %}
+    <ul>
+    {% for issue in issues %}
+        <li>
+            <a href="{{ issue.get_absolute_url }}">{{ issue.name }}</a>
+        </li>
+    {% endfor %}
+{% endblock %}

@@ -1,7 +1,7 @@
 #coding: utf-8
 from django.db import models
 from managers import ItemManager
-from parse import parse_item_to_dict, get_marc_string, get_caption, get_marc_field, item_timestamp_format
+from parse import parse_item_to_dict, get_marc_string, get_marc_field, item_timestamp_format, ListToStr
 from fields import TagSubtagField, JSONField, MarcItemField, MarcItemAuthorField
 
 class MarcField(models.TextField):
@@ -165,7 +165,9 @@ class Doc(models.Model):
     def item_invent_code(self):
         return get_marc_field(self.item, tag='090', subtag='e')
 
+
     @property
+    @ListToStr
     def item_title(self):
         """
         245
@@ -243,7 +245,8 @@ class Doc(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return 'doc-path', [self.doc_id]
+        name = '%s_doc-path' % (self._meta.app_label)
+        return name, [self.doc_id]
 
     class Meta:
         db_table = u'DOC'
