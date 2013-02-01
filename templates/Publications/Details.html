@@ -12,31 +12,31 @@
     </ul>
 
     <h3>
-        <span class="label label-info">{{ bicat_doc.item_shelving_index }}</span>
-        <span class="label label-info">{{ bicat_doc.item_author_lable }}</span>
+        <span class="label label-info">{{ doc_item.item_shelving_index }}</span>
+        <span class="label label-info">{{ doc_item.item_author_lable }}</span>
     </h3>
 
     <h4>
-        {% if bicat_doc.item_author_main %} <p>{{ bicat_doc.item_author_main }}</p>{% endif %}
-        {{ bicat_doc.item_title }}
-        {% if bicat_doc.item_next_title %}{{ bicat_doc.item_next_title }}:{% endif %}
-        {% if bicat_doc.item_responsibility %} / {{ bicat_doc.item_responsibility }}{% endif %}
-        {% if bicat_doc.item_author %}{{ bicat_doc.item_author }}{% endif %} - {{ bicat_doc.item_place }}: {{ bicat_doc.item_publisher }}, {{ bicat_doc.item_publication_year }} - {{ bicat_doc.item_pages }}
-    {% if bicat_doc.item_covering_matireals %} :{{ bicat_doc.item_covering_matireals }}{% endif %}
-    {% if bicat_doc.item_illustrations %}: {{ bicat_doc.item_illustrations }}{% endif %}
-    {% if bicat_doc.item_series %} - ({{ bicat_doc.item_series }}) {% endif %}
-    {% if bicat_doc.item_format %}{{ bicat_doc.item_format }}{% endif %}
-    {% if bicat_doc.item_bibliography %} - {{ bicat_doc.item_bibliography }}{% endif %}
-    {% if bicat_doc.item_ISBN %} - ISBN {{ bicat_doc.item_ISBN }}{% endif %}
-    {% if bicat_doc.item_cost %}: {{ bicat_doc.item_cost }}{% endif %}
+        {% if doc_item.item_author_main %} <p>{{ doc_item.item_author_main }}</p>{% endif %}
+        {{ doc_item.item_title }}
+        {% if doc_item.item_next_title %}{{ doc_item.item_next_title }}:{% endif %}
+        {% if doc_item.item_responsibility %} / {{ doc_item.item_responsibility }}{% endif %}
+        {% if doc_item.item_author %}{{ doc_item.item_author }}{% endif %} - {{ doc_item.item_place }}: {{ doc_item.item_publisher }}, {{ doc_item.item_publication_year }} - {{ doc_item.item_pages }}
+    {% if doc_item.item_covering_matireals %} :{{ doc_item.item_covering_matireals }}{% endif %}
+    {% if doc_item.item_illustrations %}: {{ doc_item.item_illustrations }}{% endif %}
+    {% if doc_item.item_series %} - ({{ doc_item.item_series }}) {% endif %}
+    {% if doc_item.item_format %}{{ doc_item.item_format }}{% endif %}
+    {% if doc_item.item_bibliography %} - {{ doc_item.item_bibliography }}{% endif %}
+    {% if doc_item.item_ISBN %} - ISBN {{ doc_item.item_ISBN }}{% endif %}
+    {% if doc_item.item_cost %}: {{ doc_item.item_cost }}{% endif %}
     </h4>
 
     <small class="text-info">
         <ul class="nav nav-list">
-            <li> серия: {{ bicat_doc.item_series }} </li>
-            <li> ISBN:{{ bicat_doc.item_ISBN }} </li>
-            <li> Цена: {{ bicat_doc.item_cost }} </li>
-        {% if bicat_doc.item_tags %}
+            <li> серия: {{ doc_item.item_series }} </li>
+            <li> ISBN:{{ doc_item.item_ISBN }} </li>
+            <li> Цена: {{ doc_item.item_cost }} </li>
+        {% if doc_item.item_tags %}
             <li>
                 <div class="accordion-group">
                     <div class="accordion-heading">
@@ -46,7 +46,7 @@
                     </div>
                     <div id="collapseTwo" class="accordion-body collapse">
                         <div class="accordion-inner">
-                            {% for tag in bicat_doc.item_tags %}
+                            {% for tag in doc_item.item_tags %}
                                 <span class="badge">{{tag}}</span>
                             {% endfor %}
                         </div>
@@ -54,8 +54,8 @@
 
             </li>
         {% endif %}
-            <li> добавлено: {{  bicat_doc.item_entrence_date }} </li>
-            <li> изменено: {{ bicat_doc.item_last_change_timestamp }} </li>
+            <li> добавлено: {{  doc_item.item_entrence_date }} </li>
+            <li> изменено: {{ doc_item.item_last_change_timestamp }} </li>
         </ul>
     </small>
 {% endblock %}

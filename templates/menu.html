@@ -1,9 +1,10 @@
 <li class="dropdown">
-    <a class="dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" href="#">базки</a>
+    <a class="dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" href="#"> Каталог <b class="caret"></b> </a>
     <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
-        {% for items in tageditems %}
-            <li><a tabindex="#" href="{{ items.get_absolute_url }}">{{ items.tag }}</a> </li>
-        {% endfor %}
-        <li class="divider"></li>
+        <li class="active">
+            <a href="/catalog/bicat">Книги</a>
+        </li>
+        <li><a href="/catalog/bikart">Периодика</a></li>
+        <li><a href="/catalog/biuml">Учебно методическая литература</a></li>
     </ul>
 </li>

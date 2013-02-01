@@ -25,11 +25,11 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
+{#            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">#}
+{#                <span class="icon-bar"></span>#}
+{#                <span class="icon-bar"></span>#}
+{#                <span class="icon-bar"></span>#}
+{#            </a>#}
             <a class="brand" href="/">bicat</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
@@ -37,14 +37,13 @@
                         {% include "menu.html" %}
                     {% endblock %}
                     <li class="active"><a href="/">о поиске</a></li>
-                    <li><a href="/about">настройки</a></li>
+                    <li><a href="/settings">настройки</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
 
             <form class="navbar-search pull-left" action="/search" method="post">
                 <input type="text" class="search-query" placeholder="..." name="q">
             </form>
-
         </div>
     </div>
 </div>
@@ -57,21 +56,37 @@
 {##}
 {#    </div>#}
     <div class="span0">
+
+    {% block page_top_nav %} <small> навигация </small> <hr> {% endblock %}
+
+        {% block page_top_alert %}
+            <div class="alert alert-info">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <h4>Внимание !</h4>
+                Разработка приложения продолжается, ждите (Волег)
+{#                <div class="progress progress-striped active">#}
+{#                    <div class="bar" style="width: 40%;"></div>#}
+{#                </div>#}
+            </div>
+        {% endblock %}
+
+        {% block page_main_header %}
+            <p>Заголовок страницы</p>
+            <hr>
+        {% endblock %}
+
         {% block page_main_content %}
             <p>Контент чо</p>
         {% endblock %}
 
         {% block page_main_footer %}
+            <hr>
             <p>Подвал страницы</p>
         {% endblock %}
 
     </div>
 </div>
 
-
-{% block page_main_header %}
-    <p>Заголовок страницы</p>
-{% endblock %}
 </div>
 </body>
 </html>
