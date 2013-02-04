@@ -5,3 +5,10 @@ class Doc(Doc):
 
 class Tag(Tag):
     pass
+
+
+class Inv(Inv):
+    pass
+
+class Invoff(Invoff):
+    pass

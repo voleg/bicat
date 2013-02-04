@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 
+{% block page_top_nav %}
+
+{% endblock %}
 {% block page_main_content %}
 
     <ul class="pager">
@@ -33,9 +36,16 @@
 
     <small class="text-info">
         <ul class="nav nav-list">
+        {% if doc_item.item_series %}
             <li> серия: {{ doc_item.item_series }} </li>
+        {% endif %}
+        {% if doc_item.item_ISBN %}
             <li> ISBN:{{ doc_item.item_ISBN }} </li>
+        {% endif %}
+        {% if doc_item.item_cost %}
             <li> Цена: {{ doc_item.item_cost }} </li>
+        {% endif %}
+
         {% if doc_item.item_tags %}
             <li>
                 <div class="accordion-group">
@@ -44,18 +54,22 @@
                             Тэги
                         </a>
                     </div>
-                    <div id="collapseTwo" class="accordion-body collapse">
+                    <div id="collapseTwo" class="accordion-body">
                         <div class="accordion-inner">
                             {% for tag in doc_item.item_tags %}
-                                <span class="badge">{{tag}}</span>
+                                <span class="badge"><a href="../search/?search=&quot;{{ tag }}&quot;">{{tag }}</a></span>
                             {% endfor %}
                         </div>
                     </div>
 
             </li>
         {% endif %}
+        {% if doc_item.item_entrence_date %}
             <li> добавлено: {{  doc_item.item_entrence_date }} </li>
+        {% endif %}
+        {% if doc_item.item_last_change_timestamp %}
             <li> изменено: {{ doc_item.item_last_change_timestamp }} </li>
+        {% endif %}
         </ul>
     </small>
 {% endblock %}
