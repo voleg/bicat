@@ -36,13 +36,13 @@
                     {% block col-menu %}
                         {% include "menu.html" %}
                     {% endblock %}
-                    <li class="active"><a href="/">о поиске</a></li>
+                    <li><a href="/">о поиске</a></li>
                     <li><a href="/settings">настройки</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
 
-            <form class="navbar-search pull-left" action="/search" method="post">
-                <input type="text" class="search-query" placeholder="..." name="q">
+            <form class="navbar-search pull-left" action="/catalog/search/" method="get">
+                <input type="text" class="search-query" placeholder="..." name="search">
             </form>
         </div>
     </div>
@@ -63,7 +63,7 @@
             <div class="alert alert-info">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <h4>Внимание !</h4>
-                Разработка приложения продолжается, ждите (Волег)
+                Разработка приложения продолжается, возможны сбои, ждите (Волег)
 {#                <div class="progress progress-striped active">#}
 {#                    <div class="bar" style="width: 40%;"></div>#}
 {#                </div>#}

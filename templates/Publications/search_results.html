@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block page_top_nav %}{% endblock %}
+
+{% block page_main_header %}
+
+    <p>Ну поиск чо!</p>
+{% endblock %}
+
+{% block page_main_content %}
+    <strong>Вы искали: {{ message }}</strong>
+    <ul class="nav nav-list ">
+
+    {% for catalog in search_results %}
+        {% for item in catalog %}
+            <li>
+                <a href="{{ item.get_absolute_url }}">
+                    <i class="icon-book"></i>
+                    {% if item.item_author %}
+                        {{ item.item_author }}
+                    {% else %} <span class="label">Автор не указан</span>
+                    {% endif %}
+                    {% if item.item_title %}
+                        - {{ item.item_title }}
+                    {% endif %}
+                </a>
+            </li>
+        {% endfor %}
+    {% endfor %}
+    </ul>
+{% endblock %}

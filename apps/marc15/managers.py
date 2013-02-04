@@ -20,6 +20,9 @@ class ItemQuerySet(QuerySet):
     def get_item_item(self, tag=None, subtag=None):
         return get_caption(self.get_item_dict(), tag=tag, subtag=subtag)
 
+    def get_next_item(self):
+        raise NotImplementedError
+
 class ItemManager(models.Manager):
     def get_query_set(self):
         return ItemQuerySet(self.model, using=self._db)

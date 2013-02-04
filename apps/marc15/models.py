@@ -7,6 +7,79 @@ from fields import TagSubtagField, JSONField, MarcItemField, MarcItemAuthorField
 class MarcField(models.TextField):
     pass
 
+# todo реализовать связи через content-type framework
+
+class Inv(models.Model):
+    """
+    Модель таблицы экземпляров хранения,состоящих на учете
+
+    """
+    inv_id = models.IntegerField('идентификатор экземпляра хранения', primary_key=True, db_column=u'INV_ID')
+    doc_id = models.IntegerField('ID Документа', db_column=u'DOC_ID')
+    t990t = models.CharField('N записи в КСУ для И/У и  Б/У', max_length=255, db_column=u'T990t', blank=True)
+    t090h = models.CharField('формат', max_length=255, db_column=u'T090h', blank=True)
+    t090e = models.CharField('инвентарный номер', max_length=255, db_column=u'T090e', blank=True)
+    t090f = models.CharField('сигла хранения', max_length=255, db_column=u'T090f', blank=True)
+    t090w = models.CharField('номер фонда', max_length=255, db_column=u'T090w', blank=True)
+    t876c = models.CharField('цена', max_length=255, db_column=u'T876c', blank=True)
+    t876p = models.CharField('штрих-код', max_length=255, db_column=u'T876p', blank=True)
+    t020d = models.CharField('денежная единица', max_length=255, db_column=u'T020d', blank=True)
+    t020e = models.CharField('валютная цена', max_length=255, db_column=u'T020e', blank=True)
+    t990n = models.CharField('номер УК(Б/У)', max_length=255, db_column=u'T990n', blank=True)
+    cnt = models.IntegerField('количество экземпляров', null=True, db_column=u'CNT', blank=True)
+    regdate = models.FloatField('дата и время ввода информации', null=True, db_column=u'REGDATE', blank=True)
+    invmode = models.CharField('признак учета', max_length=1, db_column=u'INVMODE', blank=True)
+    custom1 = models.CharField(max_length=255, db_column=u'CUSTOM1', blank=True)
+    custom2 = models.CharField(max_length=255, db_column=u'CUSTOM2', blank=True)
+    custom3 = models.CharField(max_length=255, db_column=u'CUSTOM3', blank=True)
+    custom4 = models.CharField(max_length=255, db_column=u'CUSTOM4', blank=True)
+    custom5 = models.CharField(max_length=255, db_column=u'CUSTOM5', blank=True)
+    def __unicode__(self):
+        return 'doc: %s invenatry code: %s' % (self.doc_id, self.t090e)
+
+    class Meta:
+        db_table = u'INV'
+        abstract = True
+        verbose_name = u'экземпляр хранения'
+        verbose_name_plural = u'экземпляры хранения'
+
+
+class Invoff(models.Model):
+    """
+    Модель журнала списания инвентарных номеров
+    """
+    inv_id = models.IntegerField('идентификатор экземпляра хранения', primary_key=True, db_column=u'INV_ID')
+    doc_id = models.IntegerField('ID Документа', db_column=u'DOC_ID')
+    t990t = models.CharField('N записи в КСУ для И/У', max_length=255, db_column=u'T990t', blank=True)
+    t090h = models.CharField('формат', max_length=255, db_column=u'T090h', blank=True)
+    t090e = models.CharField('инвентарный номер', max_length=255, db_column=u'T090e', blank=True)
+    t090f = models.CharField('сигла хранения', max_length=255, db_column=u'T090f', blank=True)
+    t090w = models.CharField('номер фонда', max_length=255, db_column=u'T090w', blank=True)
+    t876c = models.CharField('цена', max_length=255, db_column=u'T876c', blank=True)
+    t876p = models.CharField('штрих-код', max_length=255, db_column=u'T876p', blank=True)
+    t020d = models.CharField('денежная единица', max_length=255, db_column=u'T020d', blank=True)
+    t020e = models.CharField('валютная цена', max_length=255, db_column=u'T020e', blank=True)
+    t990n = models.CharField('номер УК(Б/У)', max_length=255, db_column=u'T990n', blank=True)
+    cnt = models.IntegerField('количество экземпляров(И/У=1,Б/У=Х)', null=True, db_column=u'CNT', blank=True)
+    offdate = models.FloatField('дата и время списания', null=True, db_column=u'OFFDATE', blank=True)
+    invmode = models.CharField('признак учета(И/У или И/У)', max_length=1, db_column=u'INVMODE', blank=True)
+    notes = models.CharField('причина списания', max_length=255, db_column=u'NOTES', blank=True)
+    wroffact = models.CharField('номер акта списания', max_length=255, db_column=u'WROFFACT', blank=True)
+    custom1 = models.CharField(max_length=255, db_column=u'CUSTOM1', blank=True)
+    custom2 = models.CharField(max_length=255, db_column=u'CUSTOM2', blank=True)
+    custom3 = models.CharField(max_length=255, db_column=u'CUSTOM3', blank=True)
+    custom4 = models.CharField(max_length=255, db_column=u'CUSTOM4', blank=True)
+    custom5 = models.CharField(max_length=255, db_column=u'CUSTOM5', blank=True)
+    def __unicode__(self):
+        return 'doc: %s invenatry code: %s' % (self.doc_id, self.t090e)
+
+    class Meta:
+        db_table = u'INVOFF'
+        abstract = True
+        verbose_name = u'журнал списания'
+        verbose_name_plural = u'Списанные инвентарные номера'
+
+
 class Tag(models.Model):
     tag = models.CharField("номер поля (марковкском формате)", max_length=3, primary_key=True, db_column='TAG')
     subtag = models.CharField("буква подполя", max_length=1, db_column='SUBTAG', blank=True)
