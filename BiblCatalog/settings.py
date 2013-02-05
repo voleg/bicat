@@ -1,19 +1,39 @@
 # Django settings for BiblCatalog project.
-import os
+import os, platform
 
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
+hostname = platform.node()
 
-# remotehost VirtualBox Vm
-TEST_MSSQL_HOST = '192.168.198.3'
-TEST_MSSQL_PORT = '3019'
+# remote host VirtualBox Vm
+test_msql_host = '192.168.198.3'
+test_msql_port = '3019'
 # localhost VirtualBox Vm
-TEST2_MSSQL_HOST = '192.168.56.3'
-TEST2_MSSQL_PORT = '3019'
-# Production DB Server
-MSSQL_HOST = '192.168.1.252'
-MSSQL_PORT = '4538'
+test2_msql_host = '192.168.56.3'
+test2_msql_port = '3019'
+# Production DB Server (hostname = 'res')
+production_msql_host = '192.168.1.252'
+production_msql_port = '4538'
 
-DEBUG = True
+if hostname == 'res':
+    MSSQL_HOST = production_msql_host
+    MSSQL_PORT = production_msql_port
+
+    # DSN's
+    b_cat = 'SERV3BCAT'
+    b_kart = 'SERV3BKART'
+    b_uml = 'SERV3BUML'
+    DEBUG = False
+else:
+    MSSQL_HOST = test_msql_host
+    MSSQL_PORT = test_msql_port
+
+    # DSN's
+    b_cat = 'TESTSERV3BCAT'
+    b_kart = 'TESTSERV3BKART'
+    b_uml = 'TESTSERV3BUML'
+
+    DEBUG = True
+
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -32,11 +52,11 @@ DATABASES = {
         'NAME': 'B_KART',
         'USER': 'biblioteka',
         'PASSWORD': '250bibl052',
-        'HOST': TEST_MSSQL_HOST,
-        'PORT': TEST_MSSQL_PORT,
+        'HOST': MSSQL_HOST,
+        'PORT': MSSQL_PORT,
         'COLLATION': 'Cyrillic_General_CI_AS',
         'OPTIONS':  {   'driver': 'TDS',
-                        'dsn':  'TESTSERV3BKART',
+                        'dsn':  b_kart,
                         'host_is_server': True,
                         'extra_params': 'TDS_VERSION=8.0' }
     },
@@ -45,11 +65,11 @@ DATABASES = {
         'NAME': 'B_CAT',
         'USER': 'biblioteka',
         'PASSWORD': '250bibl052',
-        'HOST': TEST_MSSQL_HOST,
-        'PORT': TEST_MSSQL_PORT,
+        'HOST': MSSQL_HOST,
+        'PORT': MSSQL_PORT,
         'COLLATION': 'Cyrillic_General_CI_AS',
         'OPTIONS':  {   'driver': 'TDS',
-                        'dsn':  'TESTSERV3BCAT',
+                        'dsn':  b_cat,
                         'host_is_server': True,
                         'extra_params': 'TDS_VERSION=8.0' }
     },
@@ -58,11 +78,11 @@ DATABASES = {
         'NAME': 'B_uml',
         'USER': 'biblioteka',
         'PASSWORD': '250bibl052',
-        'HOST': TEST_MSSQL_HOST,
-        'PORT': TEST_MSSQL_PORT,
+        'HOST': MSSQL_HOST,
+        'PORT': MSSQL_PORT,
         'COLLATION': 'Cyrillic_General_CI_AS',
         'OPTIONS':  {   'driver': 'TDS',
-                        'dsn':  'TESTSERV3BUML',
+                        'dsn':  b_uml,
                         'host_is_server': True,
                         'extra_params': 'TDS_VERSION=8.0' }
     }
@@ -188,6 +208,7 @@ INSTALLED_APPS = (
     'apps.marc15.BiCat',
     'apps.marc15.BiKart',
     'apps.marc15.BiUML',
+    'apps.marc15.search',
     'sitemedia'
 )
 
