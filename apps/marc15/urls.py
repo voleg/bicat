@@ -1,10 +1,10 @@
 __author__ = 'voleg'
 from django.conf.urls import patterns, include, url
 from views import PublicationsList, PublicationDetails
-from apps.marc15.BiCat.models import Doc as bicat_doc
-from apps.marc15.BiKart.models import Doc as bikar_doc
-from apps.marc15.BiUML.models import Doc as biuml_doc
-from views import searchview
+from .BiCat.models import Doc as bicat_doc
+from .BiKart.models import Doc as bikar_doc
+from .BiUML.models import Doc as biuml_doc
+from .search.views import searchview
 
 urlpatterns = patterns('',
     url(r'bicat/$', PublicationsList.as_view(model=bicat_doc)),

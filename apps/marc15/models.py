@@ -124,6 +124,24 @@ class Doc(models.Model):
         return splitter.join([author,other_authors])
 
     @property
+    def item_faculty(self):
+        """ Кафедра """
+        return get_marc_field(self.item, tag='903', subtag='d')
+
+    @property
+    def item_source(self):
+        """ Источник поступления"""
+        return get_marc_field(self.item, tag='901', subtag='a')
+    @property
+    def item_speciality(self):
+        """ Специальность (направление) """
+        return get_marc_field(self.item, tag='903', subtag='a')
+    @property
+    def item_type_work_program(self):
+        """ Вид (контрольная, лабораторная, рабочая программа) """
+        return get_marc_field(self.item, tag='903', subtag='f')
+
+    @property
     def bibliographic_level(self):
         r"""Returns label for bibliographic level code from self.data"""
         blvls = {
@@ -136,6 +154,27 @@ class Doc(models.Model):
             's': 'Серия'
         }
         return blvls[self.biblevel]
+
+    @property
+    def item_place_and_date_of_publication(self):
+        """
+        773
+            d	Место и дата издания:
+                2012.-№12
+            g	Прочая информация:
+                С.61-83
+            t	Название источника:
+                Вопросы экономики
+        """
+        return get_marc_field(self.item, tag='773', subtag='d')
+
+    @property
+    def item_other_information(self):
+        return get_marc_field(self.item, tag='773', subtag='g')
+
+    @property
+    def item_source_name(self):
+        return get_marc_field(self.item, tag='773', subtag='t')
 
     @property
     def item_author_main(self):
@@ -242,25 +281,48 @@ class Doc(models.Model):
     @property
     @ListToStr
     def item_title(self):
-        """
-        245
-            a	Заглавие:
-                Инвестиции
-            b	Продолж.заглавия:
-                Учебник
-            c	Ответственность:
-                Пер. с англ.
-                ...
-        """
+        """ Заглавие - основное заглавие, например "Инвестиции" """
         return get_marc_field(self.item, tag='245', subtag='a')
 
     @property
     def item_next_title(self):
+        """ Заглавие - Продолж.заглавия, например "Заглавие" """
         return get_marc_field(self.item, tag='245', subtag='b')
 
     @property
     def item_responsibility(self):
+        """Заглавие - Ответственность, например "Пер. с англ." """
         return get_marc_field(self.item, tag='245', subtag='c')
+
+    @property
+    def item_title_date_of_works(self):
+        """Заглавие - Даты произведения """
+        return get_marc_field(self.item, tag='245', subtag='f')
+
+    @property
+    def item_title_media(self):
+        """Заглавие - Носитель """
+        return get_marc_field(self.item, tag='245', subtag='h')
+
+    @property
+    def item_title_part_number(self):
+        """Заглавие - Номер части """
+        return get_marc_field(self.item, tag='245', subtag='n')
+
+    @property
+    def item_title_parallel_title(self):
+        """Заглавие - Паралельное заглавие """
+        return get_marc_field(self.item, tag='245', subtag='o')
+
+    @property
+    def item_title_part_name(self):
+        """Заглавие - Название части """
+        return get_marc_field(self.item, tag='245', subtag='p')
+
+    @property
+    def item_title_version(self):
+        """Заглавие - Версия """
+        return get_marc_field(self.item, tag='245', subtag='s')
 
     def item_publish(self):
         """

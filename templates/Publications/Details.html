@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
 
+{% load force_string force_list from marc_extras %}
+
 {% block page_top_nav %}
+
 
 {% endblock %}
 {% block page_main_content %}
+
+    <script type=“text/javascript”>
+        $(document).ready(function () {
+            $(“[rel=tooltip]“).tooltip();
+        });
+    </script>
 
     <ul class="pager">
         <li class="previous">
@@ -15,14 +24,15 @@
     </ul>
 
     <h3>
-        <span class="label label-info">{{ doc_item.item_shelving_index }}</span>
-        <span class="label label-info">{{ doc_item.item_author_lable }}</span>
+        <span class="label label-success">{{ doc_item.item_shelving_index }}</span>
+        <span class="label label-success">{{ doc_item.item_author_lable }}</span>
     </h3>
-
     <h4>
+{#        <span style="text-shadow: 2px 2px 1px rgb(221, 221, 221)"#}
+
         {% if doc_item.item_author_main %} <p>{{ doc_item.item_author_main }}</p>{% endif %}
         {{ doc_item.item_title }}
-        {% if doc_item.item_next_title %}{{ doc_item.item_next_title }}:{% endif %}
+        {% if doc_item.item_next_title %}{{ doc_item.item_next_title|force_string }}:{% endif %}
         {% if doc_item.item_responsibility %} / {{ doc_item.item_responsibility }}{% endif %}
         {% if doc_item.item_author %}{{ doc_item.item_author }}{% endif %} - {{ doc_item.item_place }}: {{ doc_item.item_publisher }}, {{ doc_item.item_publication_year }} - {{ doc_item.item_pages }}
     {% if doc_item.item_covering_matireals %} :{{ doc_item.item_covering_matireals }}{% endif %}
@@ -31,19 +41,37 @@
     {% if doc_item.item_format %}{{ doc_item.item_format }}{% endif %}
     {% if doc_item.item_bibliography %} - {{ doc_item.item_bibliography }}{% endif %}
     {% if doc_item.item_ISBN %} - ISBN {{ doc_item.item_ISBN }}{% endif %}
-    {% if doc_item.item_cost %}: {{ doc_item.item_cost }}{% endif %}
+    {% if doc_item.item_cost %}: {{ doc_item.item_cost|force_string }}{% endif %}
+{#        </span>#}
     </h4>
-
     <small class="text-info">
         <ul class="nav nav-list">
+        {% if doc_item.item_faculty %}
+            <li>Кафедра: {{ doc_item.item_faculty }}</li>
+        {% endif %}
+        {% if doc_item.item_speciality %}
+            <li>Специальность: {{ doc_item.item_speciality }}</li>
+        {% endif %}
+        {% if doc_item.item_type_work_program %}
+            <li>Вид (рабочая программа): {{ doc_item.item_type_work_program }}</li>
+        {% endif %}
+        {% if doc_item.item_source_name %}
+            <li>Название источника: {{ doc_item.item_source_name }}</li>
+        {% endif %}
+        {% if doc_item.item_other_information %}
+            <li>Прочая информация: {{ doc_item.item_other_information }}</li>
+        {% endif %}
+        {% if doc_item.item_place_and_date_of_publication %}
+            <li>Место и дата издания: {{ doc_item.item_place_and_date_of_publication }}</li>
+        {% endif %}
         {% if doc_item.item_series %}
             <li> серия: {{ doc_item.item_series }} </li>
         {% endif %}
         {% if doc_item.item_ISBN %}
-            <li> ISBN:{{ doc_item.item_ISBN }} </li>
+            <li> <i class="icon-barcode"></i>ISBN: {{ doc_item.item_ISBN }} </li>
         {% endif %}
         {% if doc_item.item_cost %}
-            <li> Цена: {{ doc_item.item_cost }} </li>
+            <li> Цена: {{ doc_item.item_cost|force_string }} </li>
         {% endif %}
 
         {% if doc_item.item_tags %}
@@ -51,24 +79,25 @@
                 <div class="accordion-group">
                     <div class="accordion-heading">
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                            Тэги
+                            <i class="icon-tags"></i>Теги
                         </a>
                     </div>
                     <div id="collapseTwo" class="accordion-body">
                         <div class="accordion-inner">
-                            {% for tag in doc_item.item_tags %}
-                                <span class="badge"><a href="../search/?search=&quot;{{ tag }}&quot;">{{tag }}</a></span>
+                            {% for tag in doc_item.item_tags|force_list %}
+                                <span style="line-height: 2.5;">
+                                <a class="btn btn-small disabled" rel="tooltip" data-placement="top" data-original-title="Tooltip on top"  href="../search/?q=&quot;{{ tag }}&quot;"><i class="icon-tag"></i>{{tag }}</a>
+                                </span>
                             {% endfor %}
                         </div>
                     </div>
-
             </li>
         {% endif %}
         {% if doc_item.item_entrence_date %}
-            <li> добавлено: {{  doc_item.item_entrence_date }} </li>
+            <li> <i class="icon-time"></i> добавлено: {{  doc_item.item_entrence_date|force_string }} </li>
         {% endif %}
         {% if doc_item.item_last_change_timestamp %}
-            <li> изменено: {{ doc_item.item_last_change_timestamp }} </li>
+            <li> <i class="icon-time"></i> изменено: {{ doc_item.item_last_change_timestamp }} </li>
         {% endif %}
         </ul>
     </small>

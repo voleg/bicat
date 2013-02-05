@@ -30,20 +30,26 @@
 {#                <span class="icon-bar"></span>#}
 {#                <span class="icon-bar"></span>#}
 {#            </a>#}
-            <a class="brand" href="/">bicat</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
+                    <li><a href="/"><i class="icon-home"></i></a></li>
                     {% block col-menu %}
                         {% include "menu.html" %}
                     {% endblock %}
-                    <li><a href="/">о поиске</a></li>
-                    <li><a href="/settings">настройки</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
-
             <form class="navbar-search pull-left" action="/catalog/search/" method="get">
-                <input type="text" class="search-query" placeholder="..." name="search">
+                    <input type="text" class="search-query input-xxlarge" placeholder="..." name="q">
             </form>
+            <div class="nav-collapse pull-right">
+
+                <ul class="nav">
+
+                    <li><a href="/admin">admin</a></li>
+
+                </ul>
+
+            </div>
         </div>
     </div>
 </div>
@@ -57,7 +63,15 @@
 {#    </div>#}
     <div class="span0">
 
-    {% block page_top_nav %} <small> навигация </small> <hr> {% endblock %}
+    {% block page_top_nav %}
+        <ul class="nav nav-tabs">
+            <li>
+                <a href="/catalog/bicat/">Книги</a>
+            </li>
+            <li><a href="/catalog/bikart/">Периодика</a></li>
+            <li><a href="/catalog/biuml/">Учебно методическая литература</a></li>
+        </ul>
+    {% endblock %}
 
         {% block page_top_alert %}
             <div class="alert alert-info">
