@@ -96,6 +96,304 @@ class Tag(models.Model):
         verbose_name = u'Тег'
         verbose_name_plural = u'Теги'
 
+
+class Doc_0(models.Model):
+    """
+    Реализация на Model-instance методах (быстрей)
+    Список Документов
+    Table with docs items. The Item Field in the DB hard coded in MARC format see https://bitbucket.org/voleg/bicat/wiki/Поле%20ITEM
+    """
+    doc_id = models.IntegerField("№ Документа", primary_key=True, db_column='DOC_ID')
+    rectype = models.CharField("тип записи", max_length=1, db_column='RECTYPE', blank=True)
+    biblevel = models.CharField("библиотечный уровень", max_length=1, db_column='BIBLEVEL', blank=True)
+    item = models.TextField("документ в макроподобном формате", db_column='ITEM', blank=True)
+    #    ITEM = MarcItemField("документ в макроподобном формате", db_column='ITEM', blank=True)
+
+    objects = ItemManager()
+
+    item_name = lambda self, tag=None, subtag=None: get_marc_field(self.item, tag=tag, subtag=subtag)
+    # ... Тут дальше крамешный ад, что делать, с которым пока непонял, так, что лепим пока так
+
+    def item_author(self):
+        """
+        извлекаем Авторов из Item
+        """
+        rel = None
+        author = get_marc_field(self.item, tag='100', subtag='a')
+        other_authors = get_marc_field(self.item, tag='700', subtag='a')
+        if author == "" or other_authors == "": splitter = u''
+        else: splitter = u', '
+        return splitter.join([author, other_authors])
+
+    @property
+    def item_faculty(self):
+        """ Кафедра """
+        return get_marc_field(self.item, tag='903', subtag='d')
+
+    @property
+    def item_source(self):
+        """ Источник поступления"""
+        return get_marc_field(self.item, tag='901', subtag='a')
+
+    @property
+    def item_speciality(self):
+        """ Специальность (направление) """
+        return get_marc_field(self.item, tag='903', subtag='a')
+
+    @property
+    def item_type_work_program(self):
+        """ Вид (контрольная, лабораторная, рабочая программа) """
+        return get_marc_field(self.item, tag='903', subtag='f')
+
+    @property
+    def bibliographic_level(self):
+        r"""Returns label for bibliographic level code from self.data"""
+        blvls = {
+            'a': 'Часть Монографии',
+            'b': 'Часть Серии',
+            'c': 'Колекция',
+            'd': 'Подъединица',
+            'i': 'Ресурс Интеграции',
+            'm': 'Монография',
+            's': 'Серия'
+        }
+        return blvls[self.biblevel]
+
+    @property
+    def item_place_and_date_of_publication(self):
+        """
+        773
+            d	Место и дата издания:
+                2012.-№12
+            g	Прочая информация:
+                С.61-83
+            t	Название источника:
+                Вопросы экономики
+        """
+        return get_marc_field(self.item, tag='773', subtag='d')
+
+    @property
+    def item_other_information(self):
+        return get_marc_field(self.item, tag='773', subtag='g')
+
+    @property
+    def item_source_name(self):
+        return get_marc_field(self.item, tag='773', subtag='t')
+
+    @property
+    def item_author_main(self):
+        return get_marc_field(self.item, tag='100', subtag='a')
+
+    @property
+    def item_authors_other(self):
+        return get_marc_field(self.item, tag='700', subtag='a')
+
+    @property
+    def item_last_change_timestamp(self):
+        """извлекаем дату последней правки из Item"""
+        timestamp = get_marc_field(self.item, tag='005', subtag='0')
+        return item_timestamp_format(timestamp)
+
+    @property
+    def item_entrence_date(self):
+        """Дата поступления"""
+        entrance_date = get_marc_field(self.item, tag='990', subtag='f')
+        return entrance_date
+
+    @property
+    def item_series(self):
+        """Серия"""
+        series = get_marc_field(self.item, tag='440')
+        return series
+
+    @property
+    def item_ISBN(self):
+        """ISBN """
+        return get_marc_field(self.item, tag='020', subtag='a')
+
+    @property
+    def item_cost(self):
+        """Цена"""
+        return get_marc_field(self.item, tag='020', subtag='c')
+
+    @property
+    def item_bibliography(self):
+        return get_marc_field(self.item, tag='504', subtag='a')
+
+    @property
+    def item_pages(self):
+        """Объём издания"""
+        return get_marc_field(self.item, tag='300', subtag='a')
+
+    @property
+    def item_illustrations(self):
+        """ Илл./тип воспроизв. """
+        return get_marc_field(self.item, tag='300', subtag='b')
+
+    @property
+    def item_format(self):
+        """ Формат """
+        return get_marc_field(self.item, tag='300', subtag='c')
+
+    @property
+    def item_cover(self):
+        """
+        300
+            d	Вид переплета:
+                В пер.
+            a	Объем:
+                1028 с.
+            e	Сопров.мат:
+                ил.
+        """
+        return get_marc_field(self.item, tag='300', subtag='d')
+
+    @property
+    def item_covering_matireals(self):
+        return get_marc_field(self.item, tag='300', subtag='e')
+
+    @property
+    def item_shelving_index(self):
+        """
+        090
+            a	Полочн.индекс:
+                65.9(2Рос)-56
+            c	Кат.индекс:
+                65.9(2Рос)-56я73
+            x	Авторский знак:
+                Ш 26
+            w	Номер фонда:
+                ч.з
+            e	Инвентарный номер:
+                13365
+                ...
+        """
+        return get_marc_field(self.item, tag='090', subtag='a')
+
+    @property
+    def item_cat_index(self):
+        return get_marc_field(self.item, tag='090', subtag='c')
+
+    @property
+    def item_author_lable(self):
+        return get_marc_field(self.item, tag='090', subtag='x')
+
+    @property
+    def item_invent_code(self):
+        return get_marc_field(self.item, tag='090', subtag='e')
+
+
+    @property
+    @ListToStr
+    def item_title(self):
+        """ Заглавие - основное заглавие, например "Инвестиции" """
+        return get_marc_field(self.item, tag='245', subtag='a')
+
+    @property
+    def item_next_title(self):
+        """ Заглавие - Продолж.заглавия, например "Заглавие" """
+        return get_marc_field(self.item, tag='245', subtag='b')
+
+    @property
+    def item_responsibility(self):
+        """Заглавие - Ответственность, например "Пер. с англ." """
+        return get_marc_field(self.item, tag='245', subtag='c')
+
+    @property
+    def item_title_date_of_works(self):
+        """Заглавие - Даты произведения """
+        return get_marc_field(self.item, tag='245', subtag='f')
+
+    @property
+    def item_title_media(self):
+        """Заглавие - Носитель """
+        return get_marc_field(self.item, tag='245', subtag='h')
+
+    @property
+    def item_title_part_number(self):
+        """Заглавие - Номер части """
+        return get_marc_field(self.item, tag='245', subtag='n')
+
+    @property
+    def item_title_parallel_title(self):
+        """Заглавие - Паралельное заглавие """
+        return get_marc_field(self.item, tag='245', subtag='o')
+
+    @property
+    def item_title_part_name(self):
+        """Заглавие - Название части """
+        return get_marc_field(self.item, tag='245', subtag='p')
+
+    @property
+    def item_title_version(self):
+        """Заглавие - Версия """
+        return get_marc_field(self.item, tag='245', subtag='s')
+
+    def item_publish(self):
+        """
+        260
+            b	Издательство:
+                ИНФРА-М
+            c	Дата издания:
+                2012
+            a	Место издания:
+                М.
+                ...
+        """
+        return get_marc_field(self.item, tag='260')
+
+    @property
+    def item_place(self):
+        return get_marc_field(self.item, tag='260', subtag='a')
+
+    @property
+    def item_publisher(self):
+        return get_marc_field(self.item, tag='260', subtag='b')
+
+    @property
+    def item_publication_year(self):
+        return get_marc_field(self.item, tag='260', subtag='c')
+
+    @property
+    def item_remarks(self):
+        return get_marc_field(self.item, tag='500', subtag='a')
+
+    def item_tags(self):
+        """
+        653
+            a	Ключевые слова:
+                Новая Российская энциклопедия;Энциклопедия
+        """
+        return get_marc_field(self.item, tag='653', subtag='a')
+        # Todo Теги должны извлекаться списком
+
+    @property
+    def item_dict_full(self):
+        return "".join([str(self.doc_id), ": ", get_marc_string(parse_item_to_dict(self.item))])
+
+    @property
+    def item_dict(self):
+        return ''.join([self.item_dict_full[:600], ' ...'])
+
+    @property
+    def item_json(self):
+        return parse_item_to_dict(self.item)
+
+    def __unicode__(self):
+    #        return " ".join([str(self.doc_id), self.item_author(), self.item_title()[:80]])
+        return unicode(self.doc_id)
+
+    @models.permalink
+    def get_absolute_url(self):
+        name = '%s_doc-path' % (self._meta.app_label)
+        return name, [self.doc_id]
+
+    class Meta:
+        db_table = u'DOC'
+        abstract = True
+        verbose_name = u'Документ'
+        verbose_name_plural = u'Документы'
+
 class Doc(models.Model):
     """
     Список Документов
