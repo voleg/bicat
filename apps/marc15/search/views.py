@@ -11,6 +11,18 @@ from apps.marc15.BiUML.models import Doc as biuml_doc
 
 # todo make a search view that extracts items from all DB's. function or class based
 
+# сделано под впечатлением от django.contrib.admin.views.main
+# Apply keyword searches.
+def construct_search(field_name):
+    if field_name.startswith('^'):
+        return "%s__istartswith" % field_name[1:]
+    elif field_name.startswith('='):
+        return "%s__iexact" % field_name[1:]
+    elif field_name.startswith('@'):
+        return "%s__search" % field_name[1:]
+    else:
+        return "%s__icontains" % field_name
+
 @csrf_exempt
 def searchview(request):
     # it's terrible i now
@@ -22,18 +34,6 @@ def searchview(request):
     except:
         search_query = request.GET['q']
     search_fields = ['item']
-
-    # сделано под впечатлением от django.contrib.admin.views.main
-    # Apply keyword searches.
-    def construct_search(field_name):
-        if field_name.startswith('^'):
-            return "%s__istartswith" % field_name[1:]
-        elif field_name.startswith('='):
-            return "%s__iexact" % field_name[1:]
-        elif field_name.startswith('@'):
-            return "%s__search" % field_name[1:]
-        else:
-            return "%s__icontains" % field_name
 
     orm_lookups = [construct_search(str(search_field)) for search_field in search_fields]
 
@@ -50,3 +50,8 @@ def searchview(request):
     search_results = [bicat_qs, bikart_qs, biuml_qs]
 
     return render_to_response('Publications/search_results.html', {'search_results': search_results}, context_instance=RequestContext(request))
+
+
+def item_change_time_view(request):
+
+    return render_to_response('Publications/items_added_today.html')

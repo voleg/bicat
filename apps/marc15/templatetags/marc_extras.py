@@ -20,5 +20,7 @@ def force_list(value):
     translate string in JSON field to list
     """
     if not isinstance(value, list):
+#        if ',' in value: return value.split(',')
+#        if ';' in value: return value.split(';')
         return [value]
     return value

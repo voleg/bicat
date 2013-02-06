@@ -1,0 +1,14 @@
+{# Формат вывода публикации в списочных формах #}
+<a href="{{ item.get_absolute_url }}">
+    <i class="icon-book"></i>
+
+    {% if item.item_author %} {{ item.item_author }}
+    {% else %} <span style="color: #a9a9a9; background-color: #f7f7f7">Авторы не указаны</span> {% endif %}
+
+    {% if item.item_title %} {{ item.item_title }} {% endif %}
+    {% if item.item_title_part_number %} {{ item.item_title_part_number }} {% endif %}
+
+    <span style="font-size: 7pt; color: #a9a9a9; background-color: #f7f7f7">
+    {% if item.item_last_change_timestamp %} изменён: {{ item.item_last_change_timestamp }} {% endif %}
+    </span>
+</a>

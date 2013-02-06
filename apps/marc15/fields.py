@@ -3,9 +3,9 @@ __author__ = 'voleg'
 from django.db.models import SubfieldBase, CharField, TextField
 from django import forms
 from django.conf import settings
-from django.forms.widgets import Textarea
+from django.forms.widgets import Textarea, TextInput
 from django.utils import simplejson
-from .parse import parse_item_to_dict, items_with_tagname, get_marc_string, get_marc_field
+from .parse import parse_item_to_dict, items_with_tagname, get_marc_string, get_marc_field, get_tag_name
 
 class TagSubtagField(CharField):
 
@@ -55,24 +55,28 @@ class MarcItemAuthorField(TextField):
         defaults.update(kwargs)
         return super(MarcItemAuthorField, self).formfield(**defaults)
 
-class MarcItemField(TextField):
+class MarcItemField(CharField):
     description = "An ITEM parser Field"
     __metaclass__ = SubfieldBase
 
     def __init__(self, *args, **kwargs):
-#        kwargs['max_length'] = 104
+        self.marc_tag = kwargs.pop('marc_tag', None)
+        self.marc_subtag = kwargs.pop('marc_subtag', None)
+        self.help_text = kwargs.get('help_text', '')
+        help_text = {'help_text': "{0} - [{1} {2}]".format(str(self.help_text), str(self.marc_tag), str(self.marc_subtag))}
+        kwargs.update(help_text)
         super(MarcItemField, self).__init__(*args, **kwargs)
 
+
     def get_internal_type(self):
-        return 'TextField'
+        return 'CharField'
 
     def contribute_to_class(self, cls, name):
         super(MarcItemField, self).contribute_to_class(cls, name)
-
-        def get_author(model):
-            main_author = get_marc_field(getattr(model, self.attname), tag='100', subtag='a')
-            return main_author
-        setattr(cls, 'get_%s_author' % self.name, get_author)
+#        def get_author(model):
+#            main_author = get_marc_field(getattr(model, self.attname), tag='100', subtag='a')
+#            return main_author
+#        setattr(cls, 'get_%s_author' % self.name, get_author)
 
         def get_json(model):
             return self.get_db_prep_value(getattr(model, self.attname))
@@ -84,15 +88,15 @@ class MarcItemField(TextField):
 
         setattr(cls, 'set_%s_json' % self.name, set_json)
 
-        test_author = MarcItemAuthorField()
-        setattr(cls, 'set_%s_author' % self.name, test_author)
+#        test_author = MarcItemAuthorField()
+#        setattr(cls, 'set_%s_author' % self.name, test_author)
 
-    def formfield(self, **kwargs):
-        # This is a fairly standard way to set up some defaults
-        # while letting the caller override them.
-        defaults = {'form_class': MarcFormField}
-        defaults.update(kwargs)
-        return super(MarcItemField, self).formfield(**defaults)
+#    def formfield(self, **kwargs):
+#        # This is a fairly standard way to set up some defaults
+#        # while letting the caller override them.
+#        defaults = {'form_class': MarcFormField}
+#        defaults.update(kwargs)
+#        return super(MarcItemField, self).formfield(**defaults)
 
     # Сериализация объекта для хранения в БД
     def get_db_prep_value(self, value):
@@ -104,10 +108,8 @@ class MarcItemField(TextField):
         if not isinstance(value, basestring):
             return value
         try:
-            return parse_item_to_dict(value) # Загружаем данные из БД через парсер
+            return get_marc_field(value, tag=self.marc_tag, subtag=self.marc_subtag)
         except ValueError, e:
-        # If string could not parse as JSON it's means that it's Python
-            # string saved to JSONField.
             return value
 
 class MarcFormatWidget(Textarea):
