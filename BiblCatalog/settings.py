@@ -5,8 +5,8 @@ PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 hostname = platform.node()
 
 # remote host VirtualBox Vm
-test_msql_host = '192.168.198.3'
-test_msql_port = '3019'
+test1_msql_host = '192.168.198.3'
+test1_msql_port = '3019'
 # localhost VirtualBox Vm
 test2_msql_host = '192.168.56.3'
 test2_msql_port = '3019'
@@ -14,7 +14,9 @@ test2_msql_port = '3019'
 production_msql_host = '192.168.1.252'
 production_msql_port = '4538'
 
-if hostname == 'res':
+TESTING = 1
+
+if hostname == 'res' or TESTING == 0:
     MSSQL_HOST = production_msql_host
     MSSQL_PORT = production_msql_port
 
@@ -22,15 +24,25 @@ if hostname == 'res':
     b_cat = 'SERV3BCAT'
     b_kart = 'SERV3BKART'
     b_uml = 'SERV3BUML'
-    DEBUG = False
-else:
-    MSSQL_HOST = test_msql_host
-    MSSQL_PORT = test_msql_port
+    DEBUG = True
+elif TESTING == 1 :
+    MSSQL_HOST = test1_msql_host
+    MSSQL_PORT = test1_msql_port
 
     # DSN's
     b_cat = 'TESTSERV3BCAT'
     b_kart = 'TESTSERV3BKART'
     b_uml = 'TESTSERV3BUML'
+
+    DEBUG = True
+else:
+    MSSQL_HOST = test2_msql_host
+    MSSQL_PORT = test2_msql_port
+
+    # DSN's
+    b_cat = 'TEST2SERV3BCAT'
+    b_kart = 'TEST2SERV3BKART'
+    b_uml = 'TEST2SERV3BUML'
 
     DEBUG = True
 

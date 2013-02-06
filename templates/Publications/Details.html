@@ -7,13 +7,6 @@
 
 {% endblock %}
 {% block page_main_content %}
-
-    <script type=“text/javascript”>
-        $(document).ready(function () {
-            $(“[rel=tooltip]“).tooltip();
-        });
-    </script>
-
     <ul class="pager">
         <li class="previous">
             <a href="#">&larr; Туда</a>
@@ -23,40 +16,25 @@
         </li>
     </ul>
 
-    <h3>
-        <span class="label label-success">{{ doc_item.item_shelving_index }}</span>
-        <span class="label label-success">{{ doc_item.item_author_lable }}</span>
-    </h3>
+    <span class="label label-success">{{ doc_item.item_shelving_index }}</span>
+    <span class="label label-success">{{ doc_item.item_author_lable }}</span>
+    <span class="label label-success">{{ doc_item.bibliographic_level }}</span>
     <h4>
-{#        <span style="text-shadow: 2px 2px 1px rgb(221, 221, 221)"#}
-
-        {% if doc_item.item_author_main %} <p>{{ doc_item.item_author_main }}</p>{% endif %}
-        {{ doc_item.item_title }}
-        {% if doc_item.item_next_title %}{{ doc_item.item_next_title|force_string }}:{% endif %}
-        {% if doc_item.item_responsibility %} / {{ doc_item.item_responsibility }}{% endif %}
-        {% if doc_item.item_author %}{{ doc_item.item_author }}{% endif %} - {{ doc_item.item_place }}: {{ doc_item.item_publisher }}, {{ doc_item.item_publication_year }} - {{ doc_item.item_pages }}
-    {% if doc_item.item_covering_matireals %} :{{ doc_item.item_covering_matireals }}{% endif %}
-    {% if doc_item.item_illustrations %}: {{ doc_item.item_illustrations }}{% endif %}
-    {% if doc_item.item_series %} - ({{ doc_item.item_series }}) {% endif %}
-    {% if doc_item.item_format %}{{ doc_item.item_format }}{% endif %}
-    {% if doc_item.item_bibliography %} - {{ doc_item.item_bibliography }}{% endif %}
-    {% if doc_item.item_ISBN %} - ISBN {{ doc_item.item_ISBN }}{% endif %}
-    {% if doc_item.item_cost %}: {{ doc_item.item_cost|force_string }}{% endif %}
-{#        </span>#}
+        {% include 'Publications/item_detailed_format.html' %}
     </h4>
     <small class="text-info">
-        <ul class="nav nav-list">
+        <ul class="media-list">
         {% if doc_item.item_faculty %}
-            <li>Кафедра: {{ doc_item.item_faculty }}</li>
+            <li>Кафедра: <a class="label" href="../search/?q=&quot;{{ doc_item.item_faculty }}&quot;">{{ doc_item.item_faculty }}</a></li>
         {% endif %}
         {% if doc_item.item_speciality %}
-            <li>Специальность: {{ doc_item.item_speciality }}</li>
+            <li>Специальность: <a class="label" href="../search/?q=&quot;{{ doc_item.item_speciality }}&quot;">{{ doc_item.item_speciality }}</a></li>
         {% endif %}
         {% if doc_item.item_type_work_program %}
-            <li>Вид (рабочая программа): {{ doc_item.item_type_work_program }}</li>
+            <li>Вид: <a class="label" href="../search/?q=&quot;{{ doc_item.item_type_work_program }}&quot;">{{ doc_item.item_type_work_program }}</a></li>
         {% endif %}
         {% if doc_item.item_source_name %}
-            <li>Название источника: {{ doc_item.item_source_name }}</li>
+            <li>Название источника: <a class="label" href="../search/?q=&quot;{{ doc_item.item_source_name }}&quot;">{{ doc_item.item_source_name }}</a></li>
         {% endif %}
         {% if doc_item.item_other_information %}
             <li>Прочая информация: {{ doc_item.item_other_information }}</li>
@@ -64,14 +42,29 @@
         {% if doc_item.item_place_and_date_of_publication %}
             <li>Место и дата издания: {{ doc_item.item_place_and_date_of_publication }}</li>
         {% endif %}
+        {% if doc_item.item_publisher %}
+            <li>Издатель:
+                <a class="label" href="../search/?q=&quot;{{ doc_item.item_publisher }}&quot;">{{ doc_item.item_publisher }}</a>
+                <a class="label" href="../search/?q=&quot;{{ doc_item.item_publication_year }}&quot;">{{ doc_item.item_publication_year }}</a>
+            </li>
+        {% endif %}
         {% if doc_item.item_series %}
-            <li> серия: {{ doc_item.item_series }} </li>
+            <li> серия: <a class="label" href="../search/?q=&quot;{{ doc_item.item_series }}&quot;">{{ doc_item.item_series }}</a> </li>
         {% endif %}
         {% if doc_item.item_ISBN %}
-            <li> <i class="icon-barcode"></i>ISBN: {{ doc_item.item_ISBN }} </li>
+            <li> ISBN:
+                {% for isbn in doc_item.item_ISBN|force_list %}
+                    <i class="icon-barcode"></i> {{ isbn }}
+                {% endfor %}
+            </li>
         {% endif %}
+
         {% if doc_item.item_cost %}
-            <li> Цена: {{ doc_item.item_cost|force_string }} </li>
+            <li> Цена:
+            {% for cost in doc_item.item_cost|force_list %}
+                 <a class="label" href="../search/?q=&quot;{{ cost }}&quot;">{{ cost }}</a>
+            {% endfor %}
+            </li>
         {% endif %}
 
         {% if doc_item.item_tags %}
@@ -86,7 +79,7 @@
                         <div class="accordion-inner">
                             {% for tag in doc_item.item_tags|force_list %}
                                 <span style="line-height: 2.5;">
-                                <a class="btn btn-small disabled" rel="tooltip" data-placement="top" data-original-title="Tooltip on top"  href="../search/?q=&quot;{{ tag }}&quot;"><i class="icon-tag"></i>{{tag }}</a>
+                                <a class="btn btn-small" href="../search/?q=&quot;{{ tag }}&quot;"><i class="icon-tag"></i>{{tag }}</a>
                                 </span>
                             {% endfor %}
                         </div>
@@ -94,10 +87,10 @@
             </li>
         {% endif %}
         {% if doc_item.item_entrence_date %}
-            <li> <i class="icon-time"></i> добавлено: {{  doc_item.item_entrence_date|force_string }} </li>
+            <li> добавлено: <a class="label" href="../search/?q=&quot;{{ doc_item.item_entrence_date|force_string }}&quot;"><i class="icon-time"></i> {{  doc_item.item_entrence_date|force_string }}</a></li>
         {% endif %}
         {% if doc_item.item_last_change_timestamp %}
-            <li> <i class="icon-time"></i> изменено: {{ doc_item.item_last_change_timestamp }} </li>
+            <li> изменено: <i class="icon-time"></i> {{ doc_item.item_last_change_timestamp }} </li>
         {% endif %}
         </ul>
     </small>

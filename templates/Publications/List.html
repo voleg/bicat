@@ -14,7 +14,6 @@
     {% for f in paginator.page_range %} <li><a href="?page={{ f }}">{{ f }}</a> </li> {% endfor %}  Выведем все страницы
     {% if page_obj.has_previous %} Проверяем нет ли предыдущей страницы
     {% if page_obj.has_next %} Проверяем нет ли следующей
-
 {% endcomment %}
 
     <div class="pagination pagination-mini">
@@ -31,18 +30,7 @@
 
     <ul class="nav nav-list ">
         {% for item in doc_item_list%}
-            <li>
-                <a href="{{ item.get_absolute_url }}">
-                    <i class="icon-book"></i>
-                    {% if item.item_author %}
-                        {{ item.item_author }}
-                    {% else %} <span class="label">Автор не указан</span>
-                    {% endif %}
-                    {% if item.item_title %}
-                        - {{ item.item_title }}
-                    {% endif %}
-                </a>
-            </li>
+            <li> {% include "Publications/item_list_format.html" %} </li>
         {% endfor %}
     </ul>
 

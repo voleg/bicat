@@ -12,18 +12,7 @@
 
     {% for catalog in search_results %}
         {% for item in catalog %}
-            <li>
-                <a href="{{ item.get_absolute_url }}">
-                    <i class="icon-book"></i>
-                    {% if item.item_author %}
-                        {{ item.item_author }}
-                    {% else %} <span class="label">Автор не указан</span>
-                    {% endif %}
-                    {% if item.item_title %}
-                        - {{ item.item_title }}
-                    {% endif %}
-                </a>
-            </li>
+            <li> {% include "Publications/item_list_format.html" %} </li>
         {% endfor %}
     {% endfor %}
     </ul>

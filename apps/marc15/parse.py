@@ -40,7 +40,7 @@ def parse_item_to_dict(item):
         for f in e[3:].strip().split(bySubtags):
             newSubTag = f[:1]
             newCaption = f[1:]
-            # Далее проверяем есть ли такой подтэг в словаре если есть делаем список
+            # Далее проверяем есть ли такой подтэг в словаре, если есть делаем список
             if newSubTag in SubtagsTempDict.keys():
                 for k, v  in SubtagsTempDict.items():
                     if k == newSubTag:
