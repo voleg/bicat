@@ -25,9 +25,9 @@
                 <li> <a href="?page={{ page_obj.paginator.num_pages }}">... {{ page_obj.paginator.num_pages }}</a></li>
                 <li><a href="?page={% if page_obj.next_page_number > page_obj.paginator.num_pages %}{{page_obj.paginator.num_pages}}{% else %}{{ page_obj.next_page_number }}{% endif %}">-></a></li>
         </ul>
-    </div>
-    <p class="muted">{{ paginator.count }} Документов</p>
+        <p class="muted pull-right">{{ paginator.count }} Документов</p>
 
+    </div>
     <ul class="nav nav-list ">
         {% for item in doc_item_list%}
             <li> {% include "Publications/item_list_format.html" %} </li>

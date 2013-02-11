@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 __author__ = 'voleg'
+from django.conf import settings
 #
 # sweet parser of Marc1.5 ITEM Field
 #
@@ -11,11 +12,11 @@ def get_tag_name(tag, subtag):
     """
     # todo: rewrite a function to make it more light and fast. The TAG field in model really does not changes in time it kind a like some key-value storage, so it may be a reason to represent data in a table like a static dict in a code if it would be a bottleneck place. Keep it in mind
 
-    from .BiCat.models import Tag as cononical_tags # We take Tags from b_cat DB as a cononical
+    from models import Tags as cononical_tags # We take Tags from b_cat DB as a cononical
     try:
         name = cononical_tags.objects.get(tag=str(tag), subtag=str(subtag)).caption
     except:
-        name = u"***"
+        name = u"<неизвестный тег>"
     yield name
 
 def parse_item_to_dict(item):
@@ -31,8 +32,8 @@ def parse_item_to_dict(item):
        ...
     }
     """
-    byTags = '\x1e' # Tag separator
-    bySubtags = '\x1f' # subtag separator
+    byTags = '\x1e'
+    bySubtags = '\x1f'
     item_fields = {}
     for e in item.split(byTags):
         newTag = e[:3]
@@ -40,24 +41,38 @@ def parse_item_to_dict(item):
         for f in e[3:].strip().split(bySubtags):
             newSubTag = f[:1]
             newCaption = f[1:]
+
+            # Splitting strings
+            if not isinstance(newCaption, (list, dict)):
+                if ';' in newCaption:
+                    newCaption = newCaption.split(';')
+                if newTag not in settings.DO_NOT_SPLIT_TAGS and ',' in newCaption:
+                    newCaption = newCaption.split(',')
+    #                elif newTag == '653' and ',' in newCaption:
+#                    # Проверяем если тег = 653 (ключевые поля) и он содержит строку с запятыми то делим их
+#                    newCaption = newCaption.split(',')
             # Далее проверяем есть ли такой подтэг в словаре, если есть делаем список
             if newSubTag in SubtagsTempDict.keys():
-                for k, v  in SubtagsTempDict.items():
+                for k, v in SubtagsTempDict.items():
                     if k == newSubTag:
-                        if type(v) is not list: v = [v]
-                        v.append(newCaption)
-                        newCaption = v
+                        if type(v) is not list:
+                            v = [v]
+                        if type(newCaption) is not list:
+                            newCaption = [newCaption]
+                        newCaption = v + newCaption
             SubtagsTempDict.update({newSubTag:newCaption})
         item_fields.update({newTag:SubtagsTempDict})
     return item_fields
 
 def items_with_tagname(item):
     """
+    работает с  марк-документом (сырой строкой, json представлением)
     Добавим имя к Тегам
     {TAG:{SUBTAG:VALUE}} -> {TAG:{"SUBTAG Name":VALUE}}
     """
     dict = {}
-    for tag, subtag_value in parse_item_to_dict(item).items():
+    if not isinstance(item, {}.__class__): item = parse_item_to_dict(item)
+    for tag, subtag_value in item.items():
         name_value={}
         for subtag, value in subtag_value.items():
             name = get_tag_name(tag,subtag).next()
@@ -92,6 +107,8 @@ def get_caption(item_dict, tag=None, subtag=None):
 
     {'TAG':{'SUBTAG':'VALUE'}}
     Also it checks VALUE to force dict in there to become a string divided by commas
+
+    Если указан только тег то проходимся пр всем подтегам и их значениям, объединяя их через запятую
     """
     if tag is not None and subtag is not None:
         try:
@@ -99,7 +116,6 @@ def get_caption(item_dict, tag=None, subtag=None):
         except(AttributeError):
             return u""
     elif tag is not None and subtag is None:
-        # Если указан только тег то проходимся пр всем подтегам и их значениям
         try:
             items_in_all_subtags_of_tag = item_dict.get(tag)
             if isinstance(items_in_all_subtags_of_tag, dict):
