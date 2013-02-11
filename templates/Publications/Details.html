@@ -2,54 +2,114 @@
 
 {% load force_string force_list from marc_extras %}
 
-{% block page_top_nav %}
-
-
-{% endblock %}
+{#{% block page_top_nav %}#}
+{#{% endblock %}#}
 {% block page_main_content %}
-    <ul class="pager">
-        <li class="previous">
-            <a href="#">&larr; Туда</a>
-        </li>
-        <li class="next">
-            <a href="#">Сюда &rarr;</a>
-        </li>
-    </ul>
-
+{#    <ul class="pager">#}
+{#        <li class="previous">#}
+{#            <a href="#">&larr; Туда</a>#}
+{#        </li>#}
+{#        <li class="next">#}
+{#            <a href="#">Сюда &rarr;</a>#}
+{#        </li>#}
+{#    </ul>#}
     <span class="label label-success">{{ doc_item.item_shelving_index }}</span>
     <span class="label label-success">{{ doc_item.item_author_lable }}</span>
-    <span class="label label-success">{{ doc_item.bibliographic_level }}</span>
-    <h4>
-        {% include 'Publications/item_detailed_format.html' %}
-    </h4>
+    <span class="label label-success ">{{ doc_item.bibliographic_level }}</span>
+    {% if doc_item.item_invent_code %}
+        {% for invent_code in doc_item.item_invent_code|force_list %}
+            <span class="label label-success pull-right" style="margin-left: 2pt" >{{ invent_code }}</span>
+        {% endfor %}
+    {% endif %}
+    <div class="well well-small" style="margin-top: 10px">
+        <div class="media">
+            <a class="pull-left" href="#">
+                <img class="media-object" data-src="/static/Image.png" src="/static/book.png">
+            </a>
+            <div class="media-body">
+                <h4>
+                    <span style="font-family: PT Sans, Arial, sans-serif; text-shadow: 3px 3px 10px rgb(224, 224, 224)">
+                        {% include 'Publications/item_detailed_format.html' %}
+                    </span>
+                </h4>
+            </div>
+        </div>
+    </div>
+     <div class="row-fluid"><div class="span6">
+
     <small class="text-info">
         <ul class="media-list">
+
+        {% if doc_item.item_author_main %}
+            <li>Автор:
+                {% for author in doc_item.item_author_main|force_list %}
+                    <a class="bnt btn-small" href="../search/?q=author&quot;{{ author }}&quot;"><i class="icon-user"></i>{{ author }}</a>
+                {% endfor %}
+            </li>
+        {% endif %}
+
+        {% if doc_item.item_authors_other %}
+            <li> Другие авторы:
+                {% for author in doc_item.item_authors_other|force_list %}
+                    <a class="bnt btn-small" href="../search/?q=author&quot;{{ author }}&quot;"><i class="icon-user"></i>{{ author }}</a>
+                {% endfor %}
+            </li>
+        {% endif %}
+
         {% if doc_item.item_faculty %}
-            <li>Кафедра: <a class="label" href="../search/?q=&quot;{{ doc_item.item_faculty }}&quot;">{{ doc_item.item_faculty }}</a></li>
+                <li>Кафедра:
+                    {% for faculty in doc_item.item_faculty|force_list %}
+                        <a class="bnt btn-small" href="../search/?q=&quot;{{ faculty }}&quot;"><i class="icon-flag"></i>{{ faculty }}</a>
+                    {% endfor %}
+                </li>
         {% endif %}
         {% if doc_item.item_speciality %}
-            <li>Специальность: <a class="label" href="../search/?q=&quot;{{ doc_item.item_speciality }}&quot;">{{ doc_item.item_speciality }}</a></li>
+            <li>Специальность:
+                {% for speciality in doc_item.item_speciality|force_list  %}
+                    <a class="bnt btn-small" href="../search/?q=&quot;{{ speciality }}&quot;"><i class="icon-flag"></i>{{ speciality }}</a>
+                {% endfor %}
+            </li>
         {% endif %}
         {% if doc_item.item_type_work_program %}
-            <li>Вид: <a class="label" href="../search/?q=&quot;{{ doc_item.item_type_work_program }}&quot;">{{ doc_item.item_type_work_program }}</a></li>
+            <li>Вид:
+                {% for type_work_program in doc_item.item_type_work_program|force_list %}
+                    <a class="bnt btn-small" href="../search/?q=&quot;{{ type_work_program }}&quot;">{{ type_work_program }}</a>
+                {% endfor %}
+            </li>
         {% endif %}
         {% if doc_item.item_source_name %}
-            <li>Название источника: <a class="label" href="../search/?q=&quot;{{ doc_item.item_source_name }}&quot;">{{ doc_item.item_source_name }}</a></li>
+            <li>Название источника: <a class="bnt btn-small" href="../search/?q=source&quot;{{ doc_item.item_source_name }}&quot;">{{ doc_item.item_source_name }}</a></li>
         {% endif %}
         {% if doc_item.item_other_information %}
-            <li>Прочая информация: {{ doc_item.item_other_information }}</li>
+            <li>Прочая информация:
+                {% for info in doc_item.item_other_information|force_list %}
+                    {{ info }}
+                {% endfor %}
+            </li>
         {% endif %}
         {% if doc_item.item_place_and_date_of_publication %}
-            <li>Место и дата издания: {{ doc_item.item_place_and_date_of_publication }}</li>
+            <li>Место и дата издания:
+                {% for place_and_date_of_publication in doc_item.item_place_and_date_of_publication|force_list %}
+                    {{ place_and_date_of_publication }}
+                {% endfor %}
+            </li>
         {% endif %}
         {% if doc_item.item_publisher %}
             <li>Издатель:
-                <a class="label" href="../search/?q=&quot;{{ doc_item.item_publisher }}&quot;">{{ doc_item.item_publisher }}</a>
-                <a class="label" href="../search/?q=&quot;{{ doc_item.item_publication_year }}&quot;">{{ doc_item.item_publication_year }}</a>
+                {% for publisher in doc_item.item_publisher|force_list %}
+                    <a class="bnt btn-small" href="../search/?q=&quot;{{ publisher }}&quot;"><i class="icon-bookmark"></i>{{ publisher }}</a>
+                {% endfor %}
+            </li>
+        {% endif %}
+        {% if doc_item.item_publication_year %}
+            <li> Год издания:
+                {% for year in doc_item.item_publication_year|force_list %}
+                    <a class="bnt btn-small" href="../search/?q=year&quot;{{ doc_item.item_publication_year }}&quot;"><i class="icon-calendar"></i>{{ doc_item.item_publication_year }}</a>
+                {% endfor %}
             </li>
         {% endif %}
         {% if doc_item.item_series %}
-            <li> серия: <a class="label" href="../search/?q=&quot;{{ doc_item.item_series }}&quot;">{{ doc_item.item_series }}</a> </li>
+            <li> серия: <a class="bnt btn-small" href="../search/?q=&quot;{{ doc_item.item_series }}&quot;">{{ doc_item.item_series }}</a> </li>
         {% endif %}
         {% if doc_item.item_ISBN %}
             <li> ISBN:
@@ -62,36 +122,79 @@
         {% if doc_item.item_cost %}
             <li> Цена:
             {% for cost in doc_item.item_cost|force_list %}
-                 <a class="label" href="../search/?q=&quot;{{ cost }}&quot;">{{ cost }}</a>
+                 <a class="bnt btn-small" href="../search/?q=&quot;{{ cost }}&quot;"><i class="icon-shopping-cart"></i>{{ cost }} руб.</a>
             {% endfor %}
             </li>
         {% endif %}
 
-        {% if doc_item.item_tags %}
-            <li>
-                <div class="accordion-group">
-                    <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                            <i class="icon-tags"></i>Теги
-                        </a>
-                    </div>
-                    <div id="collapseTwo" class="accordion-body">
-                        <div class="accordion-inner">
-                            {% for tag in doc_item.item_tags|force_list %}
-                                <span style="line-height: 2.5;">
-                                <a class="btn btn-small" href="../search/?q=&quot;{{ tag }}&quot;"><i class="icon-tag"></i>{{tag }}</a>
-                                </span>
-                            {% endfor %}
-                        </div>
-                    </div>
-            </li>
-        {% endif %}
         {% if doc_item.item_entrence_date %}
-            <li> добавлено: <a class="label" href="../search/?q=&quot;{{ doc_item.item_entrence_date|force_string }}&quot;"><i class="icon-time"></i> {{  doc_item.item_entrence_date|force_string }}</a></li>
+            <li> добавлено: <a class="bnt btn-small" href="../search/?q=&quot;{{ doc_item.item_entrence_date|force_string }}&quot;"><i class="icon-time"></i> {{  doc_item.item_entrence_date|force_string }}</a></li>
         {% endif %}
         {% if doc_item.item_last_change_timestamp %}
-            <li> изменено: <i class="icon-time"></i> {{ doc_item.item_last_change_timestamp }} </li>
+            <span class="dimed">
+            <li> изменено: {{ doc_item.item_last_change_timestamp }} </li>
+            </span>
         {% endif %}
+            {% if doc_item.inventory_number.all %}
+                <li>
+                    <div><table class="table table-bordered table-hover table-condensed">
+                        <thead>
+                        <tr>
+                            <th>Инвентарный номер</th>
+                            <th>Номер УК(Б/У)</th>
+                            <th>Фонд</th>
+                            <th>Цена</th>
+                            <th>Кол-во</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for inv_records in doc_item.inventory_number.all %}
+                            <tr>
+                                <td>
+                                    {% if inv_records.t090e %}{{ inv_records.t090e }}{% else %}-{% endif %}
+                                </td>
+                                <td>
+                                    {% if inv_records.t990n %}{{ inv_records.t990n }}{% else %}-{% endif %}
+                                </td>
+                                <td>
+                                    {% if inv_records.sigla.fullname %}{{ inv_records.sigla.fullname|capfirst }}
+                                    {% elif inv_records.t090f %}{{ inv_records.t090f|capfirst }}
+                                    {% else %}-{% endif %}
+                                </td>
+                                <td>
+                                    {% if inv_records.t876c %}{{ inv_records.t876c }}{% else %}-{% endif %}
+                                </td>
+                                <td>
+                                    {% if inv_records.cnt %}{{ inv_records.cnt }} шт.{% else %}-{% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table></div>
+                </li>
+            {% endif %}
         </ul>
     </small>
+    </div>
+        <div class="span6">
+            {% if doc_item.item_tags %}
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                                <i class="icon-tags pull-right"></i>Ключевые слова
+                            </a>
+                        </div>
+                        <div id="collapseTwo" class="accordion-body">
+                            <div class="accordion-inner">
+                                {% for tag in doc_item.item_tags|force_list %}
+                                    <span style="line-height: 2;">
+                                <a class="btn btn-small btn-link" href="../search/?q=tag&quot;{{ tag }}&quot;"><span style="opacity: 0.6"><i class="icon-tag"></i></span>{{tag }}</a>
+                                </span>
+                                {% endfor %}
+                            </div>
+                        </div>
+            {% endif %}
+
+        </div> </div>
+
 {% endblock %}

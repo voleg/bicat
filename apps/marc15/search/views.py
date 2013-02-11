@@ -1,4 +1,6 @@
 # coding=utf-8
+from django.core.exceptions import FieldError
+
 __author__ = 'voleg'
 import operator
 from django.db import models
@@ -38,20 +40,65 @@ def searchview(request):
     orm_lookups = [construct_search(str(search_field)) for search_field in search_fields]
 
     if search_query.startswith('"') and search_query.endswith('"'):
-        queries = [models.Q(**{orm_lookup: search_query[1:-1]}) for orm_lookup in orm_lookups]
+        search_query = search_query[1:-1].strip()
+        queries = [models.Q(**{orm_lookup: search_query}) for orm_lookup in orm_lookups]
+        greeting = u'Точное совпадение с:'
+
+    elif search_query.startswith('tag"') and search_query.endswith('"'):
+        search_fields = ['=marc_indexed_tags__term']
+        orm_lookups = [construct_search(str(search_field)) for search_field in search_fields]
+        search_query = search_query[4:-1].strip()
+        greeting = u'Поиск по тегу'
+        queries = [models.Q(**{orm_lookup: search_query}) for orm_lookup in orm_lookups]
+
+    elif search_query.startswith('author"') and search_query.endswith('"'):
+        search_fields = ['=marc_indexed_authors__term']
+        orm_lookups = [construct_search(str(search_field)) for search_field in search_fields]
+        search_query = search_query[7:-1].strip()
+        greeting = u'Поиск по Автору:'
+        queries = [models.Q(**{orm_lookup: search_query}) for orm_lookup in orm_lookups]
+
+    elif search_query.startswith('source"') and search_query.endswith('"'):
+        search_fields = ['=marc_indexed_sourcename__term']
+        orm_lookups = [construct_search(str(search_field)) for search_field in search_fields]
+        search_query = search_query[7:-1].strip()
+        greeting = u'Поиск по Источнику:'
+        queries = [models.Q(**{orm_lookup: search_query}) for orm_lookup in orm_lookups]
+
+    elif search_query.startswith('year"') and search_query.endswith('"'):
+        search_fields = ['=marc_indexed_years__term']
+        orm_lookups = [construct_search(str(search_field)) for search_field in search_fields]
+        search_query = search_query[5:-1].strip()
+        greeting = u'Поиск по Году издания:'
+        queries = [models.Q(**{orm_lookup: search_query}) for orm_lookup in orm_lookups]
+
     else:
         for query in search_query.split():
             queries = [models.Q(**{orm_lookup: query}) for orm_lookup in orm_lookups]
-
-    bicat_qs = bicat_docs.filter(reduce(operator.or_, queries))
-    bikart_qs = bikar_docs.filter(reduce(operator.or_, queries))
-    biuml_qs = biuml_docs.filter(reduce(operator.or_, queries))
+            greeting = u'Полнотекстовый поиск'
+    try:
+        bicat_qs = bicat_docs.filter(reduce(operator.or_, queries))
+    except FieldError:
+        bicat_qs = ''
+    try:
+        bikart_qs = bikar_docs.filter(reduce(operator.or_, queries))
+    except FieldError:
+        bikart_qs = ''
+    try:
+        biuml_qs = biuml_docs.filter(reduce(operator.or_, queries))
+    except FieldError:
+        biuml_qs = ''
 
     search_results = [bicat_qs, bikart_qs, biuml_qs]
 
-    return render_to_response('Publications/search_results.html', {'search_results': search_results}, context_instance=RequestContext(request))
+    return render_to_response('Publications/search_results.html', {
+        'search_results': search_results,
+        'search_query': search_query,
+        'greeting': greeting,
+        }, context_instance=RequestContext(request))
 
 
 def item_change_time_view(request):
 
     return render_to_response('Publications/items_added_today.html')
+

@@ -1,14 +1,20 @@
 {# Формат вывода публикации в списочных формах #}
+{% load force_string force_list from marc_extras %}
 <a href="{{ item.get_absolute_url }}">
     <i class="icon-book"></i>
 
     {% if item.item_author %} {{ item.item_author }}
-    {% else %} <span style="color: #a9a9a9; background-color: #f7f7f7">Авторы не указаны</span> {% endif %}
+{#    {% else %} <span style="color: #a9a9a9; background-color: #f7f7f7">Авторы не указаны</span> #}
+    {% endif %}
 
-    {% if item.item_title %} {{ item.item_title }} {% endif %}
-    {% if item.item_title_part_number %} {{ item.item_title_part_number }} {% endif %}
+    {% if item.item_title %} {{ item.item_title|force_string }} {% endif %}
+    {% if item.item_next_title %} {{ item.item_next_title|force_string }} {% endif %}
 
-    <span style="font-size: 7pt; color: #a9a9a9; background-color: #f7f7f7">
-    {% if item.item_last_change_timestamp %} изменён: {{ item.item_last_change_timestamp }} {% endif %}
+    {% if item.item_title_part_number %} {{ item.item_title_part_number|force_string }} {% endif %}
+    {% if item.item_title_part_name %} {{ item.item_title_part_name|force_string }} {% endif %}
+    {% if item.item_title_version %} {{ item.item_title_version|force_string }} {% endif %}
+
+    <span style="font-size: 8pt; color: #a9a9a9;">
+    {% if item.item_last_change_timestamp %} изменён: {{ item.item_last_change_timestamp|force_string }} {% endif %}
     </span>
 </a>

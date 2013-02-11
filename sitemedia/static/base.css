@@ -9,3 +9,15 @@
     /*background-image: url("bootstrap/img/glyphicons-halflings-white.png");*/
     /*background-position: -48px -48px;*/
 /*}*/
+ .price {
+     font-family: 'PT Sans', serif;
+ }
+
+.tag {
+    cursor: pointer;
+}
+
+.dimed {
+
+    color: #a9a9a9;
+}

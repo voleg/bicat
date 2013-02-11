@@ -14,7 +14,7 @@ test2_msql_port = '3019'
 production_msql_host = '192.168.1.252'
 production_msql_port = '4538'
 
-TESTING = 1
+TESTING = 0
 
 if hostname == 'res' or TESTING == 0:
     MSSQL_HOST = production_msql_host
@@ -101,6 +101,8 @@ DATABASES = {
 }
 
 DATABASE_ROUTERS = ['apps.router.BiRouter']
+
+DO_NOT_SPLIT_TAGS = ['254']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name

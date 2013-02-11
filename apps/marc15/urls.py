@@ -1,5 +1,5 @@
 __author__ = 'voleg'
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, url
 from views import PublicationsList, PublicationDetails
 from .BiCat.models import Doc as bicat_doc
 from .BiKart.models import Doc as bikar_doc
