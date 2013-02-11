@@ -5,3 +5,11 @@ django-south-admin>=0.0.3
 pyodbc>=3.0.6
 South>=0.7.6
 -e git://github.com/avidal/django-pyodbc.git#egg=django-pyodbc
+Factory==1.2
+Werkzeug==0.8.3
+argparse==1.2.1
+django-extensions==1.0.2
+factory-boy==1.2.0
+ipython==0.13.1
+sql-server.pyodbc==1.0
+wsgiref==0.1.2
