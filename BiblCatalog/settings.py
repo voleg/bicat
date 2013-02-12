@@ -14,7 +14,7 @@ test2_msql_port = '3019'
 production_msql_host = '192.168.1.252'
 production_msql_port = '4538'
 
-TESTING = 0
+TESTING = 1
 
 if hostname == 'res' or TESTING == 0:
     MSSQL_HOST = production_msql_host
@@ -24,15 +24,15 @@ if hostname == 'res' or TESTING == 0:
     b_cat = 'SERV3BCAT'
     b_kart = 'SERV3BKART'
     b_uml = 'SERV3BUML'
-    DEBUG = True
+    DEBUG = False
 elif TESTING == 1 :
-    MSSQL_HOST = test1_msql_host
-    MSSQL_PORT = test1_msql_port
+    MSSQL_HOST = production_msql_host
+    MSSQL_PORT = production_msql_port
 
     # DSN's
-    b_cat = 'TESTSERV3BCAT'
-    b_kart = 'TESTSERV3BKART'
-    b_uml = 'TESTSERV3BUML'
+    b_cat = 'SERV3BCAT'
+    b_kart = 'SERV3BKART'
+    b_uml = 'SERV3BUML'
 
     DEBUG = True
 else:
