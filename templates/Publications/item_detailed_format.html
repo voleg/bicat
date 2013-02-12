@@ -4,8 +4,12 @@
 {% if doc_item.item_title %}{{ doc_item.item_title|force_string }}{% endif %}
 {% if doc_item.item_next_title %}:{{ doc_item.item_next_title|force_string }}{% endif %} /
 {% if doc_item.item_responsibility %} {{ doc_item.item_responsibility|force_string }}{% endif %}
-{% if doc_item.item_author_main %}{{ doc_item.item_author_main|force_string|place_initials_first}}
-{% if doc_item.item_authors_other%}, {{doc_item.item_authors_other|force_string }}{% endif %}{% endif %}
+{% if doc_item.item_author_main %}
+{{ doc_item.item_author_main|force_string|place_initials_first}}
+    {% if doc_item.item_authors_other%}, {{doc_item.item_authors_other|force_string }}
+    {% endif %}
+    {% else %} {% if doc_item.item_authors_other%}{{doc_item.item_authors_other|force_string }}{% endif %}
+{% endif %}
 {% if doc_item.item_place %}- {{ doc_item.item_place|force_string }}{% endif %}
 {% if doc_item.item_publisher %}: {{ doc_item.item_publisher|force_string }} {% endif %}
 {% if doc_item.item_publication_year %}, {{ doc_item.item_publication_year|force_string }} {% endif %}

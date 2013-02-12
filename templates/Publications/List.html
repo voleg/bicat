@@ -33,7 +33,15 @@
             <li> {% include "Publications/item_list_format.html" %} </li>
         {% endfor %}
     </ul>
+    <div class="pagination pagination-mini pagination-centered">
+        <ul>
+            <li>
+                <a href="?page={% if page_obj.previous_page_number == 0  %}1{% else %}{{ page_obj.previous_page_number }}{% endif %}"><</a></li>
+            <li class="disabled"> <a href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
+            <li><a href="?page={% if page_obj.next_page_number > page_obj.paginator.num_pages %}{{page_obj.paginator.num_pages}}{% else %}{{ page_obj.next_page_number }}{% endif %}">></a></li>
+        </ul>
 
+    </div>
 
 
 {% endblock %}
