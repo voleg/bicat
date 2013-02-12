@@ -6,3 +6,6 @@ from models import *
 def issues_list(request):
     issues = Article.objects.all()
     return render_to_response("blog/index.html", locals())
+
+def issue(request):
+    return render_to_response("blog/issue.html", locals())

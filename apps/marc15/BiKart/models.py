@@ -11,8 +11,6 @@ class DocInvOff(DocInvOff):
 
 
 class Doc(Doc):
-    marc_indexed_sourcename = models.ManyToManyField('Idx773T', through='Idx773Tx', verbose_name='Словарь источников')
-    marc_indexed_years = None
     pass
 
 
@@ -52,27 +50,13 @@ class Idx653A(Idx653A):
     pass
 
 
-class Idx773Tx(models.Model):
-    idx_id = models.ForeignKey('Idx773T', to_field='idx_id', null=True, db_column=u'IDX_ID', blank=True)
-    doc_id = models.ForeignKey("Doc", db_column=u'DOC_ID')
-
-    class Meta:
-        db_table = u'IDX773tX'
+class Idx773Tx(Idx773Tx):
+    pass
 
 
-class Idx773T(models.Model):
-    """ Index Dictionary of sources"""
-    idx_id = models.PositiveIntegerField(db_column=u'IDX_ID', unique=True)
-    term = models.CharField(max_length=255, primary_key=True, db_column=u'TERM')
-    cnt = models.IntegerField(null=True, db_column=u'CNT', blank=True)
+class Idx773T(Idx773T):
+    pass
 
-    def __unicode__(self):
-        return " ".join([unicode(self.term), unicode(self.cnt)])
-
-    class Meta:
-        verbose_name = u'Название источника'
-        verbose_name_plural = u'Источники'
-        db_table = u'IDX773t'
 
 class Siglas(Siglas):
     pass
@@ -87,4 +71,13 @@ class Idx260C(Idx260C):
 
 
 class Idx260Cx(Idx260Cx):
+    pass
+
+
+
+class Idx260B(Idx260B):
+    pass
+
+
+class Idx260Bx(Idx260Bx):
     pass

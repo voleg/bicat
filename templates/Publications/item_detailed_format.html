@@ -1,6 +1,6 @@
 {# Формат вывода в детальном виде #}
 {% load force_string force_list place_initials_first from marc_extras %}
-{% if doc_item.item_author_main %} <p>{{ doc_item.item_author_main|force_string }}</p>{% endif %}
+{% if doc_item.item_author_main %} <p><i>{{ doc_item.item_author_main|force_string }}</i></p>{% endif %}
 {% if doc_item.item_title %}{{ doc_item.item_title|force_string }}{% endif %}
 {% if doc_item.item_next_title %}:{{ doc_item.item_next_title|force_string }}{% endif %} /
 {% if doc_item.item_responsibility %} {{ doc_item.item_responsibility|force_string }}{% endif %}

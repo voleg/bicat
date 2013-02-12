@@ -4,6 +4,7 @@
 
 {#{% block page_top_nav %}#}
 {#{% endblock %}#}
+
 {% block page_main_content %}
 {#    <ul class="pager">#}
 {#        <li class="previous">#}
@@ -97,7 +98,7 @@
         {% if doc_item.item_publisher %}
             <li>Издатель:
                 {% for publisher in doc_item.item_publisher|force_list %}
-                    <a class="bnt btn-small" href="../search/?q=&quot;{{ publisher }}&quot;"><i class="icon-bookmark"></i>{{ publisher }}</a>
+                    <a class="bnt btn-small" href="../search/?q=pub&quot;{{ publisher }}&quot;"><i class="icon-bookmark"></i>{{ publisher }}</a>
                 {% endfor %}
             </li>
         {% endif %}
@@ -188,7 +189,7 @@
                             <div class="accordion-inner">
                                 {% for tag in doc_item.item_tags|force_list %}
                                     <span style="line-height: 2;">
-                                <a class="btn btn-small btn-link" href="../search/?q=tag&quot;{{ tag }}&quot;"><span style="opacity: 0.6"><i class="icon-tag"></i></span>{{tag }}</a>
+                                <a class="btn btn-link btn-small" href="../search/?q=tag&quot;{{ tag }}&quot;"><span style="opacity: 0.6"><i class="icon-tag"></i></span>{{tag }}</a>
                                 </span>
                                 {% endfor %}
                             </div>
