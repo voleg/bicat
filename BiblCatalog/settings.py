@@ -61,7 +61,7 @@ DATABASES = {
             'USER': 'bicat',
             'PASSWORD': 'J8jPJ1Fv',
             'HOST': '192.168.0.242',
-            'PORT': '3306'
+            'PORT': '',
          },
     'bikart': {
         'ENGINE': 'sql_server.pyodbc',
@@ -228,7 +228,7 @@ INSTALLED_APPS = (
     'apps.marc15.BiUML',
     'apps.marc15.search',
     'sitemedia',
-    'sorl.thumbnail'
+#    'sorl.thumbnail'
 )
 
 # A sample logging configuration. The only tangible logging
