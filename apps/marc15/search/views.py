@@ -32,6 +32,7 @@ def searchview(request):
     bicat_docs = bicat_doc.objects.all()
     bikar_docs = bikar_doc.objects.all()
     biuml_docs = biuml_doc.objects.all()
+    greeting = u'Увы ...'
     try:
         search_query = request.POST['q']
     except:
@@ -45,12 +46,12 @@ def searchview(request):
 
     search_fields = ['item']
 
-    if search_query == '' or len(search_query) <= 3:
-        return redirect('/')
-
     orm_lookups = [construct_search(str(search_field)) for search_field in search_fields]
 
-    if search_query.startswith('"') and search_query.endswith('"'):
+    if search_query == '' or len(search_query) <= 3:
+        bad_alert =True
+
+    elif search_query.startswith('"') and search_query.endswith('"'):
         search_query = search_query[1:-1].strip()
         queries = [models.Q(**{orm_lookup: search_query}) for orm_lookup in orm_lookups]
         greeting = u'Точное совпадение с:'
@@ -96,15 +97,15 @@ def searchview(request):
             greeting = u'Полнотекстовый поиск'
     try:
         bicat_qs = bicat_docs.filter(reduce(operator.or_, queries))
-    except FieldError:
+    except:
         bicat_qs = ''
     try:
         bikart_qs = bikar_docs.filter(reduce(operator.or_, queries))
-    except FieldError:
+    except:
         bikart_qs = ''
     try:
         biuml_qs = biuml_docs.filter(reduce(operator.or_, queries))
-    except FieldError:
+    except:
         biuml_qs = ''
 
     search_results = [bicat_qs, bikart_qs, biuml_qs]

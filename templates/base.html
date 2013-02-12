@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Каталог</title>
+    <title>ЭК Электронный Каталог библиотеки</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="каталог">
     <meta name="catalog" content="">
@@ -21,7 +21,7 @@
         }
     </style>
 
-    <title>{% block title %}Электронный Каталог {% endblock %}</title>
+    <title>{% block title %}ЭК Электронный Каталог библиотеки{% endblock %}</title>
 </head>
 <body>
 <div class="navbar navbar-fixed-top">
@@ -33,14 +33,16 @@
                 <span class="icon-bar"></span>
             </a>
 
-            <a class="brand" href='/'>ЭК</a>
+            <a class="brand" href='/'><span class="ptsans" style="text-shadow: 3px 3px 10px rgb(224, 224, 224)">ЭК</span></a>
 
             <ul class="nav">
                 <li class="dropdown">
                     <a class="dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" href="#"><i class="icon-th-list"></i> <b class="caret"></b> </a>
                     <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
                 {% block col-menu %}
+                    <div class="ptsanse">
                     {% include "menu.html" %}
+                    </div>
                 {% endblock %}
                     </ul>
                 </li>
@@ -65,16 +67,7 @@
     {% block page_top_nav %}
         <div class="nav">
         <ul class="nav nav-pills">
-            <li>
-                <a href="/catalog/bicat/">Книги</a>
-            </li>
-            <li><a href="/catalog/bikart/">Периодика</a></li>
-            <li><a href="/catalog/biuml/">Учебно методическая литература</a></li>
-            <li class="divider"></li>
-            <li class="disabled"><a href="#">Авторы ...</a></li>
-            <li class="disabled"><a href="#">Ключевые поля ...</a></li>
-            <li class="disabled"><a href="#">Издательства ...</a></li>
-            <li class="disabled"><a href="#">...</a></li>
+            {% include "menu.html" %}
         </ul>
     {% endblock %}
 
@@ -106,6 +99,8 @@
         {% block page_main_footer %}
             <div class="footer">
                 <p align="center"><a class="btn btn-mini disabled" href="https://plus.google.com/113214334240521558244/about">contact me</a></p>
+
+            <span class="pull-right ptsans" style="color: #d3d3d3;">bicat v1.0</span>
             </div>
         {% endblock %}
 </body>

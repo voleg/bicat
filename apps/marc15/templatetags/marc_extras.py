@@ -33,11 +33,13 @@ def place_initials_first(value):
     Smith J.S. -> J.S. Smith
     """
     namepattern = r'^(?P<family>.+)[\s]+(?P<name>.[.])[\s]*(?P<father>.[.])$'
+    namepattern2 = r'^(?P<family>.+)[\s]+(?P<name>.[.])$'
     namere = re.compile(namepattern)
+    namere2 = re.compile(namepattern2)
 
     if namere.match(value):
         n = namere.match(value).groupdict()
-
-        value = '%s%s %s' % (n.get('name'), n.get('father'), n.get('family'))
-
-    return value
+        return '%s%s %s' % (n.get('name'), n.get('father'), n.get('family'))
+    elif namere2.match(value):
+        n = namere2.match(value).groupdict()
+        return '%s %s' % (n.get('name'), n.get('family'))
