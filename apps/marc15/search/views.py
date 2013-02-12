@@ -39,7 +39,8 @@ def searchview(request):
 
     try:
         search_query = request.GET['q']
-    except MultiValueDictKeyError:
+    # except MultiValueDictKeyError:
+    except:
         return redirect('/')
 
     search_fields = ['item']
