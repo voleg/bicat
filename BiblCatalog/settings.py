@@ -56,8 +56,12 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(PROJECT_PATH, '../dev.db')
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'bicat',
+            'USER': 'bicat',
+            'PASSWORD': 'J8jPJ1Fv',
+            'HOST': '192.168.0.242',
+            'PORT': '3306'
          },
     'bikart': {
         'ENGINE': 'sql_server.pyodbc',
