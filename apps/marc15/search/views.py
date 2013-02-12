@@ -1,10 +1,11 @@
 # coding=utf-8
 from django.core.exceptions import FieldError
+from django.utils.datastructures import MultiValueDictKeyError
 
 __author__ = 'voleg'
 import operator
 from django.db import models
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.template import RequestContext
 from apps.marc15.BiCat.models import Doc as bicat_doc
@@ -34,8 +35,17 @@ def searchview(request):
     try:
         search_query = request.POST['q']
     except:
+        pass
+
+    try:
         search_query = request.GET['q']
+    except MultiValueDictKeyError:
+        return redirect('/')
+
     search_fields = ['item']
+
+    if search_query == '' or len(search_query) <= 3:
+        return redirect('/')
 
     orm_lookups = [construct_search(str(search_field)) for search_field in search_fields]
 
@@ -72,6 +82,13 @@ def searchview(request):
         greeting = u'Поиск по Году издания:'
         queries = [models.Q(**{orm_lookup: search_query}) for orm_lookup in orm_lookups]
 
+    elif search_query.startswith('pub"') and search_query.endswith('"'):
+        search_fields = ['=marc_indexed_publishers__term']
+        orm_lookups = [construct_search(str(search_field)) for search_field in search_fields]
+        search_query = search_query[4:-1].strip()
+        greeting = u'Поиск по Издательствам:'
+        queries = [models.Q(**{orm_lookup: search_query}) for orm_lookup in orm_lookups]
+
     else:
         for query in search_query.split():
             queries = [models.Q(**{orm_lookup: query}) for orm_lookup in orm_lookups]
@@ -99,6 +116,5 @@ def searchview(request):
 
 
 def item_change_time_view(request):
-
     return render_to_response('Publications/items_added_today.html')
 

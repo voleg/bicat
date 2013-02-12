@@ -7,13 +7,21 @@
 {% endblock %}
 
 {% block page_main_content %}
-    <strong><span class="label label-success">{% if greeting %}{{ greeting }}{% endif %} &laquo;{{ search_query }}&raquo;</span> </strong>
-    <ul class="nav nav-list " style="margin-top: 10px">
+    <span class="alert">
+        {% if greeting %}
+            {{ greeting }}
+        {% endif %}
 
-    {% for catalog in search_results %}
-        {% for item in catalog %}
-            <li> {% include "Publications/item_list_format.html" %} </li>
+    <strong>{{ search_query }}</strong>
+    </span>
+
+    <ul class="nav nav-list " style="margin-top: 10px">
+        {% for catalog in search_results %}
+            {% for item in catalog %}
+                <li>
+                    {% include "Publications/item_list_format.html" %}
+                </li>
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
     </ul>
 {% endblock %}

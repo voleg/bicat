@@ -17,7 +17,7 @@ class Article(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return 'issue', [self.slug]
+        return 'article', [self.slug]
 
     def __unicode__(self):
         return self.name

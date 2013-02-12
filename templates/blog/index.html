@@ -1,12 +1,27 @@
 {% extends "base.html" %}
+{% load thumbnail %}
 
 {#{% block page_top_nav %}{% endblock %} {# нет тут навигации! #}
 
 {% block page_main_content %}
-    <ul>
+
+    <div class="hero-unit">
+        <div class="media">
+            <span class="pull-left">
+{#                <img src="/static/logo_0.png" class="img-circle">#}
+            </span>
+            <h3>
+                Электронный каталог
+            </h3>
+            <small> Библиотека Финансового Университета в г. Владимире </small>
+        </div>
+    </div>
+
+    <ul class="nav nav-list">
     {% for issue in issues %}
         <li>
-            <a href="{{ issue.get_absolute_url }}">{{ issue.name }}</a>
+            <a class="disabled" href="{{ issue.get_absolute_url }}">{{ issue.name }}</a>
         </li>
+    </ul>
     {% endfor %}
 {% endblock %}

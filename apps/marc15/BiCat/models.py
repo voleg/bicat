@@ -63,3 +63,19 @@ class Idx260C(Idx260C):
 
 class Idx260Cx(Idx260Cx):
     pass
+
+
+class Idx260B(Idx260B):
+    pass
+
+
+class Idx260Bx(Idx260Bx):
+    pass
+
+
+class Idx773Tx(Idx773Tx):
+    pass
+
+
+class Idx773T(Idx773T):
+    pass

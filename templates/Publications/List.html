@@ -28,10 +28,12 @@
         <p class="muted pull-right">{{ paginator.count }} Документов</p>
 
     </div>
-    <ul class="nav nav-list ">
+    <ul class="nav nav-list">
         {% for item in doc_item_list%}
             <li> {% include "Publications/item_list_format.html" %} </li>
         {% endfor %}
     </ul>
+
+
 
 {% endblock %}

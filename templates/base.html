@@ -33,30 +33,22 @@
                 <span class="icon-bar"></span>
             </a>
 
-            <a class="brand" href="#">ЭК</a>
+            <a class="brand" href='/'>ЭК</a>
 
-            <div class="nav-collapse collapse">
-                <ul class="nav">
-                    <li><a href="/"><i class="icon-home"></i></a></li>
-                    {% block col-menu %}
-                        {% include "menu.html" %}
-                    {% endblock %}
+            <ul class="nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" href="#"><i class="icon-th-list"></i> <b class="caret"></b> </a>
+                    <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
+                {% block col-menu %}
+                    {% include "menu.html" %}
+                {% endblock %}
+                    </ul>
+                </li>
+            </ul>
 
-                </ul>
-
-                <form class="navbar-search pull-left" action="/catalog/search/" method="get">
-                    <input type="text" class="search-query input-xxlarge" placeholder="поиск по всему каталогу ..." name="q">
-                </form>
-
-            </div><!--/.nav-collapse -->
-
-            <div class="nav nav-collapse pull-right">
-
-                <ul class="nav">
-                    <li><a href="/admin">admin</a></li>
-                </ul>
-
-            </div>
+            <form class="navbar-search pull-left" action="/catalog/search/" method="get">
+                <input type="text" class="search-query input-xxlarge" placeholder="поиск по всему каталогу ..." name="q">
+            </form>
         </div>
     </div>
 </div>
@@ -71,12 +63,18 @@
     <div class="span12">
 
     {% block page_top_nav %}
+        <div class="nav">
         <ul class="nav nav-pills">
             <li>
                 <a href="/catalog/bicat/">Книги</a>
             </li>
             <li><a href="/catalog/bikart/">Периодика</a></li>
             <li><a href="/catalog/biuml/">Учебно методическая литература</a></li>
+            <li class="divider"></li>
+            <li class="disabled"><a href="#">Авторы ...</a></li>
+            <li class="disabled"><a href="#">Ключевые поля ...</a></li>
+            <li class="disabled"><a href="#">Издательства ...</a></li>
+            <li class="disabled"><a href="#">...</a></li>
         </ul>
     {% endblock %}
 
@@ -94,8 +92,6 @@
         {% endblock %}
 
         {% block page_main_header %}
-            <p>Заголовок страницы</p>
-            <hr>
         {% endblock %}
 
         {% block page_main_content %}
@@ -103,16 +99,14 @@
         {% endblock %}
 
     </div>
-    <div class="span4 offset4">
-        {% block page_main_footer %}
-            <div class="footer">
-                <hr>
-                <p align="center">***</p>
-            </div>
-        {% endblock %}
-    </div>
+</div>
 </div>
 
-</div>
+
+        {% block page_main_footer %}
+            <div class="footer">
+                <p align="center"><a class="btn btn-mini disabled" href="https://plus.google.com/113214334240521558244/about">contact me</a></p>
+            </div>
+        {% endblock %}
 </body>
 </html>

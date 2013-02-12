@@ -223,7 +223,8 @@ INSTALLED_APPS = (
     'apps.marc15.BiKart',
     'apps.marc15.BiUML',
     'apps.marc15.search',
-    'sitemedia'
+    'sitemedia',
+    'sorl.thumbnail'
 )
 
 # A sample logging configuration. The only tangible logging
