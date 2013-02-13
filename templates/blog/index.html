@@ -2,23 +2,25 @@
 
 {% block page_main_content %}
 
-    <div class="hero-unit">
-        <div class="media">
-            <span class="pull-left">
-{#                <img src="/static/logo_0.png" class="img-circle">#}
-            </span>
-            <h3>
-                Электронный каталог
-            </h3>
-            <small> Библиотека Финансового Университета в г. Владимире </small>
-        </div>
-    </div>
-
     <ul class="nav nav-list">
     {% for issue in issues %}
-        <li>
-            <a class="disabled" href="{{ issue.get_absolute_url }}">{{ issue.name }}</a>
-        </li>
+        {% if issue.slug == 'index' %}
+            <div class="hero-unit">
+                <div class="media">
+                    <span class="pull-left">
+                        {#<img src="/static/logo_0.png" class="img-circle">#}
+                    </span>
+                    <h3>
+                        {{ issue.name }}
+                    </h3>
+                    <small> {{ issue.issue }} </small>
+                </div>
+            </div>
+        {% else %}
+            <li>
+                <a class="disabled" href="{{ issue.get_absolute_url }}">{{ issue.name }}</a>
+            </li>
+        {% endif %}
     </ul>
     {% endfor %}
 {% endblock %}
