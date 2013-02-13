@@ -14,7 +14,7 @@ test2_msql_port = '3019'
 production_msql_host = '192.168.1.252'
 production_msql_port = '4538'
 
-TESTING = 0
+TESTING = 1
 
 if hostname == 'res' or TESTING == 0:
     MSSQL_HOST = production_msql_host
