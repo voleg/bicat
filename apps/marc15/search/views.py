@@ -11,6 +11,7 @@ from django.template import RequestContext
 from apps.marc15.BiCat.models import Doc as bicat_doc
 from apps.marc15.BiKart.models import Doc as bikar_doc
 from apps.marc15.BiUML.models import Doc as biuml_doc
+from models import SearchHits
 
 # todo make a search view that extracts items from all DB's. function or class based
 
@@ -33,16 +34,22 @@ def searchview(request):
     bikar_docs = bikar_doc.objects.all()
     biuml_docs = biuml_doc.objects.all()
     greeting = u'Увы ...'
-    try:
-        search_query = request.POST['q']
-    except:
-        pass
+
+    search_query = request.POST.get('q', None)
 
     try:
         search_query = request.GET['q']
     # except MultiValueDictKeyError:
     except:
         return redirect('/')
+
+    ua = request.META.get('HTTP_USER_AGENT', None)
+    ip = request.META.get('REMOTE_ADDR', None)
+    ref = request.META.get('HTTP_REFERER', None)
+    try:
+        SearchHits(query=search_query, ip_address=ip, user_agent=ua, referer=ref).save()
+    except:
+        pass
 
     search_fields = ['item']
 

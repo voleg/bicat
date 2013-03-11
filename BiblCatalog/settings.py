@@ -24,6 +24,16 @@ if hostname == 'res' or TESTING == 0:
     b_cat = 'SERV3BCAT'
     b_kart = 'SERV3BKART'
     b_uml = 'SERV3BUML'
+
+    default_db = {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bicat',
+        'USER': 'bicat',
+        'PASSWORD': 'J8jPJ1Fv',
+        'HOST': '192.168.0.242',
+        'PORT': '',
+        }
+
     DEBUG = False
 elif TESTING == 1 :
     MSSQL_HOST = production_msql_host
@@ -33,6 +43,11 @@ elif TESTING == 1 :
     b_cat = 'SERV3BCAT'
     b_kart = 'SERV3BKART'
     b_uml = 'SERV3BUML'
+
+    default_db = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(PROJECT_PATH, '../dev.db'),
+    }
 
     DEBUG = True
 else:
@@ -55,14 +70,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {
-    'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'bicat',
-            'USER': 'bicat',
-            'PASSWORD': 'J8jPJ1Fv',
-            'HOST': '192.168.0.242',
-            'PORT': '',
-         },
+    'default': default_db,
     'bikart': {
         'ENGINE': 'sql_server.pyodbc',
         'NAME': 'B_KART',
