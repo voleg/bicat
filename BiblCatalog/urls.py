@@ -8,6 +8,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^favicon\.ico$', RedirectView.as_view(url=''.join([settings.STATIC_URL, 'favicon.ico']))),
+    url('^markdown/', include('django_markdown.urls')),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^catalog/', include('apps.marc15.urls')),
