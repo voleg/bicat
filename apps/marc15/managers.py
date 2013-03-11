@@ -6,7 +6,7 @@ from parse import parse_item_to_dict, get_caption
 
 class ItemQuerySet(QuerySet):
     """
-    метод для извлечения значений из поля ITEM
+        метод для извлечения значений из поля ITEM
     """
     def get_next(self):
         next = self.model.objects.filter(doc_id__gt=self.model.doc_id)
