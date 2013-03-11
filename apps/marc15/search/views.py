@@ -35,6 +35,11 @@ def searchview(request):
     biuml_docs = biuml_doc.objects.all()
     greeting = u'Увы ...'
 
+    if 'bicat' in request.path:
+        search_bases = [bicat_docs]
+    elif 'bikart' in request.path:
+        search_bases = [bikar_docs]
+
     search_query = request.POST.get('q', None)
 
     try:
@@ -46,6 +51,7 @@ def searchview(request):
     ua = request.META.get('HTTP_USER_AGENT', None)
     ip = request.META.get('REMOTE_ADDR', None)
     ref = request.META.get('HTTP_REFERER', None)
+
     try:
         SearchHits(query=search_query, ip_address=ip, user_agent=ua, referer=ref).save()
     except:

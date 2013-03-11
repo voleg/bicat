@@ -73,12 +73,12 @@
     {% endblock %}
 
         {% block page_top_alert %}
-{#            <div class="alert alert-info">#}
-{#                <button type="button" class="close" data-dismiss="alert">&times;</button>#}
-{#                <span style="font-family: PT Sans, sans-serif;">#}
-{#                <h4>Внимание !</h4>#}
-{#                Разработка приложения продолжается, возможны сбои, ждите (Волег)#}
-{#                    </span>#}
+            <div class="alert alert-info">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <span style="font-family: PT Sans, sans-serif;">
+                <h4>Внимание !</h4>
+                Разработка приложения продолжается, возможны сбои, ждите (Волег)
+                    </span>
 {#                <div class="progress progress-striped active">#}
 {#                    <div class="bar" style="width: 80%;"></div>#}
 {#                </div>#}
@@ -98,10 +98,14 @@
 
 
         {% block page_main_footer %}
-            <div class="footer">
-                <p align="center"><a class="btn btn-mini disabled" href="https://plus.google.com/113214334240521558244/about">contact me</a></p>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="footer">
+                        <p align="center"><a class="btn btn-mini disabled" href="https://plus.google.com/113214334240521558244/about">contact me</a></p>
 
-            <span class="pull-right ptsans" style="color: #d3d3d3;">bicat v1.0</span>
+                        <span class="pull-right ptsans" style="color: #d3d3d3;">bicat v1.0</span>
+                    </div>
+                </div>
             </div>
         {% endblock %}
 </body>

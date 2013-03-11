@@ -43,3 +43,13 @@ def place_initials_first(value):
     elif namere2.match(value):
         n = namere2.match(value).groupdict()
         return '%s %s' % (n.get('name'), n.get('family'))
+
+@register.simple_tag
+def active(request, pattern):
+    """ возвращает 'active', если переданный путь совпадает с текущим
+        <li><a href="/" class="{% active request "(^/$|collection|using|category)" %}">Интернет-магазин</a></li>
+        таким образом ссылка приобретёт класс 'active' если выполнится регулярка "(^/$|collection|using|category)"
+    """
+    if re.search(pattern, request.path):
+        return 'active'
+    return ''
