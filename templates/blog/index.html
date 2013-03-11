@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
-{% block page_main_content %}
+{% block search_url %}/catalog/search{% endblock %}
+{% block search_hint %}поиск по всему каталогу ...{% endblock %}
 
+{% block page_main_content %}
     {% for issue in issues %}
         {% if issue.slug == 'index' %}
             <div class="hero-unit">

@@ -16,5 +16,5 @@ urlpatterns = patterns('',
     url(r'biuml/$', PublicationsList.as_view(model=biuml_doc)),
     url(r'biuml/(?P<doc_id>[-\w]+)$', PublicationDetails.as_view(model=biuml_doc), name='BiUML_doc-path'),
 
-    url(r'search/$', searchview, name='search')
+    url(r'search/$', searchview, name='search'),
 )

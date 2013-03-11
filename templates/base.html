@@ -49,8 +49,8 @@
                 </li>
             </ul>
 
-            <form class="navbar-search pull-left" action="/catalog/search/" method="get">
-                <input type="text" class="search-query input-xxlarge" placeholder="поиск ..." name="q">
+            <form class="navbar-search pull-left" action="{% block search_url %}search/{% endblock %}" method="get">
+                <input type="text" class="search-query input-xxlarge" placeholder="{% block search_hint %}поиск ...{% endblock %}" name="q">
             </form>
         </div>
     </div>
@@ -73,12 +73,12 @@
     {% endblock %}
 
         {% block page_top_alert %}
-            <div class="alert alert-info">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <span style="font-family: PT Sans, sans-serif;">
-                <h4>Внимание !</h4>
-                Разработка приложения продолжается, возможны сбои, ждите (Волег)
-                    </span>
+{#            <div class="alert alert-info">#}
+{#                <button type="button" class="close" data-dismiss="alert">&times;</button>#}
+{#                <span style="font-family: PT Sans, sans-serif;">#}
+{#                <h4>Внимание !</h4>#}
+{#                Разработка приложения продолжается, возможны сбои, ждите (Волег)#}
+{#                    </span>#}
 {#                <div class="progress progress-striped active">#}
 {#                    <div class="bar" style="width: 80%;"></div>#}
 {#                </div>#}
@@ -102,8 +102,7 @@
                 <div class="row-fluid">
                     <div class="footer">
                         <p align="center"><a class="btn btn-mini disabled" href="https://plus.google.com/113214334240521558244/about">contact me</a></p>
-
-                        <span class="pull-right ptsans" style="color: #d3d3d3;">bicat v1.0</span>
+                        <span class="pull-right ptsans" style="color: #d3d3d3;">bicat v1.1</span>
                     </div>
                 </div>
             </div>

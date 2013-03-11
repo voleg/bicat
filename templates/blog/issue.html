@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block search_url %}/catalog/search{% endblock %}
+{% block search_hint %}поиск по всему каталогу ...{% endblock %}
+
+
 {% block page_main_content %}
     <h3>{{ issue.name }}</h3>
     <p>{{ issue.issue }}</p>
