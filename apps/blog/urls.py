@@ -1,8 +1,8 @@
 __author__ = 'voleg'
 from django.conf.urls import patterns, url
-from views import issues_list, issue
+from views import *
 
 urlpatterns = patterns('',
-    url(r'$', issues_list, name='issue'),
-    url(r'blog/(?P<issue_slug>[-\w]+)$', issue, name='article')
+    url(r'$', IssuesListView.as_view()),
+    url(r'(?P<slug>.*)$', IssueDetailView.as_view(), name='Article'),
 )
