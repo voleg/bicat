@@ -18,7 +18,7 @@
             </div>
         {% else %}
             <li>
-                <a class="disabled" href="{{ issue.get_absolute_url }}">{{ issue.name }}</a>
+                <a href="{{ issue.get_absolute_url }}">{{ issue.name }}</a>
             </li>
         {% endif %}
     </ul>

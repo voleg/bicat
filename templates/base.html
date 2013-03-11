@@ -22,7 +22,7 @@
         }
     </style>
 
-    <title>{% block title %}ЭК Электронный Каталог библиотеки{% endblock %}</title>
+    <title>ЭК Электронный Каталог библиотеки {% block title %}{% endblock %}</title>
 </head>
 <body>
 <div class="navbar navbar-fixed-top">
@@ -50,7 +50,7 @@
             </ul>
 
             <form class="navbar-search pull-left" action="/catalog/search/" method="get">
-                <input type="text" class="search-query input-xxlarge" placeholder="поиск по всему каталогу ..." name="q">
+                <input type="text" class="search-query input-xxlarge" placeholder="поиск ..." name="q">
             </form>
         </div>
     </div>
