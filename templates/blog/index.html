@@ -2,7 +2,6 @@
 
 {% block page_main_content %}
 
-    <ul class="nav nav-list">
     {% for issue in issues %}
         {% if issue.slug == 'index' %}
             <div class="hero-unit">
@@ -17,9 +16,10 @@
                 </div>
             </div>
         {% else %}
-            <li>
-                <a href="{{ issue.get_absolute_url }}">{{ issue.name }}</a>
-            </li>
+            <ul class="nav nav-list">
+                <li>
+                    <a href="{{ issue.get_absolute_url }}">{{ issue.name }} <span style="color: #ffffff; font-size: 8pt;"> {{ issue.creator }} / {{ issue.created }}</span></a>
+                </li>
         {% endif %}
     </ul>
     {% endfor %}
