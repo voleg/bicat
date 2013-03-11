@@ -28,17 +28,12 @@ def construct_search(field_name):
         return "%s__icontains" % field_name
 
 @csrf_exempt
-def searchview(request):
+def searchview(request, curent_base=None):
     # it's terrible i now
     bicat_docs = bicat_doc.objects.all()
     bikar_docs = bikar_doc.objects.all()
     biuml_docs = biuml_doc.objects.all()
     greeting = u'Увы ...'
-
-    if 'bicat' in request.path:
-        search_bases = [bicat_docs]
-    elif 'bikart' in request.path:
-        search_bases = [bikar_docs]
 
     search_query = request.POST.get('q', None)
 
@@ -56,6 +51,18 @@ def searchview(request):
         SearchHits(query=search_query, ip_address=ip, user_agent=ua, referer=ref).save()
     except:
         pass
+    hint = ''
+    if r'bicat' in request.path:
+        search_bases = [bicat_docs]
+        hint = u'Поиск по Книгам'
+    elif r'bikart' in request.path:
+        search_bases = [bikar_docs]
+        hint = u'Поиск по Статьям'
+    elif r'biuml' in request.path:
+        search_bases = [biuml_docs]
+        hint = u'Поиск по УМЛ'
+    else:
+        search_bases = [bicat_docs, bikar_docs, biuml_docs]
 
     search_fields = ['item']
 
@@ -108,25 +115,20 @@ def searchview(request):
         for query in search_query.split():
             queries = [models.Q(**{orm_lookup: query}) for orm_lookup in orm_lookups]
             greeting = u'Полнотекстовый поиск'
-    try:
-        bicat_qs = bicat_docs.filter(reduce(operator.or_, queries))
-    except:
-        bicat_qs = ''
-    try:
-        bikart_qs = bikar_docs.filter(reduce(operator.or_, queries))
-    except:
-        bikart_qs = ''
-    try:
-        biuml_qs = biuml_docs.filter(reduce(operator.or_, queries))
-    except:
-        biuml_qs = ''
 
-    search_results = [bicat_qs, bikart_qs, biuml_qs]
+    search_results = []
+    for base in search_bases:
+        try:
+            qs = base.filter(reduce(operator.or_, queries)).order_by('-doc_id')
+        except:
+            qs = ''
+        search_results.extend([qs])
 
     return render_to_response('Publications/search_results.html', {
         'search_results': search_results,
         'search_query': search_query,
         'greeting': greeting,
+        'hint': hint,
         }, context_instance=RequestContext(request))
 
 
