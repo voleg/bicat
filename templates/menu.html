@@ -1,6 +1,7 @@
-<li><a href="/catalog/bicat">Книги</a></li>
-<li><a href="/catalog/bikart">Периодика</a></li>
-<li><a href="/catalog/biuml">Учебно методическая литература</a></li>
+{% load active from marc_extras %}
+<li class="{% active request "bicat" %}"><a href="/catalog/bicat">Книги</a></li>
+<li class="{% active request "bikart" %}"><a href="/catalog/bikart">Периодика</a></li>
+<li class="{% active request "biuml" %}"><a href="/catalog/biuml">Учебно методическая литература</a></li>
 <li class="divider"></li>
 <li class="disabled"><a href="#">Авторы ...</a></li>
 <li class="disabled"><a href="#">Ключевые поля ...</a></li>
