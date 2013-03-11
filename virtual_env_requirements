@@ -13,4 +13,7 @@ factory-boy==1.2.0
 ipython==0.13.1
 sql-server.pyodbc==1.0
 wsgiref==0.1.2
-sorl-thumbnailMySQL-python
+sorl-thumbnail
+MySQL-python==1.2.4
+Markdown==2.2.1
+django-markdown==0.2.0
