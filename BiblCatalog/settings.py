@@ -17,7 +17,7 @@ test2_msql_port = '3019'
 production_msql_host = '192.168.1.252'
 production_msql_port = '4538'
 
-TESTING = 1
+TESTING = 2
 
 if hostname == 'res' or TESTING == 0:
     MSSQL_HOST = production_msql_host
@@ -61,6 +61,11 @@ else:
     b_cat = 'TEST2SERV3BCAT'
     b_kart = 'TEST2SERV3BKART'
     b_uml = 'TEST2SERV3BUML'
+
+    default_db = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(PROJECT_PATH, '../dev.db'),
+    }
 
     DEBUG = True
 
