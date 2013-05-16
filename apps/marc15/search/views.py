@@ -13,7 +13,6 @@ from apps.marc15.BiKart.models import Doc as bikar_doc
 from apps.marc15.BiUML.models import Doc as biuml_doc
 from models import SearchHits
 
-# todo make a search view that extracts items from all DB's. function or class based
 
 # сделано под впечатлением от django.contrib.admin.views.main
 # Apply keyword searches.
@@ -47,10 +46,12 @@ def searchview(request, curent_base=None):
     ip = request.META.get('REMOTE_ADDR', None)
     ref = request.META.get('HTTP_REFERER', None)
 
-    try:
-        SearchHits(query=search_query, ip_address=ip, user_agent=ua, referer=ref).save()
-    except:
-        pass
+    if not 'bot' in ua.lower():
+        try:
+            SearchHits(query=search_query, ip_address=ip, user_agent=ua, referer=ref).save()
+        except:
+            pass
+
     hint = ''
     if r'bicat' in request.path:
         search_bases = [bicat_docs]
