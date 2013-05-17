@@ -217,6 +217,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     # required by django-admin-tools
     'django.core.context_processors.request',
+    'apps.prefs.context_processors.context_prefs',
 )
 
 INSTALLED_APPS = (
@@ -246,6 +247,7 @@ INSTALLED_APPS = (
     'apps.marc15.BiUML',
     'apps.marc15.search',
     'sitemedia',
+    'apps.prefs',
     #    'sorl.thumbnail'
 )
 
