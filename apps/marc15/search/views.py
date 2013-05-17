@@ -29,9 +29,9 @@ def construct_search(field_name):
 @csrf_exempt
 def searchview(request, curent_base=None):
     # it's terrible i now
-    bicat_docs = bicat_doc.objects.all()
-    bikar_docs = bikar_doc.objects.all()
-    biuml_docs = biuml_doc.objects.all()
+    bicat_docs = bicat_doc.objects.all().select_related()
+    bikar_docs = bikar_doc.objects.all().select_related()
+    biuml_docs = biuml_doc.objects.all().select_related()
     greeting = u'Увы ...'
 
     search_query = request.POST.get('q', None)
@@ -69,6 +69,7 @@ def searchview(request, curent_base=None):
 
     orm_lookups = [construct_search(str(search_field)) for search_field in search_fields]
 
+    queries = []
     if search_query == '' or len(search_query) <= 3:
         bad_alert =True
 
@@ -114,13 +115,14 @@ def searchview(request, curent_base=None):
 
     else:
         for query in search_query.split():
-            queries = [models.Q(**{orm_lookup: query}) for orm_lookup in orm_lookups]
-            greeting = u'Полнотекстовый поиск'
+            queries += [models.Q(**{orm_lookup: query}) for orm_lookup in orm_lookups]
+
+        greeting = u'Полнотекстовый поиск'
 
     search_results = []
     for base in search_bases:
         try:
-            qs = base.filter(reduce(operator.or_, queries)).order_by('-doc_id')
+            qs = base.filter(reduce(operator.and_, queries)).order_by('-doc_id')
         except:
             qs = ''
         search_results.extend([qs])

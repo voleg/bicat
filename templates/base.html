@@ -50,8 +50,13 @@
             </ul>
 
             <form class="navbar-search pull-left" action="{% block search_url %}search/{% endblock %}" method="get">
-                <input type="text" class="search-query input-xxlarge" placeholder="{% block search_hint %}поиск ...{% endblock %}" name="q">
+                    <input type="text" class="search-query input-xxlarge" placeholder="{% block search_hint %}поиск ...{% endblock %}" value="{% block search_value %}{% endblock %}" name="q">
             </form>
+
+            <ul class="nav">
+                <li class="disabled"><a href="#">Расширенный поиск</a></li>
+            </ul>
+
         </div>
     </div>
 </div>
