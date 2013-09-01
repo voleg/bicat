@@ -72,7 +72,7 @@
 
     {% block page_top_nav %}
         <div class="nav">
-        <ul class="nav nav-pills">
+        <ul class="nav nav-tabs">
             {% include "menu.html" %}
         </ul>
     {% endblock %}
@@ -87,7 +87,7 @@
 {#                <div class="progress progress-striped active">#}
 {#                    <div class="bar" style="width: 80%;"></div>#}
 {#                </div>#}
-            </div>
+{#            </div>#}
         {% endblock %}
 
         {% block page_main_header %}
@@ -101,16 +101,31 @@
 </div>
 </div>
 
-
-        {% block page_main_footer %}
-            <div class="container-fluid">
-                <div class="row-fluid">
-                    <div class="footer">
-                        <p align="center"><a class="btn btn-mini disabled" href="{{ contact_url }}">{{ contact_caption }}</a></p>
-                        <span class="pull-right ptsans" style="color: #d3d3d3;">{{ app_version }}</span>
-                    </div>
+    {% block page_main_footer %}
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="footer">
+                    <p align="center"><a class="btn btn-mini disabled" href="{{ contact_url }}">{{ contact_caption }}</a></p>
+                    <span class="pull-right ptsans" style="color: #d3d3d3;">{{ app_version }}</span>
                 </div>
             </div>
-        {% endblock %}
+        </div>
+    {% endblock %}
+
+    {% block javascript %}
+        <script type="text/javascript">
+            $('.nav li').each(function () {
+                console.log($(this));
+                var link = $('a', $(this)).attr('href');
+                if (typeof link == 'undefined') return;
+                var path = window.location.pathname;
+                if (link == path || path.indexOf(link) == 0 || path.indexOf(link.replace('s/', '/')) == 0) {
+                    $('#id_menu_div').find('li').removeClass('active');
+                    $(this).addClass('active');
+                }
+            });
+        </script>
+    {% endblock %}
+
 </body>
 </html>
