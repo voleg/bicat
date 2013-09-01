@@ -192,6 +192,7 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.cache.UpdateCacheMiddleware',                # кешируем весь сайт целиком
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -199,6 +200,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',             # кешируем весь сайт целиком
 )
 
 ROOT_URLCONF = 'BiblCatalog.urls'
@@ -279,3 +281,33 @@ LOGGING = {
         },
     }
 }
+
+### REDIS
+
+REDIS_HOST = '127.0.0.1'
+REDIS_PORT = 6379
+
+# Используем REDIS в качестве KVS для кеширования на боевой ноде
+# на локальной машине также можно использовать REDIS
+#   brew install redis      # установка на OSX
+#   redis-server            # запуск демона
+
+CACHES = {
+   'default': {
+       'BACKEND': 'redis_cache.RedisCache',
+       'LOCATION': '127.0.0.1:6379',
+       'TIMEOUT': 60,
+       'MAX_ENTRIES': 10000,
+       'OPTIONS': {
+           'DB': 3,
+           },
+       },
+   }
+
+# # Разкоментировать для отключения кеширования в проекте
+#
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+#     }
+# }

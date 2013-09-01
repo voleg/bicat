@@ -17,3 +17,5 @@ sorl-thumbnail
 MySQL-python==1.2.4
 Markdown==2.2.1
 django-markdown==0.2.0
+redis==2.8.0
+django-redis-cache==0.10.0
