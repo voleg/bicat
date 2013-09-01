@@ -80,6 +80,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': default_db,
     'bikart': {
+        'display_name': u'Периодика',
         'ENGINE': 'sql_server.pyodbc',
         'NAME': 'B_KART',
         'USER': 'biblioteka',
@@ -93,6 +94,7 @@ DATABASES = {
                     'extra_params': 'TDS_VERSION=8.0'}
     },
     'bicat': {
+        'display_name': u'Книги',
         'ENGINE': 'sql_server.pyodbc',
         'NAME': 'B_CAT',
         'USER': 'biblioteka',
@@ -106,6 +108,7 @@ DATABASES = {
                     'extra_params': 'TDS_VERSION=8.0'}
     },
     'biuml': {
+        'display_name': u'Учебно методическая литература',
         'ENGINE': 'sql_server.pyodbc',
         'NAME': 'B_uml',
         'USER': 'biblioteka',
