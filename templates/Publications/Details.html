@@ -179,23 +179,22 @@
     </div>
         <div class="span6">
             {% if doc_item.item_tags %}
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                                <i class="icon-tags pull-right"></i>Ключевые слова
-                            </a>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                            <i class="icon-tags pull-right"></i>Ключевые слова
+                        </a>
+                    </div>
+                    <div id="collapseTwo" class="accordion-body">
+                        <div class="accordion-inner">
+                            {% for tag in doc_item.item_tags|force_list %}
+                                <span style="line-height: 2;">
+                            <a class="btn btn-link btn-small" href="search/?q=tag&quot;{{ tag }}&quot;"><span style="opacity: 0.6"><i class="icon-tag"></i></span>{{tag }}</a>
+                            </span>
+                            {% endfor %}
                         </div>
-                        <div id="collapseTwo" class="accordion-body">
-                            <div class="accordion-inner">
-                                {% for tag in doc_item.item_tags|force_list %}
-                                    <span style="line-height: 2;">
-                                <a class="btn btn-link btn-small" href="search/?q=tag&quot;{{ tag }}&quot;"><span style="opacity: 0.6"><i class="icon-tag"></i></span>{{tag }}</a>
-                                </span>
-                                {% endfor %}
-                            </div>
-                        </div>
+                    </div>
             {% endif %}
-
-        </div> </div>
+        </div>
 
 {% endblock %}
