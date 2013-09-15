@@ -4,6 +4,7 @@ from django.contrib.contenttypes.models import ContentType
 from managers import ItemManager
 from fields import ItemField
 
+
 class DocInv(models.Model):
     """
     Dirty workaround model to tie Doc and Inv Legacy Models, i do not want to alter
@@ -196,7 +197,7 @@ class Doc(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        name = '%s_doc-path' % (self._meta.app_label)
+        name = 'catalog:%s_doc-path' % self._meta.app_label
         return name, [self.doc_id]
 
     class Meta:
