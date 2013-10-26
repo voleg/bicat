@@ -1,123 +1,51 @@
 # coding: utf-8
-__author__ = 'voleg'
 import os, platform
 from django.core.exceptions import ImproperlyConfigured
 try:
     from .local import *
 except ImportError:
-    raise ImproperlyConfigured('can\'t get local settings')
+    raise ImproperlyConfigured('Please place your local settings near settings.py!')
 
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
-hostname = platform.node()
+path = lambda *args: os.path.join(PROJECT_PATH, *args)
 
-# remote host VirtualBox Vm
-test1_msql_host = '192.168.198.3'
-test1_msql_port = '3019'
-# localhost VirtualBox Vm
-test2_msql_host = '192.168.56.3'
-test2_msql_port = '3019'
-# Production DB Server (hostname = 'res')
-production_msql_host = '192.168.1.252'
-production_msql_port = '4538'
-
-TESTING = 2
-
-if hostname == 'res' or TESTING == 0:
-    MSSQL_HOST = production_msql_host
-    MSSQL_PORT = production_msql_port
-
-    # DSN's
-    b_cat = 'SERV3BCAT'
-    b_kart = 'SERV3BKART'
-    b_uml = 'SERV3BUML'
-
-    default_db = {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bicat',
-        'USER': 'bicat',
-        'PASSWORD': 'J8jPJ1Fv',
-        'HOST': '192.168.0.242',
-        'PORT': '',
-    }
-
+if PRODUCTION_BRANCH in PROJECT_PATH and 'Linux' in platform.system():
     DEBUG = False
-elif TESTING == 1:
-    MSSQL_HOST = production_msql_host
-    MSSQL_PORT = production_msql_port
-
-    # DSN's
-    b_cat = 'SERV3BCAT'
-    b_kart = 'SERV3BKART'
-    b_uml = 'SERV3BUML'
-
-    default_db = {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(PROJECT_PATH, '../dev.db'),
-    }
-
-    DEBUG = True
+    MSSQL_HOST = PRODUCTION_MSSQL_HOST
+    MSSQL_PORT = PRODUCTION_MSSQL_PORT
+    MSSQL_USER = PRODUCTION_MSSQL_USER
+    MSSQL_PASS = PRODUCTION_MSSQL_PASS
+    DEFAULT_DB = PRODUCTION_DB
 else:
-    MSSQL_HOST = test2_msql_host
-    MSSQL_PORT = test2_msql_port
-
-    # DSN's
-    b_cat = 'TEST2SERV3BCAT'
-    b_kart = 'TEST2SERV3BKART'
-    b_uml = 'TEST2SERV3BUML'
-
-    default_db = {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(PROJECT_PATH, '../dev.db'),
-    }
-
+    DEBUG = True
+    MSSQL_HOST = DEV_MSSQL_HOST
+    MSSQL_PORT = DEV_MSSQL_PORT
+    MSSQL_USER = DEV_MSSQL_USER
+    MSSQL_PASS = DEV_MSSQL_PASS
+    DEFAULT_DB = STAGING_DB
     DEBUG = True
 
 TEMPLATE_DEBUG = DEBUG
 
+odbc_dsn_connector = lambda db_name, display_name: dict(
+    display_name=display_name,
+    ENGINE='sql_server.pyodbc',
+    NAME=db_name,
+    USER=MSSQL_USER,
+    PASSWORD=MSSQL_PASS,
+    HOST=MSSQL_HOST,
+    PORT=MSSQL_PORT,
+    OPTIONS=dict(
+        host_is_server=True,
+        extra_params='tds_version=8.0'
+    )
+)
+
 DATABASES = {
-    'default': default_db,
-    'bikart': {
-        'display_name': u'Периодика',
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'B_KART',
-        'USER': 'biblioteka',
-        'PASSWORD': '250bibl052',
-        'HOST': MSSQL_HOST,
-        'PORT': MSSQL_PORT,
-        'COLLATION': 'Cyrillic_General_CI_AS',
-        'OPTIONS': {'driver': 'TDS',
-                    'dsn': b_kart,
-                    'host_is_server': True,
-                    'extra_params': 'TDS_VERSION=8.0'}
-    },
-    'bicat': {
-        'display_name': u'Книги',
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'B_CAT',
-        'USER': 'biblioteka',
-        'PASSWORD': '250bibl052',
-        'HOST': MSSQL_HOST,
-        'PORT': MSSQL_PORT,
-        'COLLATION': 'Cyrillic_General_CI_AS',
-        'OPTIONS': {'driver': 'TDS',
-                    'dsn': b_cat,
-                    'host_is_server': True,
-                    'extra_params': 'TDS_VERSION=8.0'}
-    },
-    'biuml': {
-        'display_name': u'Учебно методическая литература',
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'B_uml',
-        'USER': 'biblioteka',
-        'PASSWORD': '250bibl052',
-        'HOST': MSSQL_HOST,
-        'PORT': MSSQL_PORT,
-        'COLLATION': 'Cyrillic_General_CI_AS',
-        'OPTIONS': {'driver': 'TDS',
-                    'dsn': b_uml,
-                    'host_is_server': True,
-                    'extra_params': 'TDS_VERSION=8.0'}
-    }
+    'default': DEFAULT_DB,
+    'bikart': odbc_dsn_connector('B_KART', u'Периодика'),
+    'bicat': odbc_dsn_connector('B_CAT', u'Книги'),
+    'biuml': odbc_dsn_connector('B_uml', u'Учебно методическая литература')
 }
 
 DATABASE_ROUTERS = ['apps.router.BiRouter']
@@ -126,7 +54,7 @@ DATABASE_ROUTERS = ['apps.router.BiRouter']
 DO_NOT_SPLIT_TAGS = ['254']
 
 TIME_ZONE = 'Europe/Moscow'
-LANGUAGE_CODE = 'ru-ru'
+LANGUAGE_CODE = 'ru-RU'
 
 SITE_ID = 1
 
@@ -134,25 +62,22 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = False
 
-MEDIA_ROOT = os.path.join(PROJECT_PATH, '../sitemedia/media/')
+MEDIA_ROOT = path('..', 'media')
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = os.path.join(PROJECT_PATH, '../sitemedia/static/')
+STATIC_ROOT = path('..', 'static')
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = ()
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-    #     'django.template.loaders.eggs.Loader',
 )
+TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), '..', 'templates').replace('\\','/'),)
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.cache.UpdateCacheMiddleware',                # кешируем весь сайт целиком
@@ -169,26 +94,21 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'BiblCatalog.urls'
 WSGI_APPLICATION = 'BiblCatalog.wsgi.application'
 
-TEMPLATE_DIRS = (os.path.join(PROJECT_PATH, '../templates/'),)
-
 TEMPLATE_CONTEXT_PROCESSORS = (
     # default template context processors
-    'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.debug',
+    'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.i18n',
+    'django.core.context_processors.request',
     'django.core.context_processors.media',
     'django.core.context_processors.static',
+    'django.contrib.messages.context_processors.messages',
     # required by django-admin-tools
-    'django.core.context_processors.request',
     'apps.prefs.context_processors.context_prefs',
 )
 
 INSTALLED_APPS = (
     'django_extensions',
-    #    'admin_tools',
-    #    'admin_tools.theming',
-    #    'admin_tools.menu',
-    #    'admin_tools.dashboard',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -196,13 +116,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.markup',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     'django_markdown',
     'south',
     'south_admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
     'apps.blog',
     'apps.marc15',
     'apps.marc15.BiCat',
