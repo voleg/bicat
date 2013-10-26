@@ -1,4 +1,4 @@
-*.pyc
+*.py(c|o)
 build
 wiki
 env*
@@ -10,3 +10,5 @@ Sql
 BiblCatalog/local*
 cmd.sh
 /dumps
+/media/
+/static/
