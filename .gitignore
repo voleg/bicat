@@ -1,4 +1,6 @@
-*.py(c|o)
+*.pyc
+*.pyo
+*.pyd
 build
 wiki
 env*
