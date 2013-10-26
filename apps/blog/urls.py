@@ -4,5 +4,5 @@ from views import *
 
 urlpatterns = patterns('',
     url(r'^$', IssuesListView.as_view()),
-    url(r'(?P<slug>.*)$', IssueDetailView.as_view(), name='Article'),
+    url(r'(?P<slug>.*)$', IssueDetailView.as_view(), name='post'),
 )

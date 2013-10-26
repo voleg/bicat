@@ -1,7 +1,7 @@
 # coding: utf-8
 from django.db import models
 from django.contrib.auth.models import User
-from datetime import datetime
+from django.core.urlresolvers import reverse
 from apps.utils.models import TimeStampedModel
 
 class Category(models.Model):
@@ -17,7 +17,8 @@ class Article(TimeStampedModel):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('Article', (), {'slug': self.slug,})
+        return ('blog:post', (), {'slug': self.slug, })
+        #return reverse('blog:post', args=[self.slug])
 
     def __unicode__(self):
         return self.name
