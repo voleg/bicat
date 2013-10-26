@@ -1,17 +1,18 @@
-django>=1.4.3
-django-admin-tools>=0.4.1
-django-object-tools>=0.0.7
-django-south-admin>=0.0.3
-pyodbc>=3.0.6
-South>=0.7.6
+django==1.4.3
+django-admin-tools==0.4.1
+django-object-tools==0.0.7
+django-south-admin==0.0.3
+pyodbc==3.0.7
+South==0.7.6
 -e git://github.com/avidal/django-pyodbc.git#egg=django-pyodbc
+# -e https://github.com/avidal/django-pyodbc/archive/django-1.4.zip
 Factory==1.2
 Werkzeug==0.8.3
 argparse==1.2.1
 django-extensions==1.0.2
 factory-boy==1.2.0
 ipython==0.13.1
-sql-server.pyodbc==1.0
+# sql-server.pyodbc==1.0
 wsgiref==0.1.2
 sorl-thumbnail
 MySQL-python==1.2.4
@@ -19,3 +20,4 @@ Markdown==2.2.1
 django-markdown==0.2.0
 redis==2.8.0
 django-redis-cache==0.10.0
+-e git+git@bitbucket.org:ydd/django-ydd-deploy-fabric#egg=django-ydd-deploy-fabric
