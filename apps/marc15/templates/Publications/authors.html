@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block page_main_header %}{% endblock %}
+
+{% block page_main_content %}
+
+{#    {% for catalog in authors %}#}
+
+{#    {% endfor %}#}
+
+    {% comment %}
+        {{ page_obj.paginator.num_pages }}  Колличество страниц в пагинаторе
+        {{ page_obj.paginator.page_range }}  Список страниц если их 146 - [1,2,3,...145,146]
+        {{ page_obj.number }} Номер текущей страницы
+        {% for f in paginator.page_range %} <li><a href="?page={{ f }}">{{ f }}</a> </li> {% endfor %}  Выведем все страницы
+        {% if page_obj.has_previous %} Проверяем нет ли предыдущей страницы
+        {% if page_obj.has_next %} Проверяем нет ли следующей
+    {% endcomment %}
+
+    <div class="pagination pagination-mini">
+        <ul>
+            <li>
+                <a href="?page={% if page_obj.previous_page_number == 0 %}1{% else %}{{ page_obj.previous_page_number }}{% endif %}"><-</a>
+            </li>
+            <li><a href="?page=1">1 ...</a></li>
+            <li class="disabled"><a href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
+            <li><a href="?page={{ page_obj.paginator.num_pages }}">... {{ page_obj.paginator.num_pages }}</a></li>
+            <li><a href="?page=
+                    {% if page_obj.next_page_number > page_obj.paginator.num_pages %}{{ page_obj.paginator.num_pages }}{% else %}{{ page_obj.next_page_number }}{% endif %}">-></a>
+            </li>
+        </ul>
+        <p class="muted pull-right">{{ paginator.count }} Документов</p>
+
+    </div>
+    <ul class="nav nav-list " style="margin-top: 10px">
+        {% for author in authors %}
+            <li>{{ author.term }}</li>
+        {% endfor %}
+    </ul>
+    <div class="pagination pagination-mini pagination-centered">
+        <ul>
+            <li>
+                <a href="?page={% if page_obj.previous_page_number == 0 %}1{% else %}{{ page_obj.previous_page_number }}{% endif %}"><</a>
+            </li>
+            <li class="disabled"><a href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
+            <li><a href="?page=
+                    {% if page_obj.next_page_number > page_obj.paginator.num_pages %}{{ page_obj.paginator.num_pages }}{% else %}{{ page_obj.next_page_number }}{% endif %}">></a>
+            </li>
+        </ul>
+
+    </div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_field %}
+{% block page_main_header %}
+
+    {% crispy form %}
+
+<form method="post" action="{{ form_action }}" class="ajax form-horizontal">
+    {% csrf_token %}
+    <div>
+        {{ formset.management_form }}
+    </div>
+    <table id="change_table" class="table table-striped table-condensed">
+        <thead>
+            <tr>
+                {% for form in formset.forms.0 %}
+                    {% for field in form %}
+                <th>{{ field.label }}</th>
+                        {% endfor %}
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for form in formset.forms %}
+                <tr class="">
+                    <td class="control-group">
+                        {% for field in form %}
+                            {% if '-id' in field.auto_id %}
+                                {% crispy_field field %}
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    {% for field in form %}
+                        <td for="{{ field.auto_id }}" id="div_{{ field.auto_id }}" class="control-group">
+                            {% crispy_field field %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
