@@ -37,7 +37,7 @@ odbc_dsn_connector = lambda db_name, display_name: dict(
     PORT=MSSQL_PORT,
     OPTIONS=dict(
         host_is_server=True,
-        extra_params='tds_version=8.0'
+        extra_params='tds_version=8.0;ClientCharset=UTF8',
     )
 )
 
