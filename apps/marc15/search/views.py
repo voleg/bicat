@@ -1,9 +1,6 @@
 # coding=utf-8
-from django.core.exceptions import FieldError
-from django.utils.datastructures import MultiValueDictKeyError
-
-__author__ = 'voleg'
 import operator
+from functools import reduce
 from django.db import models
 from django.shortcuts import render_to_response, redirect
 from django.views.decorators.csrf import csrf_exempt
@@ -29,18 +26,12 @@ def construct_search(field_name):
 @csrf_exempt
 def searchview(request, curent_base=None):
     # it's terrible i now
-    bicat_docs = bicat_doc.objects.all().select_related()
-    bikar_docs = bikar_doc.objects.all().select_related()
-    biuml_docs = biuml_doc.objects.all().select_related()
-    greeting = u'Увы ...'
+    bicat_docs = bicat_doc.objects.get_query_set()
+    bikar_docs = bikar_doc.objects.get_query_set()
+    biuml_docs = biuml_doc.objects.get_query_set()
+    greeting = u'Ничего не найдено'
 
-    search_query = request.POST.get('q', None)
-
-    try:
-        search_query = request.GET['q']
-    # except MultiValueDictKeyError:
-    except:
-        return redirect('/')
+    search_query = request.REQUEST.get('q', '')
 
     ua = request.META.get('HTTP_USER_AGENT', None)
     ip = request.META.get('REMOTE_ADDR', None)
