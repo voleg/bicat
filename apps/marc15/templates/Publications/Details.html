@@ -79,7 +79,7 @@
             </li>
         {% endif %}
         {% if doc_item.item_source_name %}
-            <li>Название источника: <a class="bnt btn-small" href="search/?q=source&quot;{{ doc_item.item_source_name }}&quot;">{{ doc_item.item_source_name }}</a></li>
+            <li>Название источника: <a class="bnt btn-small" href="search/?q=source&quot;{{ doc_item.item_source_name|force_string }}&quot;">{{ doc_item.item_source_name|force_string }}</a></li>
         {% endif %}
         {% if doc_item.item_other_information %}
             <li>Прочая информация:
