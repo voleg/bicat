@@ -267,6 +267,7 @@ class Idx653A(models.Model):
         verbose_name_plural = u'Теги'
         db_table = u'IDX653a'
         abstract = True
+        ordering = ['-cnt']
 
 
 class Idx245Ax(models.Model):
