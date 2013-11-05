@@ -6,21 +6,18 @@
 {% block page_main_content %}
     {% for issue in issues %}
         {% if issue.slug == 'index' %}
-            <div class="hero-unit">
-                <div class="media">
-                    <span class="pull-left">
-                        {#<img src="/static/logo_0.png" class="img-circle">#}
-                    </span>
-                    <h3>
-                        {{ issue.name }}
-                    </h3>
-                    <small> {{ issue.issue }} </small>
-                </div>
+            <div class="jumbotron play">
+                <h3 class="play">{{ issue.name }}</h3>
+                <small>{{ issue.issue }}</small>
             </div>
         {% else %}
             <ul class="nav nav-list">
                 <li>
-                    <a href="{{ issue.get_absolute_url }}">{{ issue.name }} <span style="color: #ffffff; font-size: 8pt;"> {{ issue.creator }} / {{ issue.created }}</span></a>
+                    <a class="play" href="{{ issue.get_absolute_url }}">{{ issue.name }}
+                        <span style="color: #ffffff; font-size: 8pt;">
+                            {{ issue.creator }} / {{ issue.created }}
+                        </span>
+                    </a>
                 </li>
         {% endif %}
     </ul>

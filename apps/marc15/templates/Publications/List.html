@@ -16,32 +16,41 @@
     {% if page_obj.has_next %} Проверяем нет ли следующей
 {% endcomment %}
 
-    <div class="pagination pagination-mini">
-        <ul>
-                <li>
-                    <a href="?page={% if page_obj.previous_page_number == 0  %}1{% else %}{{ page_obj.previous_page_number }}{% endif %}"><-</a></li>
-                <li> <a href="?page=1">1 ...</a></li>
+    <div class="pagination_up_row">
+        <span class="pagination dimed pull-right">{{ paginator.count }} Документов</span>
+        <ul class="pagination pagination-sm">
+                <li><a href="?page={% if page_obj.previous_page_number == 0 %}1
+                                   {% else %}{{ page_obj.previous_page_number }}
+                                   {% endif %}"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+                <li><a href="?page=1">1 ...</a></li>
                 <li class="disabled"> <a href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
-                <li> <a href="?page={{ page_obj.paginator.num_pages }}">... {{ page_obj.paginator.num_pages }}</a></li>
-                <li><a href="?page={% if page_obj.next_page_number > page_obj.paginator.num_pages %}{{page_obj.paginator.num_pages}}{% else %}{{ page_obj.next_page_number }}{% endif %}">-></a></li>
+                <li><a href="?page={{ page_obj.paginator.num_pages }}">... {{ page_obj.paginator.num_pages }}</a></li>
+                <li><a href="?page={% if page_obj.next_page_number > page_obj.paginator.num_pages %}
+                                        {{page_obj.paginator.num_pages}}
+                                   {% else %}{{ page_obj.next_page_number }}
+                                   {% endif %}"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
         </ul>
-        <p class="muted pull-right">{{ paginator.count }} Документов</p>
-
     </div>
     <ul class="nav nav-list">
         {% for item in doc_item_list%}
             <li> {% include "Publications/item_list_format.html" %} </li>
         {% endfor %}
     </ul>
-    <div class="pagination pagination-mini pagination-centered">
-        <ul>
+    <div class="text-center pagination_down_row">
+        <ul class="pagination pagination-sm">
             <li>
-                <a href="?page={% if page_obj.previous_page_number == 0  %}1{% else %}{{ page_obj.previous_page_number }}{% endif %}"><</a></li>
+                <a href="?page={% if page_obj.previous_page_number == 0  %}1
+                    {% else %}{{ page_obj.previous_page_number }}
+                    {% endif %}"><span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </li>
             <li class="disabled"> <a href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
-            <li><a href="?page={% if page_obj.next_page_number > page_obj.paginator.num_pages %}{{page_obj.paginator.num_pages}}{% else %}{{ page_obj.next_page_number }}{% endif %}">></a></li>
+            <li><a href="?page={% if page_obj.next_page_number > page_obj.paginator.num_pages %}
+                    {{page_obj.paginator.num_pages}}
+                    {% else %}{{ page_obj.next_page_number }}
+                    {% endif %}"><span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </li>
         </ul>
-
     </div>
-
-
 {% endblock %}

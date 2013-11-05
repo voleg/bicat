@@ -1,131 +1,98 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>ЭК Электронный Каталог библиотеки</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="каталог">
-    <meta name="catalog" content="">
-    <meta name='yandex-verification' content='5b20da976ced0361' />
-    <link rel="stylesheet" type="text/css" href={% static 'base.css' %} />
-    <link rel="stylesheet" type="text/css" href={% static 'bootstrap/css/bootstrap-responsive.css' %} />
-    <link rel="stylesheet" type="text/css" href={% static 'bootstrap/css/bootstrap.css' %} />
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="shortcut icon" href="{% static addressbook.png %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="каталог">
+        <meta name="catalog" content="">
+        <meta name='yandex-verification' content='5b20da976ced0361' />
+        <link rel="stylesheet" type="text/css" href={% static 'bootstrap/css/bootstrap.css' %} />
+        <link rel="stylesheet" type="text/css" href={% static 'sticky-footer-navbar.css' %}/>
+        <link rel="stylesheet" type="text/css" href={% static 'base.css' %} />
 
-    <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src={% static 'jquery-1.8.3.js' %}></script>
-    <script type="text/javascript" src={% static 'bootstrap/js/bootstrap.min.js' %}></script>
+        <title>ЭК Электронный Каталог библиотеки {% block title %}{% endblock %}</title>
+    </head>
 
-    <style>
-        body {
-            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-        }
-    </style>
-
-    <title>ЭК Электронный Каталог библиотеки {% block title %}{% endblock %}</title>
-</head>
-<body>
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-
-            <a class="brand" href='/'><span class="ptsans" style="text-shadow: 3px 3px 10px rgb(224, 224, 224)">ЭК</span></a>
-
-            <ul class="nav">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" href="#"><i class="icon-th-list"></i> <b class="caret"></b> </a>
-                    <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
-                {% block col-menu %}
-                    <div class="ptsanse">
-                    {% include "menu.html" %}
+    <body>
+        <div id="wrap">
+            <div class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/">ЭК</a>
                     </div>
-                {% endblock %}
-                    </ul>
-                </li>
-            </ul>
 
-            <form class="navbar-search pull-left" action="{% block search_url %}search/{% endblock %}" method="get">
-                    <input type="text" class="search-query input-xxlarge" placeholder="{% block search_hint %}поиск ...{% endblock %}" value="{% block search_value %}{% endblock %}" name="q">
-            </form>
-
-            <ul class="nav">
-                <li class="disabled"><a href="#">Расширенный поиск</a></li>
-            </ul>
-
-        </div>
-    </div>
-</div>
-
-
-<div class="container-fluid">
-<div class="row-fluid">
-{#    <div class="span4">#}
-{##}
-{##}
-{#    </div>#}
-    <div class="span12">
-
-    {% block page_top_nav %}
-        <div class="nav">
-        <ul class="nav nav-tabs">
-            {% include "menu.html" %}
-        </ul>
-    {% endblock %}
-
-        {% block page_top_alert %}
-{#            <div class="alert alert-info">#}
-{#                <button type="button" class="close" data-dismiss="alert">&times;</button>#}
-{#                <span style="font-family: PT Sans, sans-serif;">#}
-{#                <h4>Внимание !</h4>#}
-{#                Разработка приложения продолжается, возможны сбои, ждите (Волег)#}
-{#                    </span>#}
-{#                <div class="progress progress-striped active">#}
-{#                    <div class="bar" style="width: 80%;"></div>#}
-{#                </div>#}
-{#            </div>#}
-        {% endblock %}
-
-        {% block page_main_header %}
-        {% endblock %}
-
-        {% block page_main_content %}
-            <p>Контент чо</p>
-        {% endblock %}
-
-    </div>
-</div>
-</div>
-
-    {% block page_main_footer %}
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="footer">
-                    <p align="center"><a class="btn btn-mini disabled" href="{{ contact_url }}">{{ contact_caption }}</a></p>
-                    <span class="pull-right ptsans" style="color: #d3d3d3;">{{ app_version }}</span>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Разделы<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    {% block col-menu %}
+                                        {% include "menu.html" %}
+                                    {% endblock %}
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="row col-lg-8 col-md-7 col-sm-6">
+                            <form class="navbar-form" role="search"
+                                  action="{% block search_url %}search/{% endblock %}" method="GET">
+                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                    <input type="text" class="form-control"
+                                           placeholder="{% block search_hint %}поиск ...{% endblock %}"
+                                           value="{% block search_value %}{% endblock %}" name="q">
+                                </div>
+                            </form>
+                        </div>
+                        <ul class="nav navbar-nav">
+{#                            <li class="disabled"><a href="{% url catalog:search_ext %}">Расширенный поиск</a></li>#}
+                            <li class="disabled"><a href="#" onclick="return false;">Расширенный поиск</a></li>
+                        </ul>
+                        <p class="navbar-text pull-right"> <a href="#" class="navbar-link">Гость</a></p>
+                    </div>
                 </div>
             </div>
+
+            <div class="container">
+                {% block page_top_nav %}
+                    <div class="nav menu">
+                        <ul class="nav nav-tabs">
+                            {% include "menu.html" %}
+                        </ul>
+                    </div>
+                {% endblock %}
+                {% block page_top_alert %}{% endblock %}
+                {% block page_main_header %}{% endblock %}
+                {% block page_main_content %}{% endblock %}
+            </div>
         </div>
-    {% endblock %}
 
-    {% block javascript %}
-        <script type="text/javascript">
-            $('.nav li').each(function () {
-                console.log($(this));
-                var link = $('a', $(this)).attr('href');
-                if (typeof link == 'undefined') return;
-                var path = window.location.pathname;
-                if (link == path || path.indexOf(link) == 0 || path.indexOf(link.replace('s/', '/')) == 0) {
-                    $('#id_menu_div').find('li').removeClass('active');
-                    $(this).addClass('active');
-                }
-            });
-        </script>
-    {% endblock %}
+        {% block page_main_footer %}
+            <div id="footer">
+                <div class="container">
+                    <p class="text-muted text-right credit">
+                        <a class="btn btn-link btn-xs" href="{{ contact_url }}">{{ contact_caption }}</a>
+                        {{ app_version }}
+                    </p>
+                </div>
+            </div>
+        {% endblock %}
 
-</body>
+        {% block javascript %}
+            <script type="text/javascript" src={% static 'jquery-1.10.2.js' %}></script>
+            <script type="text/javascript" src={% static 'bootstrap/js/bootstrap.js' %}></script>
+            <script type="text/javascript" src={% static 'base.js' %}></script>
+        {% endblock %}
+
+    </body>
 </html>

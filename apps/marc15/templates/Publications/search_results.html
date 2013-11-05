@@ -9,7 +9,7 @@
 {% block search_value %}{{ search_query }}{% endblock %}
 
 {% block page_main_content %}
-    <div class="alert">
+    <div class="alert alert-warning">
         {% if greeting %}
             {{ greeting }}
         {% endif %}
@@ -17,7 +17,7 @@
     <strong>{{ search_query }}</strong>
     </div>
 
-    <ul class="nav nav-list " style="margin-top: 10px">
+    <ul class="nav nav-list" style="margin-top: 10px">
         {% for catalog in search_results %}
             {% for item in catalog %}
                 <li>

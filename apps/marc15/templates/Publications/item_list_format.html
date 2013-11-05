@@ -1,8 +1,8 @@
 {# Формат вывода публикации в списочных формах #}
 {% load force_string force_list from marc_extras %}
 <a href="{{ item.get_absolute_url }}">
-    <i class="icon-book"></i>
-
+    <span class="glyphicon glyphicon-book"></span>
+    &nbsp;
     {% if item.item_author %} {{ item.item_author }}
 {#    {% else %} <span style="color: #a9a9a9; background-color: #f7f7f7">Авторы не указаны</span> #}
     {% endif %}

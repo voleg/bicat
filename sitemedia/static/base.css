@@ -9,26 +9,43 @@
     /*background-image: url("bootstrap/img/glyphicons-halflings-white.png");*/
     /*background-position: -48px -48px;*/
 /*}*/
- .price {
-     font-family: 'PT Sans', serif;
- }
+@import url(http://fonts.googleapis.com/css?family=Play:400,700&subset=latin,cyrillic,latin-ext,cyrillic-ext);
 
-.tag {
-    cursor: pointer;
-}
+.price { font-family: 'PT Sans', serif; }
 
-.dimed {
+.tag { cursor: pointer; }
 
-    color: #a9a9a9;
-}
+.dimed { color: #a9a9a9; }
 
- .footer {
+.footer {
      text-align: center;
      padding: 10px 0;
      margin-top: 20px;
      border-top: 1px solid #e5e5e5;
  }
 
-.ptsans {
-    font-family: PT Sans, Arial, sans-serif;
+.play { font-family: 'Play', "Times New Roman", sans-serif;}
+
+.page-header h3 { text-shadow: 3px 3px 15px rgb(165, 175, 195); }
+
+.jumbotron {
+    text-shadow: 3px 3px 15px rgb(165, 175, 195);
+    text-align: center;
+    background-color: transparent;
+}
+
+.menu { margin: 0px 0px 20px; }
+
+.pagination {
+    margin: 0px 0px 10px;
+}
+
+.glyphicon {
+    font-size: 80%;
+    color: #505050;
+    text-shadow: 0px 0px 2px #505050;
+}
+
+.invisible_table tbody tr td {
+    border-top: 0px;
 }

@@ -6,6 +6,12 @@
 
 
 {% block page_main_content %}
-    <h3>{{ issue.name }}</h3>
-    <p>{{ issue.issue|markdown }}</p>
+        <div class="page-header">
+          <h3 class="play">{{ issue.name }}</h3>
+        </div>
+        <div class="play">
+            <p>{{ issue.issue|markdown }}</p>
+
+            <p class="text-muted text-right"> {{ issue.creator }} / {{ issue.created }}</p>
+        </div>
 {% endblock %}
