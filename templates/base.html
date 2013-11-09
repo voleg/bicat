@@ -80,10 +80,19 @@
         {% block page_main_footer %}
             <div id="footer">
                 <div class="container">
-                    <p class="text-muted text-right credit">
-                        <a class="btn btn-link btn-xs" href="{{ contact_url }}">{{ contact_caption }}</a>
-                        {{ app_version }}
-                    </p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-6" style="margin-top: 10px;">
+                                {% include "metrics.html" %}
+                            </div>
+                            <div class="col-md-6">
+                                <p class="text-muted text-right credit">
+                                    <a class="btn btn-link btn-xs" href="{{ contact_url }}">{{ contact_caption }}</a>
+                                    {{ app_version }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         {% endblock %}
