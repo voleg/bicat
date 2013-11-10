@@ -16,30 +16,34 @@
 {#            <a href="#">Сюда &rarr;</a>#}
 {#        </li>#}
 {#    </ul>#}
-            {% if doc_item.item_shelving_index %}
-                <span class="label label-success tooltip-test"
-                      data-toggle="tooltip" data-placement="bottom" title="Полочный индекс">
-                    {{ doc_item.item_shelving_index }}</span>
-            {% endif %}
-            {% if doc_item.item_author_lable %}
-                <span class="label label-success tooltip-test"
-                      data-toggle="tooltip" data-placement="bottom" title="Авторский знак">
-                    {{ doc_item.item_author_lable }}</span>
-            {% endif %}
-            {% if doc_item.bibliographic_level %}
-                <span class="label label-success tooltip-test"
-                      data-toggle="tooltip" data-placement="bottom" title="Библиографический уровень">
-                    {{ doc_item.bibliographic_level }}</span>
-            {% endif %}
-            {% if doc_item.item_invent_code %}
-                <div class="pull-right">
-                    {% for invent_code in doc_item.item_invent_code|force_list %}
+            <div class="row">
+                <div class="col-md-12">
+                    {% if doc_item.item_shelving_index %}
                         <span class="label label-success tooltip-test"
-                            data-toggle="tooltip" data-placement="bottom" title="Инвентарный номер">
-                            {{ invent_code }}</span>
-                    {% endfor %}
+                              data-toggle="tooltip" data-placement="bottom" title="Полочный индекс">
+                            {{ doc_item.item_shelving_index }}</span>
+                    {% endif %}
+                    {% if doc_item.item_author_lable %}
+                        <span class="label label-success tooltip-test"
+                              data-toggle="tooltip" data-placement="bottom" title="Авторский знак">
+                            {{ doc_item.item_author_lable }}</span>
+                    {% endif %}
+                    {% if doc_item.bibliographic_level %}
+                        <span class="label label-success tooltip-test"
+                              data-toggle="tooltip" data-placement="bottom" title="Библиографический уровень">
+                            {{ doc_item.bibliographic_level }}</span>
+                    {% endif %}
+                    {% if doc_item.item_invent_code %}
+                        <div class="pull-right">
+                            {% for invent_code in doc_item.item_invent_code|force_list %}
+                                <span class="label label-success tooltip-test"
+                                    data-toggle="tooltip" data-placement="bottom" title="Инвентарный номер">
+                                    {{ invent_code }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
-            {% endif %}
+            </div>
             <div class="well well-small" style="margin-top: 10px">
                 <div class="media">
                     <a class="pull-left" href="#">
